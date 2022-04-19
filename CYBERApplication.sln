@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScreeningApplication", "ScreeningApplication\ScreeningApplication.csproj", "{291A9C37-419C-4B54-AAE4-4A96520DF57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminApplication", "AdminApplication\AdminApplication.csproj", "{EBD8082C-23A3-4BEA-AD3A-D2C0955989A0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{291A9C37-419C-4B54-AAE4-4A96520DF57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{291A9C37-419C-4B54-AAE4-4A96520DF57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{291A9C37-419C-4B54-AAE4-4A96520DF57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{291A9C37-419C-4B54-AAE4-4A96520DF57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBD8082C-23A3-4BEA-AD3A-D2C0955989A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBD8082C-23A3-4BEA-AD3A-D2C0955989A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBD8082C-23A3-4BEA-AD3A-D2C0955989A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBD8082C-23A3-4BEA-AD3A-D2C0955989A0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {960A231F-21DE-438E-BF92-98FCB791407A}
+	EndGlobalSection
+EndGlobal

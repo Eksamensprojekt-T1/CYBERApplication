@@ -8,6 +8,8 @@ namespace BuinsnessLogic.Models
 {
     public class Participant
     {
+        #region // Properties
+
         public int? ParticipantID { get; set; }
         public string ParticipantName { get; set; }
         public DateTime DateOfBirht { get; set; }
@@ -15,6 +17,10 @@ namespace BuinsnessLogic.Models
         public string Gender { get; set; }
         public string Motivation { get; set; }
 
+
+        #endregion
+
+        #region // Constructors
         public Participant(int? participantID, string participantName, DateTime dateOfBirht, string educationalBackground, string gender, string motivation)
         {
             ParticipantID = participantID;
@@ -27,5 +33,8 @@ namespace BuinsnessLogic.Models
 
         public Participant(string participantName, DateTime dateOfBirht, string educationalBackground, string gender, string motivation)
             : this(null, participantName, dateOfBirht, educationalBackground, gender, motivation) { }
+
+        #endregion
+
     }
 }

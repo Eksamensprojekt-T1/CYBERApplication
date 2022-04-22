@@ -24,5 +24,10 @@ namespace AdminApplication
         {
             InitializeComponent();
         }
+
+        private void MC_Click(object sender, RoutedEventArgs e)
+        {
+            FrameWindow.Source = new Uri("MultipleChoiceOverview.xaml", UriKind.Relative);
+        }
     }
 }

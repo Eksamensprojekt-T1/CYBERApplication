@@ -10,7 +10,32 @@
       Background="#212529">
 
     <Grid>
-        <Button Style="{StaticResource RedButtonStyle}" Content="Button" HorizontalAlignment="Left" Margin="889,590,0,0" VerticalAlignment="Top"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250px"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="250px"/>
+            <RowDefinition Height="600px"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Column="0" Grid.Row="0" Source="/Views/cybergoat.png"/>
+
+        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" Margin="10,50,0,0" Content="Spørgsmål" Height="60px" Width="225px"/>
+        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" Margin="10,150,0,0" Content="Multiple Choice" Height="60px" Width="225px"/>
+        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" Margin="10,250,0,0" Content="Screening" Height="60px" Width="225px"/>
+        <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" Content="Gå tilbage" Height="60px" Width="125px" Click="Back_Click"/>
+
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="20"/>
+
+        <Button Grid.Column="1" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Opret" Height="60px" Width="200px"/>
+        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" Content="Slet" Height="60px" Width="200px"/>
+        <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Content="Rediger" Height="60px" Width="200px"/>
 
     </Grid>
 </Page>

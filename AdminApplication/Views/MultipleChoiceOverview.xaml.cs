@@ -24,5 +24,10 @@ namespace AdminApplication.Views
         {
             InitializeComponent();
         }
+
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(typeof(MainWindow)); 
+        }
     }
 }

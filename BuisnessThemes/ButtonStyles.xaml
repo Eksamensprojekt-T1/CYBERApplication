@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="RedButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#C8102E"/>
+        <Setter Property="Foreground" Value="#DEE2E6"/>
+        <Setter Property="FontSize" Value="18px"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15,15,15,15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+</ResourceDictionary>

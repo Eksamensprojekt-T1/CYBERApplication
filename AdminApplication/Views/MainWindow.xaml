@@ -125,7 +125,7 @@
         </Grid>
 
         <Button Style="{StaticResource ActionButtonStyle}" Content="Spørgsmål" Grid.Column="1" Grid.Row="5"></Button>
-        <Button Style="{StaticResource ActionButtonStyle}" Content="Multiple choice" Grid.Column="3" Grid.Row="5" Click="MC_Click"></Button>
+        <Button Style="{StaticResource ActionButtonStyle}" Content="Multiple choice" Grid.Column="3" Grid.Row="5"></Button>
         <Button Style="{StaticResource ActionButtonStyle}" Content="Screening" Grid.Column="5" Grid.Row="5"></Button>
 
         <DataGrid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5"/>

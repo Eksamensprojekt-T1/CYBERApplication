@@ -18,11 +18,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Views\cybergoat.png" />
     <Resource Include="Views\logo.png" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\BuinsnessLogic\BuinsnessLogic.csproj" />
+    <ProjectReference Include="..\BuisnessThemes\BuisnessThemes.csproj" />
   </ItemGroup>
 
 </Project>

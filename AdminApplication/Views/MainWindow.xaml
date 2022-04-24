@@ -130,6 +130,7 @@
 
         <DataGrid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5"/>
 
+        <Frame x:Name="FrameWindow"  Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="9" NavigationUIVisibility="Hidden"  VerticalAlignment="Stretch"/>
     </Grid>
 
 </Window>

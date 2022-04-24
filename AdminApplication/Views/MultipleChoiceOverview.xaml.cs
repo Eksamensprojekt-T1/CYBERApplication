@@ -13,21 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AdminApplication
+namespace AdminApplication.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for MultipleChoiceOverview.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MultipleChoiceOverview : Page
     {
-        public MainWindow()
+        public MultipleChoiceOverview()
         {
             InitializeComponent();
         }
 
-        private void MC_Click(object sender, RoutedEventArgs e)
+        private void Back_Click(object sender, RoutedEventArgs e)
         {
-            FrameWindow.Source = new Uri("MultipleChoiceOverview.xaml", UriKind.Relative);
+            NavigationService.Navigate(typeof(MainWindow)); 
         }
     }
 }

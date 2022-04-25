@@ -13,4 +13,29 @@
         </Style.Resources>
     </Style>
 
+    <Style x:Key="RectangleStyle" TargetType="{x:Type Rectangle}">
+        <Setter Property="RadiusX" Value="15"></Setter>
+        <Setter Property="RadiusY" Value="15"></Setter>
+    </Style>
+
+    <Style x:Key="ActionButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#DEE2E6"/>
+        <Setter Property="Foreground" Value="#161718"/>
+        <Setter Property="FontSize" Value="18px"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15,15,15,15"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#DEE2E6"></Setter>
+        <Setter Property="FontSize" Value="92px"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+    </Style>
+
 </ResourceDictionary>

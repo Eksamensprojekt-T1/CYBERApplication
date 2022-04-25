@@ -6,50 +6,11 @@
         xmlns:local="clr-namespace:AdminApplication"
         mc:Ignorable="d"
         Title="CyberScreening | AdminPortal"
-        Height="1030"
+        Height="{x:Static SystemParameters.PrimaryScreenHeight}"
         Width="1920"
         Background="#212529"
         WindowState="Maximized">
-
-    <Window.Resources>
-        <Style x:Key="LabelStyle" TargetType="Label">
-            <Setter Property="Foreground" Value="#DEE2E6"></Setter>
-            <Setter Property="FontSize" Value="92px"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-            <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-            <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
-        </Style>
-
-        <Style x:Key="RectangleStyle" TargetType="Rectangle">
-            <Setter Property="RadiusX" Value="15"></Setter>
-            <Setter Property="RadiusY" Value="15"></Setter>
-        </Style>
-
-        <Style TargetType="Button" x:Key="ActionButtonStyle">
-            <Setter Property="Background" Value="#DEE2E6"/>
-            <Setter Property="Foreground" Value="#161718"/>
-            <Setter Property="FontSize" Value="18px"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15,15,15,15"/>
-                </Style>
-            </Style.Resources>
-        </Style>
-
-        <Style x:Key="StartButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#C8102E"/>
-            <Setter Property="Foreground" Value="#DEE2E6"/>
-            <Setter Property="FontSize" Value="18px"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="15,15,15,15"/>
-                </Style>
-            </Style.Resources>
-        </Style>
-    </Window.Resources>
-
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150px"/>
@@ -70,11 +31,12 @@
             <RowDefinition Height="60px"/>
             <RowDefinition Height="40px"/>
             <RowDefinition Height="350px"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="50px"/>
         </Grid.RowDefinitions>
 
+
         <Image Grid.Column="1" Grid.Row="1" Source="/Views/logo.png" HorizontalAlignment="Left"/>
-        <Button Style="{StaticResource StartButtonStyle}" Height="60px" Width="350px" HorizontalAlignment="Right" Content="Start en screening" Grid.Column="5" Grid.Row="1"></Button>
+        <Button Style="{StaticResource RedButtonStyle}" Height="60px" Width="350px" HorizontalAlignment="Right" Content="Start en screening" Grid.Column="5" Grid.Row="1"></Button>
 
         <Rectangle Style="{StaticResource RectangleStyle}" Fill="#161718" Grid.Column="1" Grid.Row="3"></Rectangle>
         <Grid Grid.Column="1" Grid.Row="3">
@@ -131,6 +93,6 @@
         <DataGrid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5"/>
 
         <Frame x:Name="FrameWindow"  Grid.Column="0" Grid.ColumnSpan="7" Grid.Row="0" Grid.RowSpan="9" NavigationUIVisibility="Hidden"  VerticalAlignment="Stretch"/>
-    </Grid>
 
+    </Grid>
 </Window>

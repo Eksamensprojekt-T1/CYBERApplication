@@ -1,5 +1,4 @@
-﻿using AdminApplication.Views;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,17 +13,21 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace AdminApplication
+namespace AdminApplication.Views
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for QuestionOverviewPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class QuestionOverviewPage : Page
     {
-        public MainWindow()
+        public QuestionOverviewPage()
         {
             InitializeComponent();
-            Frame.Source = new Uri("OverviewPage.xaml", UriKind.Relative);
+        }
+
+        private void MainMenu_btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Views/OverviewPage.xaml", UriKind.Relative));
         }
     }
 }

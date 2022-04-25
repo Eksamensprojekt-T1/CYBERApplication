@@ -32,10 +32,10 @@
 
     <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#DEE2E6"></Setter>
-        <Setter Property="FontSize" Value="92px"></Setter>
+        <Setter Property="FontSize" Value="18px"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
-        <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
-        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Top"></Setter>
     </Style>
 
 </ResourceDictionary>

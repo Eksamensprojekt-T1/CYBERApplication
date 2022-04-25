@@ -6,6 +6,7 @@
         <Setter Property="Foreground" Value="#DEE2E6"/>
         <Setter Property="FontSize" Value="18px"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="15,15,15,15"/>
@@ -23,6 +24,7 @@
         <Setter Property="Foreground" Value="#161718"/>
         <Setter Property="FontSize" Value="18px"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="15,15,15,15"/>

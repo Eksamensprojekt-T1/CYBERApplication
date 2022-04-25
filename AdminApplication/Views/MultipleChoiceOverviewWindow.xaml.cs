@@ -10,24 +10,18 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AdminApplication.Views
 {
     /// <summary>
-    /// Interaction logic for MultipleChoiceOverview.xaml
+    /// Interaction logic for MultipleChoiceOverviewWindow.xaml
     /// </summary>
-    public partial class MultipleChoiceOverview : Page
+    public partial class MultipleChoiceOverviewWindow : Window
     {
-        public MultipleChoiceOverview()
+        public MultipleChoiceOverviewWindow()
         {
             InitializeComponent();
-        }
-
-        private void Back_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.Navigate(typeof(MainWindow)); 
         }
     }
 }

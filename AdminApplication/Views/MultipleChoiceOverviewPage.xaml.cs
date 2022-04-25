@@ -29,5 +29,10 @@ namespace AdminApplication.Views
         {
             NavigationService.Navigate(new Uri("Views/OverviewPage.xaml", UriKind.Relative));
         }
+
+        private void Create_btn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Uri("Views/MultipleChoiceCreatorPage.xaml", UriKind.Relative));
+        }
     }
 }

@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AdminApplication.Views"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
-      Title="QuestionOverviewPage"
+      Title="CyberScreening | Spørgsmålsbank"
       Background="#212529">
 
     <Grid>

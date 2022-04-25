@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:AdminApplication.Views"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
-      Title="OverviewPage"
+      Title="CyberScreening | AdminPortal"
       Background="#212529"
       >
 

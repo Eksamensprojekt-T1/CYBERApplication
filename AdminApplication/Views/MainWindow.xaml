@@ -6,37 +6,37 @@
         xmlns:local="clr-namespace:AdminApplication"
         mc:Ignorable="d"
         Title="CyberScreening | AdminPortal"
-        Height="{x:Static SystemParameters.PrimaryScreenHeight}"
-        Width="1920"
+        Height="720"
+        Width="1280"
         Background="#212529"
         WindowState="Maximized">
     
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="120px"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50px"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="50px"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="150px"/>
+            <ColumnDefinition Width="120px"/>
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="80px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="200px"/>
+            <RowDefinition Height="30px"/>
             <RowDefinition Height="50px"/>
-            <RowDefinition Height="100px"/>
-            <RowDefinition Height="50px"/>
-            <RowDefinition Height="250px"/>
-            <RowDefinition Height="40px"/>
-            <RowDefinition Height="60px"/>
-            <RowDefinition Height="40px"/>
-            <RowDefinition Height="350px"/>
-            <RowDefinition Height="50px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="280px"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
 
         <Image Grid.Column="1" Grid.Row="1" Source="/Views/logo.png" HorizontalAlignment="Left"/>
-        <Button Style="{StaticResource RedButtonStyle}" Height="60px" Width="350px" HorizontalAlignment="Right" Content="Start en screening" Grid.Column="5" Grid.Row="1"></Button>
+        <Button Style="{StaticResource RedButtonStyle}" Height="55px" Width="280px" HorizontalAlignment="Right" Content="Start en screening" Grid.Column="5" Grid.Row="1"></Button>
 
         <Rectangle Style="{StaticResource RectangleStyle}" Fill="#161718" Grid.Column="1" Grid.Row="3"></Rectangle>
         <Grid Grid.Column="1" Grid.Row="3">
@@ -45,12 +45,12 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="15px"/>
-                <RowDefinition Height="135px"/>
+                <RowDefinition Height="100px"/>
                 <RowDefinition Height="10px"/>
                 <RowDefinition Height="40px"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Foreground="#DEE2E6" FontSize="108" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
             <Label Foreground="#5D5F61" FontSize="22" Content="Spørgsmål" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
         </Grid>
 
@@ -61,12 +61,12 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="15px"/>
-                <RowDefinition Height="135px"/>
+                <RowDefinition Height="100px"/>
                 <RowDefinition Height="10px"/>
                 <RowDefinition Height="40px"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Foreground="#DEE2E6" FontSize="108" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
             <Label Foreground="#5D5F61" FontSize="22" Content="Multiple choices" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
         </Grid>
 
@@ -77,12 +77,12 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="15px"/>
-                <RowDefinition Height="135px"/>
+                <RowDefinition Height="100px"/>
                 <RowDefinition Height="10px"/>
                 <RowDefinition Height="40px"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Foreground="#DEE2E6" FontSize="108" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
             <Label Foreground="#5D5F61" FontSize="22" Content="Screenings" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
         </Grid>
 

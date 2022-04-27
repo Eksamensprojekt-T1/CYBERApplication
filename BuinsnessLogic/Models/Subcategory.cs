@@ -6,24 +6,24 @@ using System.Threading.Tasks;
 
 namespace BuinsnessLogic.Models
 {
-    public class Subcategory
+    public class SubCategory
     {
         #region // Properties
 
-        public int? SubcategoryID { get; set; }
+        public int? SubCategoryID { get; set; }
 
-        public string SubcategoryName { get; set; }
+        public string SubCategoryName { get; set; }
 
         #endregion
 
         #region // Constructors
-        public Subcategory(int? subcategoryID, string subcategoryName)
+        public SubCategory(int? subCategoryID, string subCategoryName)
         {
-            SubcategoryID = subcategoryID;
-            SubcategoryName = subcategoryName;
+            SubCategoryID = subCategoryID;
+            SubCategoryName = subCategoryName;
         }
 
-        public Subcategory(string subcategoryName)
+        public SubCategory(string subcategoryName)
             : this (null, subcategoryName) { }
 
         #endregion

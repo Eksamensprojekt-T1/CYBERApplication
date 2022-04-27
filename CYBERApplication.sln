@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdminApplication", "AdminAp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuinsnessLogic", "BuinsnessLogic\BuinsnessLogic.csproj", "{6998580E-EF58-4A1C-9B39-4DB2B99B8CFD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuisnessThemes", "BuisnessThemes\BuisnessThemes.csproj", "{32DA28E0-8880-4812-9C50-05CDB9DA19E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuisnessThemes", "BuisnessThemes\BuisnessThemes.csproj", "{32DA28E0-8880-4812-9C50-05CDB9DA19E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PersistenceTest", "PersistenceTest\PersistenceTest.csproj", "{EF8B844C-2FF3-4C34-8147-BAE8ECEE54D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{32DA28E0-8880-4812-9C50-05CDB9DA19E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32DA28E0-8880-4812-9C50-05CDB9DA19E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32DA28E0-8880-4812-9C50-05CDB9DA19E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF8B844C-2FF3-4C34-8147-BAE8ECEE54D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF8B844C-2FF3-4C34-8147-BAE8ECEE54D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF8B844C-2FF3-4C34-8147-BAE8ECEE54D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF8B844C-2FF3-4C34-8147-BAE8ECEE54D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

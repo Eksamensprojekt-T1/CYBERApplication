@@ -21,7 +21,6 @@ namespace BuinsnessLogic.Models
 
         #endregion
 
-
         #region // Constructors
 
         public Screening(int? screeningID, string screeningName, int screeningPassword, DateTime startDate, DateTime endDate, Timer screeningTimer)

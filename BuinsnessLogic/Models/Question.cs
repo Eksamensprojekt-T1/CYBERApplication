@@ -8,7 +8,6 @@ namespace BuinsnessLogic.Models
 {
     public class Question
     {
-
         #region // Properties
 
         public int? QuestionID { get; set; }
@@ -37,6 +36,5 @@ namespace BuinsnessLogic.Models
 
 
         #endregion
-
     }
 }

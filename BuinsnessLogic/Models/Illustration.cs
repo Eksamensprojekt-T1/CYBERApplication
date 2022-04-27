@@ -8,26 +8,21 @@ namespace BuinsnessLogic.Models
 {
     public class Illustration
     {
-        #region // Properties
-
-        public int? IllustationID { get; set; }
+        #region // Propertys
+        public int? IllustrationID { get; set; }
         public string FileName { get; set; }
         public string FilePath { get; set; }
-
         #endregion
-
         #region // Constructors
-        public Illustration(int? illustationID, string fileName, string filePath)
+        public Illustration(int? illustrationID, string fileName, string filePath)
         {
-            IllustationID = illustationID;
+            IllustrationID = illustrationID;
             FileName = fileName;
             FilePath = filePath;
         }
 
-        public Illustration(string fileName, string filePath) 
-            : this (null, fileName, filePath) { }
-
+        public Illustration(string fileName, string filePath)
+            :this(null,  fileName,  filePath) { }
         #endregion
-
     }
 }

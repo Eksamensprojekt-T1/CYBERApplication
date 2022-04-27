@@ -35,6 +35,5 @@ namespace BuinsnessLogic.Models
             : this(null, participantName, dateOfBirht, educationalBackground, gender, motivation) { }
 
         #endregion
-
     }
 }

@@ -6,26 +6,26 @@ using System.Threading.Tasks;
 
 namespace BuinsnessLogic.Models
 {
-    public class Maincategory
+    public class MainCategory
     {
         #region // Properties
 
-        public int? MaincategoryID { get; set; }
+        public int? MainCategoryID { get; set; }
 
-        public string MaincategoryName { get; set; }
+        public string MainCategoryName { get; set; }
 
         #endregion
 
         #region // Constructors
 
-        public Maincategory(int? maincategoryID, string maincategoryName)
+        public MainCategory(int? mainCategoryID, string mainCategoryName)
         {
-            MaincategoryID = maincategoryID;
-            MaincategoryName = maincategoryName;
+            MainCategoryID = mainCategoryID;
+            MainCategoryName = mainCategoryName;
         }
 
-        public Maincategory(string maincategoryName)
-            : this (null, maincategoryName) { }
+        public MainCategory(string mainCategoryName)
+            : this (null, mainCategoryName) { }
 
         #endregion
     }

@@ -23,15 +23,9 @@ namespace BuinsnessLogic.Persistence
         public int? Add(Answer answer)
         {
             int? result = -1;
-            string answerDescription;
-            bool isItCorrect;
 
             using (SqlConnection con = new(connectionPath)) // adds to database
             {
-                result = answer.AnswerID;
-                answerDescription = answer.AnswerDescription;
-                isItCorrect = answer.IsItCorrect;
-
                 string table = "ANSWER";
                 string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect";
                 string values = "@answerDescription, @isItCorrect";
@@ -41,35 +35,36 @@ namespace BuinsnessLogic.Persistence
 
                 con.Open();
                 SqlCommand cmd = new(commandText, con);
-
                 cmd.Parameters.Add("@answerDescription", SqlDbType.NVarChar).Value = answer.AnswerDescription;
                 cmd.Parameters.Add("@isItCorrect", SqlDbType.Bit).Value = answer.IsItCorrect;
-
-                // cmd.ExecuteNonQuery();
-                
+                answer.AnswerID = Convert.ToInt32(cmd.ExecuteScalar());
+                result = answer.AnswerID;
             }
             Answers.Add(answer); // adds to List
+
             return result;
         }
 
-        public void Delete(int? entityID)
+        public void Delete(int? answerID)
         {
-            if (entityID != null) // TODO should be some exception
+            if (answerID != null) // TODO should be some exception
             {
                 foreach (Answer answer in Answers)
                 {
-                    if (answer.AnswerID.Equals(entityID))
+                    if (answer.AnswerID.Equals(answerID))
                     {
-                        // Removes from local storage (RAM)
-                        Answers.Remove(answer);
-
                         // Remove from SQL database
                         using (SqlConnection connection = new(connectionPath))
                         {
                             connection.Open();
                             string table = "ANSWER";
                             string query = $"DELETE FROM {table} WHERE {answer.AnswerID} = @AnswerID";
+                            SqlCommand cmd = new(query, connection);
+                            cmd.Parameters.Add("@AnswerID", SqlDbType.Int).Value = answerID;
+                            cmd.ExecuteScalar();
                         }
+                        // Removes from RAM
+                        Answers.Remove(answer);
 
                         break;
                     }
@@ -96,35 +91,27 @@ namespace BuinsnessLogic.Persistence
             return result;
         }
 
-        public void Update(Answer entity)
+        public void Update(Answer entity) // TODO
         {
             using (SqlConnection connection = new(connectionPath))
             {
-
+                
             }
         }
         public void Update()
-        {
-            // TODO - Load to database from local storage
+        {   
             using (SqlConnection connection = new(connectionPath))
             {
-                connection.Open();
                 string table = "ANSWER";
                 string values = "ANSWER.AnswerID, ANSWER.AnswerDescription, ANSWER.IsItCorrect";
                 string CommandText = $"SELECT {values} FROM {table}";
-            }
 
-            // Loads to local storage from database
-            using (SqlConnection connection = new(connectionPath))
-            {
+                // Loads to RAM from database
                 connection.Open();
-                string table = "ANSWER";
-                string values = "ANSWER.AnswerID, ANSWER.AnswerDescription, ANSWER.IsItCorrect";
-                string CommandText = $"SELECT {values} FROM {table}";
                 SqlCommand sQLCommand = new(CommandText, connection);
                 using (SqlDataReader sqldatareader = sQLCommand.ExecuteReader())
                 {
-                    while (sqldatareader.Read() != false)
+                    while (sqldatareader.Read())
                     {
                         int? answerID = int.Parse(sqldatareader["AnswerID"].ToString());
                         string answerDescription = sqldatareader["AnswerDescription"].ToString();

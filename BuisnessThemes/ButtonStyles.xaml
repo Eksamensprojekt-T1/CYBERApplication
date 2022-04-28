@@ -32,6 +32,19 @@
         </Style.Resources>
     </Style>
 
+    <Style x:Key="OpenButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FFABADB3"/>
+        <Setter Property="Foreground" Value="#161718"/>
+        <Setter Property="FontSize" Value="22px"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="10,10,10,10"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
     <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#DEE2E6"></Setter>
         <Setter Property="FontSize" Value="18px"></Setter>
@@ -39,5 +52,40 @@
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Top"></Setter>
     </Style>
+
+    <Style x:Key="LabelStyleBlack" TargetType="{x:Type Label}">
+        <Setter Property="Foreground" Value="#161718"></Setter>
+        <Setter Property="FontSize" Value="18px"></Setter>
+        <Setter Property="FontWeight" Value="Bold"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Bottom"></Setter>
+    </Style>
+
+    <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="5,5,5,5"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="ComboStyle" TargetType="{x:Type ComboBox}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <Border 
+                        Background="White" 
+                        x:Name="border" 
+                        CornerRadius="5"
+                        BorderThickness="1"
+                        BorderBrush="#FFABADB3">
+                        <ContentPresenter />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>

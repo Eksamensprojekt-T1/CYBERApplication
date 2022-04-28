@@ -9,15 +9,39 @@ namespace AdminApplication.ViewModels
 {
     public class QuestionViewModel
     {
-        public static void Main()
+        List<Question> QuestionList = new List<Question>();
+
+        List<Maincategory> MaincategoryList = new List<Maincategory>();
+
+        List<Subcategory> SubcategoryList = new List<Subcategory>();
+
+        List<Question> GetAllQuestions = new List<Question>();
+
+        List<Question> GetAllMaincategories = new List<Question>();
+
+        public void AddNewQuestion(string questionName, string description, Level difficulty)
         {
-            List<Question> Questionlist = new List<Question>();
+            
+        }
 
+        public void AddAnswer(string answerDescription, bool isItCorrect)
+        {
 
-            List<Maincategory> MaincategoryList = new List<Maincategory>();
+        }
 
+        public void AddIllustration(string fileName, string filePath)
+        {
 
-            List<Subcategory> SubcategoryList = new List<Subcategory>();
+        }
+
+        public void SelectMaincategoryName(string maincategoryName)
+        {
+
+        }
+
+        public void SelectSubcategoryName(string subcategoryName)
+        {
+
         }
     }
 }

@@ -6,7 +6,18 @@ using System.Threading.Tasks;
 
 namespace AdminApplication.ViewModels
 {
-    internal class MultipleChoiceOverviewViewModel
+    public class MultipleChoiceOverviewViewModel
     {
+
+
+        public void AddMultipleChoice()
+        {
+
+        }
+
+        public void DeleteMultipleChoice()
+        {
+
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,7 +28,18 @@ namespace AdminApplication.Views
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)
         {
+            NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
+        }
 
+        private void Illustration_btn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                Illustration_tb.Text = openFileDialog.FileName;
+                Uri test = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
+                Illustration_pt.Source = new BitmapImage(test);
+            }
         }
     }
 }

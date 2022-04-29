@@ -31,7 +31,7 @@ namespace BuinsnessLogic.Persistence
 
                 // Defining SQL-Query
                 string table = "QUESTION";
-                string coloumns = "QuestionDescription, Difficulty"; // Mangler tilføjelse af kategorier og answers.
+                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty"; // Mangler tilføjelse af kategorier og answers.
                 string values = "@QuestionDescription, @Difficulty";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +

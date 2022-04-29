@@ -29,7 +29,18 @@
         <Image Grid.Column="0" Grid.Row="0" Source="/Views/cybergoat.png" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30"/>
         <Button x:Name="MainMenu_btn" Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Hovedmenu" Height="40px" Width="205px" Click="MainMenu_btn_Click"/>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="True"></DataGrid>
+        <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding QuestionVM.Count}" Grid.Column="0" Grid.Row="1" Margin="0,150,0,0" HorizontalContentAlignment="Center"></Label>
+        <Label Foreground="#5D5F61" FontSize="22" Content="Spørgsmål" Grid.Column="0" Grid.Row="1" Margin="0,270,0,0" HorizontalContentAlignment="Center"/>
+
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header=" Spørgsmål" Binding="{Binding QuestionDescription}"/>
+                <DataGridTextColumn Width="*" Header=" Hovedkategori"/>
+                <DataGridTextColumn Width="*" Header=" Sværhedsgrad" Binding="{Binding Difficulty}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        
+        
 
         <Button x:Name="Create_btn" Grid.Column="1" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Opret" Height="50px" Width="200px" Click="Create_btn_Click"/>
         <Button x:Name="Delete_btn" Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" Content="Slet" Height="50px" Width="200px"/>

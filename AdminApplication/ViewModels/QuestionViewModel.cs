@@ -11,13 +11,12 @@ namespace AdminApplication.ViewModels
     {
         List<Question> QuestionList = new List<Question>();
 
-        List<Maincategory> MaincategoryList = new List<Maincategory>();
+        List<MainCategory> MaincategoryList = new List<MainCategory>();
 
-        List<Subcategory> SubcategoryList = new List<Subcategory>();
+        List<SubCategory> SubcategoryList = new List<SubCategory>();
 
-        List<Question> GetAllQuestions = new List<Question>();
 
-        List<Question> GetAllMaincategories = new List<Question>();
+
 
         public void AddNewQuestion(string questionName, string description, Level difficulty)
         {
@@ -43,5 +42,6 @@ namespace AdminApplication.ViewModels
         {
 
         }
+
     }
 }

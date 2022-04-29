@@ -62,7 +62,11 @@
     </Style>
 
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="#FFABADB3"></Setter>
+        <Setter Property="" Value="#161718"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="18px"></Setter>
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="5,5,5,5"/>

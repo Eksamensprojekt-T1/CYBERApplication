@@ -1,0 +1,94 @@
+﻿<Page x:Class="AdminApplication.Views.OverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AdminApplication.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="CyberScreening | AdminPortal"
+      Background="#212529"
+      >
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="120px"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50px"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50px"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="120px"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="80px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="200px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="50px"/>
+            <RowDefinition Height="30px"/>
+            <RowDefinition Height="280px"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <Image Grid.Column="1" Grid.Row="1" Source="/Views/logo.png" HorizontalAlignment="Left"/>
+        <Button x:Name="StartScreening_btn" Style="{StaticResource RedButtonStyle}" Height="55px" Width="280px" HorizontalAlignment="Right" Content="Start en screening" Grid.Column="5" Grid.Row="1"></Button>
+
+        <Rectangle Style="{StaticResource RectangleStyle}" Fill="#161718" Grid.Column="1" Grid.Row="3"></Rectangle>
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15px"/>
+                <RowDefinition Height="100px"/>
+                <RowDefinition Height="10px"/>
+                <RowDefinition Height="40px"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#5D5F61" FontSize="22" Content="Spørgsmål" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
+        </Grid>
+
+        <Rectangle Style="{StaticResource RectangleStyle}" Fill="#161718" Grid.Column="3" Grid.Row="3"></Rectangle>
+        <Grid Grid.Column="3" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15px"/>
+                <RowDefinition Height="100px"/>
+                <RowDefinition Height="10px"/>
+                <RowDefinition Height="40px"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#5D5F61" FontSize="22" Content="Multiple choices" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
+        </Grid>
+
+        <Rectangle Style="{StaticResource RectangleStyle}" Fill="#161718" Grid.Column="5" Grid.Row="3"></Rectangle>
+        <Grid Grid.Column="5" Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="15px"/>
+                <RowDefinition Height="100px"/>
+                <RowDefinition Height="10px"/>
+                <RowDefinition Height="40px"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#5D5F61" FontSize="22" Content="Screenings" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
+        </Grid>
+
+        <Button x:Name="Question_btn" Style="{StaticResource ActionButtonStyle}" Content="Spørgsmål" Grid.Column="1" Grid.Row="5" Click="Question_btn_Click"></Button>
+        <Button x:Name="MultipleChoice_btn" Style="{StaticResource ActionButtonStyle}" Content="Multiple choice" Grid.Column="3" Grid.Row="5" Click="MultipleChoice_btn_Click"></Button>
+        <Button x:Name="Screening_btn" Style="{StaticResource ActionButtonStyle}" Content="Screening" Grid.Column="5" Grid.Row="5"></Button>
+
+        <DataGrid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5"/>
+    </Grid>
+</Page>

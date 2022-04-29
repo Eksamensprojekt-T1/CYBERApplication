@@ -2,6 +2,7 @@
 using BuinsnessLogic.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,17 +12,25 @@ namespace AdminApplication.ViewModels
     public class QuestionViewModel
     {
         // Defining the ViewModel lists
-        List<Question> questionList = new List<Question>();
-        List<MainCategory> mainCategoryList = new List<MainCategory>();
-        List<SubCategory> subCategoryList = new List<SubCategory>();
+        public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
+        ObservableCollection<MainCategory> mainCategoryList = new ObservableCollection<MainCategory>();
+        ObservableCollection<SubCategory> subCategoryList = new ObservableCollection<SubCategory>();
 
         // Defining repository objects
         QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
 
+        public QuestionViewModel()
+        {
+            foreach (Question question in QuestionRepo.GetAll())
+            {
+                QuestionVM.Add(question);
+            }
+        }
+        
         public void AddNewQuestion(string questionDescription, Level difficulty)
         {
             // Add object to ViewModel List
-            questionList.Add(new Question(questionDescription, difficulty));
+            QuestionVM.Add(new Question(questionDescription, difficulty));
 
             // Add Object to Repository
             QuestionRepo.Add(new Question(questionDescription, difficulty));
@@ -32,12 +41,12 @@ namespace AdminApplication.ViewModels
 
         }
 
-        public List<Question> GetAllQuestions()
+        public ObservableCollection<Question> GetAllQuestions()
         {
-            return questionList;
+            return QuestionVM;
         }
 
-        public List<MainCategory> GetAllMainCategories()
+        public ObservableCollection<MainCategory> GetAllMainCategories()
         {
             return mainCategoryList;
         }
@@ -56,6 +65,5 @@ namespace AdminApplication.ViewModels
         {
 
         }
-
     }
 }

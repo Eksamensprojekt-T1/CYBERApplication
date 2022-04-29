@@ -17,6 +17,7 @@ namespace BuinsnessLogic.Persistence
         public QuestionRepository(string connectionString)
         {
             this.connectionString = connectionString;
+            Update();
         }
 
         public int? Add(Question question)
@@ -61,7 +62,7 @@ namespace BuinsnessLogic.Persistence
 
         public IEnumerable<Question> GetAll()
         {
-            throw new NotImplementedException();
+            return QuestionsList;
         }
 
         public Question GetByID(int? entityID)
@@ -75,7 +76,45 @@ namespace BuinsnessLogic.Persistence
         }
         public void Update()
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "QUESTION";
+                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, Question.Difficulty";
+                string CommandText = $"SELECT {values} FROM {table}";
+
+                con.Open();
+                SqlCommand sQLCommand = new(CommandText, con);
+                using (SqlDataReader reader = sQLCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? questionID = int.Parse(reader["QuestionID"].ToString());
+                        string questionDescription = reader["QuestionDescription"].ToString();
+                        string questionDifficulty = reader["Difficulty"].ToString();
+
+                        int diff = 0;
+
+                        switch (questionDifficulty)
+                        {
+                            case "easy":
+                                diff = 0;
+                                break;
+                            case "moderate":
+                                diff = 1;
+                                break;
+                            case "hard":
+                                diff = 2;
+                                break;
+                        }
+
+                        Question question = (questionID != -1)
+                            ? new(questionID, questionDescription, (Level)diff)
+                            : new(questionDescription, (Level)diff);
+
+                        QuestionsList.Add(question);
+                    }
+                }
+            }
         }
     }
 }

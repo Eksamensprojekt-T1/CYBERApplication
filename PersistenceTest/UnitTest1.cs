@@ -32,8 +32,6 @@ namespace PersistenceTest
         public void TestAdd()
         {
             // Asssert
-            Assert.AreEqual(a1, answerRepo.GetByID(a1Return));
-            // Assert.AreEqual(2, a2Return);
             Assert.AreEqual(2, answerRepo.Answers.Count);
         }
 
@@ -41,7 +39,8 @@ namespace PersistenceTest
         public void TestGetByID()
         {
             // Assert
-            Assert.AreEqual(a1, answerRepo.GetByID(1));
+            Assert.AreEqual(a1, answerRepo.GetByID(a1Return));
+            Assert.AreEqual(a2, answerRepo.GetByID(a2Return));
         }
 
 

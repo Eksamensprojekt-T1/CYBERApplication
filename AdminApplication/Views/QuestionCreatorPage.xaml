@@ -42,11 +42,11 @@
 
         <Button Name="Back_btn" Grid.Column="0" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50" Width="100" Click="Back_btn_Click"/>
 
-        <Label Name="Title_lb" Grid.Column="2" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Titel:" />
-        <TextBox Name="Title_tb" Grid.Column="2" Grid.Row="2" Style="{StaticResource TextBoxStyle}">Indtast her</TextBox >
+        <Label Name="Title_lb" Grid.Column="2" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Spørgsmål:" />
+        <TextBox Name="Title_tb" Grid.Column="2" Grid.Row="2" Style="{StaticResource TextBoxStyle}">Indtast spørgsmål her</TextBox >
 
         <Label Name="Illustration_lb" Grid.Column="4" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Illustration:" HorizontalAlignment="Center"/>
-        <TextBox Name="Illustration_tb" Grid.Column="4" Grid.Row="2" Width="250" Style="{StaticResource TextBoxStyle}">Indtast her</TextBox >
+        <TextBox Name="Illustration_tb" Grid.Column="4" Grid.Row="2" Width="250" Style="{StaticResource TextBoxStyle}"></TextBox >
         <Button Name="Illustration_btn" Grid.Column="4" Grid.Row="2" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="50" Click="Illustration_btn_Click"/>
         <Image Name="Illustration_pt" Grid.Column="4" Grid.Row="4" Grid.RowSpan="5" />
 
@@ -57,10 +57,15 @@
         <ComboBox Name="Subcategory_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
 
         <Label Name="Difficulty_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Sværhedsgrad:" />
-        <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="8" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
+        <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="8" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300">
+            <ComboBoxItem>Nem</ComboBoxItem>
+            <ComboBoxItem>Moderet</ComboBoxItem>
+            <ComboBoxItem>Svær</ComboBoxItem>
+        </ComboBox>
 
         <Label Name="Svar_lb" Grid.Column="2" Grid.Row="9" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
 
+        <Button Name="accept_btn" Grid.Column="4" Grid.Row="12" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100"/>
 
     </Grid>
 

@@ -63,9 +63,9 @@
             <ComboBoxItem>Svær</ComboBoxItem>
         </ComboBox>
 
-
         <Label Name="Svar_lb" Grid.Column="2" Grid.Row="9" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
 
+        <Button Name="accept_btn" Grid.Column="4" Grid.Row="12" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100"/>
 
     </Grid>
 

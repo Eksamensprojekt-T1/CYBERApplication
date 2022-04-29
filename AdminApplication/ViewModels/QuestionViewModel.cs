@@ -1,4 +1,5 @@
 ﻿using BuinsnessLogic.Models;
+using BuinsnessLogic.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,24 +10,36 @@ namespace AdminApplication.ViewModels
 {
     public class QuestionViewModel
     {
-        List<Question> QuestionList = new List<Question>();
+        // Defining the ViewModel lists
+        List<Question> questionList = new List<Question>();
+        List<MainCategory> mainCategoryList = new List<MainCategory>();
+        List<SubCategory> subCategoryList = new List<SubCategory>();
 
-        List<Maincategory> MaincategoryList = new List<Maincategory>();
+        // Defining repository objects
+        QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
 
-        List<Subcategory> SubcategoryList = new List<Subcategory>();
-
-        List<Question> GetAllQuestions = new List<Question>();
-
-        List<Question> GetAllMaincategories = new List<Question>();
-
-        public void AddNewQuestion(string questionName, string description, Level difficulty)
+        public void AddNewQuestion(string questionDescription, Level difficulty)
         {
-            
+            // Add object to ViewModel List
+            questionList.Add(new Question(questionDescription, difficulty));
+
+            // Add Object to Repository
+            QuestionRepo.Add(new Question(questionDescription, difficulty));
         }
 
         public void AddAnswer(string answerDescription, bool isItCorrect)
         {
 
+        }
+
+        public List<Question> GetAllQuestions()
+        {
+            return questionList;
+        }
+
+        public List<MainCategory> GetAllMainCategories()
+        {
+            return mainCategoryList;
         }
 
         public void AddIllustration(string fileName, string filePath)

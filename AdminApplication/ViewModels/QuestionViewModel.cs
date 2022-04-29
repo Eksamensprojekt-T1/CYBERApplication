@@ -56,5 +56,6 @@ namespace AdminApplication.ViewModels
         {
 
         }
+
     }
 }

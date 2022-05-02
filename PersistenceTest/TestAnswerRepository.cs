@@ -79,6 +79,9 @@ namespace PersistenceTest
         [TestMethod]
         public void TestDelete()
         {
+            // Arange
+            answerRepo.Add(a1);
+            answerRepo.Add(a2);
             // Act
             answerRepo.Delete(a1.AnswerID);
             answerRepo.Delete(a2.AnswerID);

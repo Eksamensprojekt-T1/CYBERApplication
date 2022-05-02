@@ -76,7 +76,7 @@ namespace BuinsnessLogic.Persistence
             {
                 connection.Open();
                 SqlCommand cmd = new(CommandText, connection);
-
+                // need fix
                 cmd.ExecuteScalar();
             }
         }
@@ -132,9 +132,7 @@ namespace BuinsnessLogic.Persistence
                         string answerDescription = sqlDataReader["AnswerDescription"].ToString();
                         bool isItCorrect = sqlDataReader["IsItCorrect"].ToString() == "1";
 
-                        Answer answer = (answerID != -1) // Ternary
-                            ? new(answerID, answerDescription, isItCorrect)
-                            : new(answerDescription, isItCorrect);
+                        Answer answer = new(answerID, answerDescription, isItCorrect);
 
                         Answers.Add(answer);
                     }

@@ -70,5 +70,10 @@ namespace AdminApplication.Views
             QuestionVM.AddNewQuestion(questionDescription, (BuinsnessLogic.Models.Level)difficultyChosen);
             MessageBox.Show("Spørgsmål oprettet!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void Difficulty_cb_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

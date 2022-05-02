@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BuinsnessLogic.Models;
+using static BuinsnessLogic.Models.MainCategory;
 
 namespace BuinsnessLogic.Persistence
 {
@@ -79,7 +80,7 @@ namespace BuinsnessLogic.Persistence
             using (SqlConnection con = new(connectionString))
             {
                 string table = "QUESTION";
-                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, Question.Difficulty";
+                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, Question.Difficulty, Question.MainCategory";
                 string CommandText = $"SELECT {values} FROM {table}";
 
                 con.Open();
@@ -91,6 +92,7 @@ namespace BuinsnessLogic.Persistence
                         int? questionID = int.Parse(reader["QuestionID"].ToString());
                         string questionDescription = reader["QuestionDescription"].ToString();
                         string questionDifficulty = reader["Difficulty"].ToString();
+                        string questionCategory = reader["MainCategory"].ToString();
 
                         int diff = 0;
 
@@ -107,9 +109,23 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
+                        int Cate = 0;
+                        switch (questionCategory)
+                        {
+                            case "Hardware":
+                                Cate = 0;
+                                break;
+                            case "Operativesystemer":
+                                Cate = 1;
+                                break;
+                            case "Netværk":
+                                Cate = 2;
+                                break;
+                        }
+
                         Question question = (questionID != -1)
-                            ? new(questionID, questionDescription, (Level)diff)
-                            : new(questionDescription, (Level)diff);
+                            ? new(questionID, questionDescription, (Level)diff, (MainCategory)Cate)
+                            : new(questionDescription, (Level)diff, (MainCategory)Cate);
 
                         QuestionsList.Add(question);
                     }

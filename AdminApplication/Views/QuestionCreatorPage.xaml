@@ -51,7 +51,11 @@
         <Image Name="Illustration_pt" Grid.Column="4" Grid.Row="4" Grid.RowSpan="5" />
 
         <Label Name="Maincategory_lb" Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" Content="Hovedkategori:" />
-        <ComboBox Name="Maincategory_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
+        <ComboBox Name="Maincategory_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300">
+            <ComboBoxItem>Hardware</ComboBoxItem>
+            <ComboBoxItem>Operativesystemer</ComboBoxItem>
+            <ComboBoxItem>Netværk</ComboBoxItem>
+        </ComboBox>
 
         <Label Name="Subcategory_lb" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Underkategori:" />
         <ComboBox Name="Subcategory_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>

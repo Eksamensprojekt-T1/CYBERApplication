@@ -107,9 +107,7 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
-                        Question question = (questionID != -1)
-                            ? new(questionID, questionDescription, (Level)diff)
-                            : new(questionDescription, (Level)diff);
+                        Question question = new(questionID, questionDescription, (Level)diff);
 
                         QuestionsList.Add(question);
                     }

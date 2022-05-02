@@ -10,11 +10,11 @@ namespace BuinsnessLogic.Persistence
 {
     public interface IRepository<T>
     {
-        IEnumerable<T> GetAll();    // read
-        T GetByID(int? entityID);
         int? Add(T entity);         // create
-        void Update(T entity);      // update one entity from local storage into databse
-        void Update();              // update whole list from databse into local storage
-        void Delete(int? entityID);  // delete
+        IEnumerable<T> GetAll();    // read all
+        T GetByID(int? entityID);   // read one
+        void Update(T entity);      // update one entity
+        void Update();              // update all entitys
+        void Delete(int? entityID); // delete
     }
 }

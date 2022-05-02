@@ -17,8 +17,7 @@
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="40"/>
 
         </Grid.ColumnDefinitions>
 
@@ -46,9 +45,9 @@
         <Label Name="Title_lb" Grid.Column="2" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Spørgsmål:" />
         <TextBox Name="Title_tb" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
 
-        <Label Name="Illustration_lb" Grid.Column="4" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource LabelStyleBlack}" Content="Illustration:" HorizontalAlignment="Center"/>
-        <TextBox Name="Illustration_tb" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3" Width="250" Style="{StaticResource TextBoxStyle}"></TextBox >
-        <Button Name="Illustration_btn" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="50" Click="Illustration_btn_Click"/>
+        <Label Name="Illustration_lb" Grid.Column="5" Grid.Row="1" Grid.ColumnSpan="3" Style="{StaticResource LabelStyleBlack}" Content="Illustration:" HorizontalAlignment="Left"/>
+        <TextBox Name="Illustration_tb" Grid.Column="5" Grid.Row="2" Grid.ColumnSpan="3" Width="200" HorizontalAlignment="Left" Style="{StaticResource TextBoxStyle}"></TextBox >
+        <Button Name="Illustration_btn" Grid.Column="4" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="50" Click="Illustration_btn_Click"/>
         <Image Name="Illustration_pt" Grid.Column="4" Grid.Row="4" Grid.ColumnSpan="3" Grid.RowSpan="5" />
 
         <Label Name="Maincategory_lb" Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" Content="Hovedkategori:" />

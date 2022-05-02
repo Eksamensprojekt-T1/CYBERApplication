@@ -14,7 +14,6 @@ namespace BuinsnessLogic.Persistence
         IEnumerable<T> GetAll();    // read all
         T GetByID(int? entityID);   // read one
         void Update(T entity);      // update one entity
-        void Update();              // => private void loadAllEntitys()
         void Delete(int? entityID); // delete
     }
 }

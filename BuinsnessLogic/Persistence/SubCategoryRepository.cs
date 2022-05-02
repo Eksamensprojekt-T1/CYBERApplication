@@ -33,7 +33,7 @@ namespace BuinsnessLogic.Persistence
         {
             throw new NotImplementedException();
         }
-        public void Update()
+        private void loadAllEntitys()
         {
             throw new NotImplementedException();
         }

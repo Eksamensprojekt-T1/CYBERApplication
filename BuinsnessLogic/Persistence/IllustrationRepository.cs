@@ -10,6 +10,7 @@ namespace BuinsnessLogic.Persistence
     public class IllustrationRepository : IRepository<Illustration>
     {
 
+
         public int? Add(Illustration entity)
         {
             throw new NotImplementedException();
@@ -34,9 +35,10 @@ namespace BuinsnessLogic.Persistence
         {
             throw new NotImplementedException();
         }
-        public void Update()
+        private void loadAllEntitys()
         {
             throw new NotImplementedException();
         }
+
     }
 }

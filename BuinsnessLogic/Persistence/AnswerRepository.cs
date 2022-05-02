@@ -107,12 +107,6 @@ namespace BuinsnessLogic.Persistence
                 }
             }
         }
-        public void Update() // Skal fjernes
-        {
-            // Update(UpdateALL) er ikke en del af CRUD.
-            // CRUD behandler kun ét object af gangen.
-            // Er blevet erstartet af loadAllEntitys()
-        }
         private void loadAllEntitys()
         {
             using (SqlConnection connection = new(connectionPath))

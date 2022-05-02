@@ -13,7 +13,6 @@ namespace AdminApplication.ViewModels
     {
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
-        ObservableCollection<MainCategory> mainCategoryList = new ObservableCollection<MainCategory>();
         ObservableCollection<SubCategory> subCategoryList = new ObservableCollection<SubCategory>();
 
         // Defining repository objects
@@ -27,13 +26,13 @@ namespace AdminApplication.ViewModels
             }
         }
         
-        public void AddNewQuestion(string questionDescription, Level difficulty)
+        public void AddNewQuestion(string questionDescription, Level difficulty, MainCategory category)
         {
             // Add object to ViewModel List
-            QuestionVM.Add(new Question(questionDescription, difficulty));
+            QuestionVM.Add(new Question(questionDescription, difficulty, category));
 
             // Add Object to Repository
-            QuestionRepo.Add(new Question(questionDescription, difficulty));
+            QuestionRepo.Add(new Question(questionDescription, difficulty, category));
         }
 
         public void AddAnswer(string answerDescription, bool isItCorrect)
@@ -46,17 +45,7 @@ namespace AdminApplication.ViewModels
             return QuestionVM;
         }
 
-        public ObservableCollection<MainCategory> GetAllMainCategories()
-        {
-            return mainCategoryList;
-        }
-
         public void AddIllustration(string fileName, string filePath)
-        {
-
-        }
-
-        public void SelectMaincategoryName(string maincategoryName)
         {
 
         }

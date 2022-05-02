@@ -14,6 +14,8 @@ namespace BuinsnessLogic.Models
 
         public string SubCategoryName { get; set; }
 
+        public MainCategory category { get; set; }
+
         #endregion
 
         #region // Constructors

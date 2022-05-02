@@ -61,7 +61,7 @@
         <ComboBox Name="Subcategory_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
 
         <Label Name="Difficulty_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Sværhedsgrad:" />
-        <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="8" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300">
+        <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="8" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300" SelectionChanged="Difficulty_cb_SelectionChanged">
             <ComboBoxItem>Nem</ComboBoxItem>
             <ComboBoxItem>Moderat</ComboBoxItem>
             <ComboBoxItem>Svær</ComboBoxItem>
@@ -72,6 +72,9 @@
         <Label Name="Svar_lb" Grid.Column="2" Grid.Row="9" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
 
         <Button Name="accept_btn" Grid.Column="4" Grid.Row="12" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Godkend" Height="50" Width="100" Margin="360,0,0,0" Click="accept_btn_Click"/>
+        <Button Name="CreateSubCategory_btn" Grid.Column="2" Grid.Row="6" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="50"/>
+        <Label Name="Subcategory_lb_" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Underkategori:" HorizontalAlignment="Left" />
+        <Label Name="CreateSubcategory_lb" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Opret ny:" HorizontalAlignment="Right" />
 
     </Grid>
 

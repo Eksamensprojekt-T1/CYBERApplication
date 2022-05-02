@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,13 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class OverviewPage : Page
     {
+
+        QuestionViewModel qvm = new QuestionViewModel();
+
         public OverviewPage()
         {
             InitializeComponent();
+            DataContext = qvm;
         }
 
         private void Question_btn_Click(object sender, RoutedEventArgs e)

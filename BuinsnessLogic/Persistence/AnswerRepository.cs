@@ -17,22 +17,22 @@ namespace BuinsnessLogic.Persistence
         {
             Answers = new();
             this.connectionPath = connectionPath;
-            Update();
+            loadAllEntitys();
         }
-
+        
         public int? Add(Answer answer)
         {
             int? result = -1;
+            string table = "ANSWER";
+            string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect";
+            string values = "@answerDescription, @isItCorrect";
+            string commandText =
+                $"INSERT INTO {table} ({coloumns})" +
+                $"VALUES ({values})" +
+                $"SELECT @@IDENTITY";
 
-            using (SqlConnection con = new(connectionPath)) // adds to database
+            using (SqlConnection con = new(connectionPath)) // gets from database
             {
-                string table = "ANSWER";
-                string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect";
-                string values = "@answerDescription, @isItCorrect";
-                string commandText =
-                    $"INSERT INTO {table} ({coloumns})" +
-                    $"VALUES ({values})";
-
                 con.Open();
                 SqlCommand cmd = new(commandText, con);
                 cmd.Parameters.Add("@answerDescription", SqlDbType.NVarChar).Value = answer.AnswerDescription;
@@ -44,7 +44,42 @@ namespace BuinsnessLogic.Persistence
 
             return result;
         }
+        public IEnumerable<Answer> GetAll()
+        {
+            return Answers;
+        }
+        public Answer GetByID(int? answerID)
+        {
+            Answer result = null;
+            foreach (Answer answer in Answers)
+            {
+                if (answer.AnswerID.Equals(answerID))
+                {
+                    result = answer;
+                    break;
+                }
+            }
+            return result;
+        }
+        public void Update(Answer answer)
+        {
+            string table = "ANSWER";
+            string values = $"AnswerDescription = '{answer.AnswerDescription}', " +
+                            $"IsItCorrect = '{answer.IsItCorrect}'";
+            string condition = $"AnswerID = {answer.AnswerID}";
+            string CommandText = 
+                $"UPDATE {table}" +
+                $"SET {values}" +
+                $"WHERE {condition}";
 
+            using (SqlConnection connection = new(connectionPath))
+            {
+                connection.Open();
+                SqlCommand cmd = new(CommandText, connection);
+                // need fix
+                cmd.ExecuteScalar();
+            }
+        }
         public void Delete(int? answerID)
         {
             if (answerID != null) // TODO should be some exception
@@ -58,10 +93,11 @@ namespace BuinsnessLogic.Persistence
                         {
                             connection.Open();
                             string table = "ANSWER";
-                            string query = $"DELETE FROM {table} WHERE {answer.AnswerID} = @AnswerID";
-                            SqlCommand cmd = new(query, connection);
-                            cmd.Parameters.Add("@AnswerID", SqlDbType.Int).Value = answerID;
-                            cmd.ExecuteScalar();
+                            string commandText = $"DELETE FROM {table} WHERE {answer.AnswerID} = @AnswerID";
+                            SqlCommand cmd = new(commandText, connection);
+                            cmd.Parameters.Add("@AnswerID", SqlDbType.Int).Value = answer.AnswerID;
+                            cmd.ExecuteNonQuery();
+                            // cmd.ExecuteScalar();
                         }
                         // Removes from RAM
                         Answers.Remove(answer);
@@ -71,35 +107,14 @@ namespace BuinsnessLogic.Persistence
                 }
             }
         }
-
-        public IEnumerable<Answer> GetAll()
+        public void Update() // Skal fjernes
         {
-            return Answers;
+            // Update(UpdateALL) er ikke en del af CRUD.
+            // CRUD behandler kun ét object af gangen.
+            // Er blevet erstartet af loadAllEntitys()
         }
-
-        public Answer GetByID(int? entityID)
+        private void loadAllEntitys()
         {
-            Answer result = null;
-            foreach (Answer answer in Answers)
-            {
-                if (answer.AnswerID.Equals(entityID))
-                {
-                    result = answer;
-                    break;
-                }
-            }
-            return result;
-        }
-
-        public void Update(Answer entity) // TODO
-        {
-            using (SqlConnection connection = new(connectionPath))
-            {
-                
-            }
-        }
-        public void Update()
-        {   
             using (SqlConnection connection = new(connectionPath))
             {
                 string table = "ANSWER";
@@ -109,17 +124,15 @@ namespace BuinsnessLogic.Persistence
                 // Loads to RAM from database
                 connection.Open();
                 SqlCommand sQLCommand = new(CommandText, connection);
-                using (SqlDataReader sqldatareader = sQLCommand.ExecuteReader())
+                using (SqlDataReader sqlDataReader = sQLCommand.ExecuteReader())
                 {
-                    while (sqldatareader.Read())
+                    while (sqlDataReader.Read())
                     {
-                        int? answerID = int.Parse(sqldatareader["AnswerID"].ToString());
-                        string answerDescription = sqldatareader["AnswerDescription"].ToString();
-                        bool isItCorrect = sqldatareader["IsItCorrect"].ToString() == "1";
+                        int? answerID = int.Parse(sqlDataReader["AnswerID"].ToString());
+                        string answerDescription = sqlDataReader["AnswerDescription"].ToString();
+                        bool isItCorrect = sqlDataReader["IsItCorrect"].ToString() == "1";
 
-                        Answer answer = (answerID != -1) // Ternary
-                            ? new(answerID, answerDescription, isItCorrect)
-                            : new(answerDescription, isItCorrect);
+                        Answer answer = new(answerID, answerDescription, isItCorrect);
 
                         Answers.Add(answer);
                     }

@@ -11,11 +11,13 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="250px"/>
+            <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="300"/>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="50"/>
 
@@ -35,29 +37,29 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Column="1" Grid.ColumnSpan="5" Grid.Row="1" Grid.RowSpan="100" Fill="#DEE2E6"></Rectangle>
+        <Rectangle Grid.Column="1" Grid.ColumnSpan="7" Grid.Row="1" Grid.RowSpan="13" Fill="#DEE2E6"></Rectangle>
 
         <Button Name="Back_btn" Grid.Column="0" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50" Width="100" Click="Back_btn_Click"/>
 
         <Label Name="Title_lb" Grid.Column="2" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Spørgsmål:" />
-        <TextBox Name="Title_tb" Grid.Column="2" Grid.Row="2" Style="{StaticResource TextBoxStyle}"/>
+        <TextBox Name="Title_tb" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource TextBoxStyle}"/>
 
-        <Label Name="Illustration_lb" Grid.Column="4" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Illustration:" HorizontalAlignment="Center"/>
-        <TextBox Name="Illustration_tb" Grid.Column="4" Grid.Row="2" Width="250" Style="{StaticResource TextBoxStyle}"></TextBox >
-        <Button Name="Illustration_btn" Grid.Column="4" Grid.Row="2" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="50" Click="Illustration_btn_Click"/>
-        <Image Name="Illustration_pt" Grid.Column="4" Grid.Row="4" Grid.RowSpan="5" />
+        <Label Name="Picture_lb" Grid.Column="6" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Billede:" HorizontalAlignment="Left"/>
+        <TextBox Name="Picture_tb" Grid.Column="6" Grid.Row="2" Width="250" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left"></TextBox >
+        <Button Name="Picture_btn" Grid.Column="6" Grid.Row="2" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="40" Click="Picture_btn_Click"/>
+        <Image Name="Picture_pt" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="5" />
 
-        <Label Name="Maincategory_lb" Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" Content="Hovedkategori:" />
-        <ComboBox Name="Maincategory_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
+        <Label Name="Category_lb" Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" Content="Kategori:" />
+        <ComboBox Name="Category_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
+        <Label Name="CreateCategory_lb" Grid.Column="3" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" HorizontalAlignment="Center" Content="Opret ny:"/>
+        <Button Name="CreateCategory_btn" Grid.Column="3" Grid.Row="4" Style="{StaticResource OpenButtonStyle}" HorizontalAlignment="Center" Content="..." Height="30" Width="40" Click="CreateCategory_btn_Click"/>
 
-        <Label Name="Subcategory_lb" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Underkategori:" />
-        <ComboBox Name="Subcategory_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300"/>
-
-        <Label Name="Difficulty_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Sværhedsgrad:" />
-        <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="8" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300">
+        <Label Name="Difficulty_lb" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Sværhedsgrad:" />
+        <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="300">
             <ComboBoxItem>Nem</ComboBoxItem>
             <ComboBoxItem>Moderat</ComboBoxItem>
             <ComboBoxItem>Svær</ComboBoxItem>
@@ -65,9 +67,9 @@
 
         <!--Style="{StaticResource ComboStyle}"-->
 
-        <Label Name="Svar_lb" Grid.Column="2" Grid.Row="9" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
+        <Label Name="Svar_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
 
-        <Button Name="accept_btn" Grid.Column="4" Grid.Row="12" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="Godkend" Height="50" Width="100" Margin="360,0,0,0" Click="accept_btn_Click"/>
+        <Button Name="Accept_btn" Grid.Column="6" Grid.Row="12" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100" Click="accept_btn_Click"/>
 
     </Grid>
 

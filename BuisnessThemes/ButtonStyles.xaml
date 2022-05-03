@@ -45,6 +45,19 @@
         </Style.Resources>
     </Style>
 
+    <Style x:Key="PlusButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="#FF3F3F3F"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontSize" Value="22px"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="10,10,10,10"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
     <Style x:Key="LabelStyle" TargetType="{x:Type Label}">
         <Setter Property="Foreground" Value="#DEE2E6"></Setter>
         <Setter Property="FontSize" Value="18px"></Setter>

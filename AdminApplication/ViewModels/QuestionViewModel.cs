@@ -13,7 +13,7 @@ namespace AdminApplication.ViewModels
     {
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
-        ObservableCollection<Category> CategoryList = new ObservableCollection<Category>();
+        public ObservableCollection<Category> CategoryList = new ObservableCollection<Category>();
 
         // Defining repository objects
         QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
@@ -26,7 +26,7 @@ namespace AdminApplication.ViewModels
             }
         }
         
-        public void AddNewQuestion(string questionDescription, string difficulty)
+        public void AddNewQuestion(string questionDescription, string category, string difficulty)
         {
 
             // Difficulty
@@ -67,19 +67,15 @@ namespace AdminApplication.ViewModels
             return CategoryList;
         }
 
-        public void AddIllustration(string fileName, string filePath)
+        public void AddPicture(string pictureName, string picturePath)
         {
 
         }
 
-        public void SelectMaincategoryName(string maincategoryName)
+        public void SelectCategoryName(string categoryName)
         {
 
         }
 
-        public void SelectSubcategoryName(string subcategoryName)
-        {
-
-        }
     }
 }

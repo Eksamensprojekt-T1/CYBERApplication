@@ -47,27 +47,11 @@ namespace AdminApplication.Views
 
         private void Accept_btn_Click(object sender, RoutedEventArgs e)
         {
-
             string questionDescription = Title_tb.Text;
+            string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
-            int difficultyChosen = 0;
 
-            switch (difficulty)
-            {
-                case "Nem":
-                    difficultyChosen = 0;
-                    break;
-                case "Moderat":
-                    difficultyChosen = 1;
-                    break;
-                case "Svær":
-                    difficultyChosen = 2;
-                    break;
-                default:
-                    break;
-            }
-
-            QuestionVM.AddNewQuestion(questionDescription, (BuinsnessLogic.Models.Level)difficultyChosen);
+            QuestionVM.AddNewQuestion(questionDescription, difficulty);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

@@ -13,8 +13,7 @@ namespace AdminApplication.ViewModels
     {
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
-        ObservableCollection<MainCategory> mainCategoryList = new ObservableCollection<MainCategory>();
-        ObservableCollection<SubCategory> subCategoryList = new ObservableCollection<SubCategory>();
+        ObservableCollection<Category> CategoryList = new ObservableCollection<Category>();
 
         // Defining repository objects
         QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
@@ -27,13 +26,30 @@ namespace AdminApplication.ViewModels
             }
         }
         
-        public void AddNewQuestion(string questionDescription, Level difficulty)
+        public void AddNewQuestion(string questionDescription, string difficulty)
         {
+
+            // Difficulty
+            Level difficultyChosen = Level.easy;
+
+            switch (difficulty)
+            {
+                case "Nem":
+                    difficultyChosen = Level.easy;
+                    break;
+                case "Moderat":
+                    difficultyChosen = Level.moderate;
+                    break;
+                case "Svær":
+                    difficultyChosen = Level.hard;
+                    break;
+            }
+
             // Add object to ViewModel List
-            QuestionVM.Add(new Question(questionDescription, difficulty));
+            QuestionVM.Add(new Question(questionDescription, difficultyChosen));
 
             // Add Object to Repository
-            QuestionRepo.Add(new Question(questionDescription, difficulty));
+            QuestionRepo.Add(new Question(questionDescription, difficultyChosen));
         }
 
         public void AddAnswer(string answerDescription, bool isItCorrect)
@@ -46,9 +62,9 @@ namespace AdminApplication.ViewModels
             return QuestionVM;
         }
 
-        public ObservableCollection<MainCategory> GetAllMainCategories()
+        public ObservableCollection<Category> GetAllCategories()
         {
-            return mainCategoryList;
+            return CategoryList;
         }
 
         public void AddIllustration(string fileName, string filePath)

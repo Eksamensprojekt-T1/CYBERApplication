@@ -7,11 +7,11 @@ using BuinsnessLogic.Models;
 
 namespace BuinsnessLogic.Persistence
 {
-    public class IllustrationRepository : IRepository<Illustration>
+    public class IllustrationRepository : IRepository<Picture>
     {
 
 
-        public int? Add(Illustration entity)
+        public int? Add(Picture entity)
         {
             throw new NotImplementedException();
         }
@@ -21,17 +21,17 @@ namespace BuinsnessLogic.Persistence
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Illustration> GetAll()
+        public IEnumerable<Picture> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public Illustration GetByID(int? entityID)
+        public Picture GetByID(int? entityID)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(Illustration entity)
+        public void Update(Picture entity)
         {
             throw new NotImplementedException();
         }

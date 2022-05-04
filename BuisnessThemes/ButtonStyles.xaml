@@ -51,6 +51,8 @@
         <Setter Property="FontSize" Value="22px"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Width" Value="40"/>
         <Style.Resources>
             <Style TargetType="Border">
                 <Setter Property="CornerRadius" Value="10,10,10,10"/>

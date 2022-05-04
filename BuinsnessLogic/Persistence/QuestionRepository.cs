@@ -17,7 +17,7 @@ namespace BuinsnessLogic.Persistence
         public QuestionRepository(string connectionString)
         {
             this.connectionString = connectionString;
-            Update();
+            loadAllEntitys();
         }
 
         public int? Add(Question question)
@@ -38,7 +38,7 @@ namespace BuinsnessLogic.Persistence
                     $"INSERT INTO {table} ({coloumns})" +
                     $"VALUES ({values})";
 
-                // Making the call to the database
+                // Setting up stream to the database
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
                     cmd.Parameters.Add("@QuestionDescription", SqlDbType.NVarChar).Value = question.QuestionDescription;
@@ -74,7 +74,7 @@ namespace BuinsnessLogic.Persistence
         {
             throw new NotImplementedException();
         }
-        public void Update()
+        private void loadAllEntitys()
         {
             using (SqlConnection con = new(connectionString))
             {
@@ -107,9 +107,7 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
-                        Question question = (questionID != -1)
-                            ? new(questionID, questionDescription, (Level)diff)
-                            : new(questionDescription, (Level)diff);
+                        Question question = new(questionID, questionDescription, (Level)diff);
 
                         QuestionsList.Add(question);
                     }

@@ -14,6 +14,8 @@ namespace BuinsnessLogic.Models
 
         public string CategoryName { get; set; }
 
+        public List<Question> Questions { get; set; }
+
         #endregion
 
         #region // Constructors
@@ -22,6 +24,7 @@ namespace BuinsnessLogic.Models
         {
             CategoryID = categoryID;
             CategoryName = categoryName;
+            Questions = new List<Question>();
         }
 
         public Category(string CategoryName)

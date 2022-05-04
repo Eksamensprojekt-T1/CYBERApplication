@@ -12,33 +12,45 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="420px"/>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="360px"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="50"/>
 
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="125px"/>
-            <RowDefinition Height="470"/>
-            <RowDefinition Height="125"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Column="0" Grid.RowSpan="100" Fill="#FF1A1D20"></Rectangle>
+        <Rectangle Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="6" Fill="#DEE2E6"></Rectangle>
+        
+        <DataGrid Grid.Column="1" Grid.Row="3" Grid.RowSpan="4"/>
 
-        <DataGrid Grid.Column="0" Grid.Row="1" Margin="10,0,10,0"/>
+        <Label Name="MultipleChoice_lb" Grid.Column="4" Grid.Row="1" Content="MultipleChoice Navn:" Style="{StaticResource LabelStyleBlack}"/>
+        <TextBox Name="MultipleChoice_tb" Grid.Column="4" Grid.Row="2" Style="{StaticResource TextBoxStyle}"/>
 
-        <Label Name="MultipleChoice_lb" Grid.Column="1" Grid.Row="0" Content="MultipleChoice Navn:" Style="{StaticResource LabelStyle}" Margin="10"/>
-        <TextBox Name="MultipleChoice_tb" Grid.Column="1" Grid.Row="0" Height="50" Margin="10" VerticalAlignment="Bottom"/>
+        <Label Name="Question_lb" Grid.Column="4" Grid.Row="3" Content="Spørgsmål:" Style="{StaticResource LabelStyleBlack}"/>
+        <TextBox Name="Question_tb" Grid.Column="4" Grid.Row="4" Grid.RowSpan="2" Style="{StaticResource TextBoxStyle}"/>
 
-        <Label Name="Question_lb" Grid.Column="1" Grid.Row="1" Grid.RowSpan="2" Content="Spørgsmål:" Style="{StaticResource LabelStyle}" Margin="10"/>
-        <TextBox Name="Question_tb" Grid.Column="1" Grid.Row="1" Height="400" Margin="10,0,10,0" VerticalAlignment="Bottom"/>
+        <Label Name="QuestionCount_lb" Grid.Column="4" Grid.Row="8" Content="Antal spørgsmål:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
+        <TextBox Name="QuestionCount_tb" Grid.Column="4" Grid.Row="8" Width="100" Height="50" Background="Transparent" HorizontalAlignment="Left" Margin="175,0,0,0"/>
 
-        <Label Name="QuestionCount_lb" Grid.Column="1" Grid.Row="2" Content="Antal spørgsmål:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-        <TextBox Name="QuestionCount_tb" Grid.Column="1" Grid.Row="2" Width="100" Height="50" Background="Transparent" HorizontalAlignment="Left" Margin="175,0,0,0"/>
-
-        <Button Name="Back_btn" Grid.Column="0" Grid.Row="0" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50px" Width="100px" Click="Back_Click"/>
-        <Button Name="Question_btn" Grid.Column="0" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Se spørgsmål" Height="50px" Width="150px" Click="ViewQuestion_Click"/>
-        <Button Name="Approve_btn" Grid.Column="1" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50px" Width="200px" Margin="0,0,25,0" Click="Approve_Click"/>
+        <Button Name="Back_btn" Grid.Column="1" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50px" Width="100px" Click="Back_btn_Click"/>
+        <Button Name="Question_btn" Grid.Column="1" Grid.Row="8" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Se spørgsmål" Height="50px" Width="150px" Click="Question_btn_Click"/>
+        <Button Name="Approve_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50px" Width="200px" Margin="0,0,25,0" Click="Approve_btn_Click"/>
     </Grid>
 </Page>

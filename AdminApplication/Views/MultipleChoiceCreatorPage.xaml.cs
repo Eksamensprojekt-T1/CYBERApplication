@@ -25,17 +25,17 @@ namespace AdminApplication.Views
             InitializeComponent();
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
+        private void Back_btn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Views/MultipleChoiceOverviewPage.xaml", UriKind.Relative));
         }
 
-        private void ViewQuestion_Click(object sender, RoutedEventArgs e)
+        private void Question_btn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Approve_Click(object sender, RoutedEventArgs e)
+        private void Approve_btn_Click(object sender, RoutedEventArgs e)
         {
 
         }

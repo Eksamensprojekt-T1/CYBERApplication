@@ -57,7 +57,22 @@ namespace AdminApplication.Views
 
         private void CreateCategory_btn_Click(object sender, RoutedEventArgs e)
         {
+            
+        }
 
+        private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if(Answer_tb.Text.Length == 0)
+            {
+                MessageBox.Show("Du mangler en titel til svaret");
+            }
+            else
+            {
+                CheckBox chk = new CheckBox();
+                AnswerList.Items.Add(chk, Answer_tb.Text);
+                AnswerList.Items.Add(Answer_tb.Text);
+                Answer_tb.Clear();
+            }
         }
     }
 }

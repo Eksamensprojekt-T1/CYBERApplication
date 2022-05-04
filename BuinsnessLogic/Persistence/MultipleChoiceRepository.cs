@@ -9,6 +9,7 @@ namespace BuinsnessLogic.Persistence
 {
     public class MultipleChoiceRepository : IRepository<MultipleChoice>
     {
+
         public int? Add(MultipleChoice entity)
         {
             throw new NotImplementedException();

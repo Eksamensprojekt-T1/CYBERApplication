@@ -21,12 +21,12 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class MultipleChoiceCreatorPage : Page
     {
-        QuestionViewModel qvm = new QuestionViewModel();
+        MultipleChoiceCreatorViewModel mccvm = new MultipleChoiceCreatorViewModel();
         
         public MultipleChoiceCreatorPage()
         {
             InitializeComponent();
-            DataContext = qvm;
+            DataContext = mccvm;
         }
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)
@@ -41,7 +41,13 @@ namespace AdminApplication.Views
 
         private void Approve_btn_Click(object sender, RoutedEventArgs e)
         {
+            string mcName = MultipleChoice_tb.Text;
+            DateTime dateOfCreation = DateTime.Now;
 
+
+            //mccvm.AddMultipleChoice(mcName, dateOfCreation);
+            MessageBox.Show("MultipleChoice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
     }
 }

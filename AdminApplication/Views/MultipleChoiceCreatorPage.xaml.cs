@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class MultipleChoiceCreatorPage : Page
     {
+        QuestionViewModel qvm = new QuestionViewModel();
+        
         public MultipleChoiceCreatorPage()
         {
             InitializeComponent();
+            DataContext = qvm;
         }
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)

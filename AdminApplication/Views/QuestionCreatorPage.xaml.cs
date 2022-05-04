@@ -68,5 +68,21 @@ namespace AdminApplication.Views
             QuestionVM.AddCategory(categoryName);
             Category_tb.Clear();
         }
+
+        private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if(Answer_tb.Text.Length == 0)
+            {
+                MessageBox.Show("Du mangler en titel til svaret");
+            }
+            else
+            {
+                CheckBox chk = new CheckBox();
+                AnswerList.Items.Add(chk);
+                AnswerList.Items.Add(Answer_tb.Text);
+                Answer_tb.Clear();
+            }
+
+        }
     }
 }

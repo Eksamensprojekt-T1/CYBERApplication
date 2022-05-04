@@ -69,20 +69,16 @@
         <!--Style="{StaticResource ComboStyle}"-->
 
         <Button Name="Accept_btn" Grid.Column="6" Grid.Row="13" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100" Click="Accept_btn_Click"/>
-        
-        <Label Name="Svar_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
-        <TextBox Name="Answer_tb" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-        <Button Name="CreateAnswer_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource OpenButtonStyle}" HorizontalAlignment="Center" Content="+" Height="30" Width="30"/>
-        <ListView Name="AnswerList" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="4" Grid.RowSpan="4" Width="640" Height="200">
-            <ListViewItem>
-                <StackPanel>
-                    <CheckBox Content="æble"/>
 
-                </StackPanel>
+        <Label Name="Svar_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
+        <TextBox Name="Answer_tb" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource AnswerTextBoxStyle}" Foreground="#FFABADB3"/>
+        <Button Name="CreateAnswer_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource PlusButtonStyle}" HorizontalAlignment="Center" Content="+" Height="30" Width="30" Click="CreateAnswer_btn_Click"/>
+        <ListView Name="AnswerList" Grid.Column="2" Grid.Row="10" Style="{StaticResource ListViewStyle}" Grid.ColumnSpan="4" Grid.RowSpan="4" Width="640" Height="200">
+            <ListViewItem>
+                <CheckBox>
+                    <TextBlock TextWrapping="Wrap" Text="TextBlock" Width="600"/>
+                </CheckBox>
             </ListViewItem>
         </ListView>
     </Grid>
-
-
-
 </Page>

@@ -23,6 +23,7 @@ namespace ScreeningApplication
         public MainWindow()
         {
             InitializeComponent();
+            Frame.Source = new Uri("ParticipantWelcomePage.xaml", UriKind.Relative);
         }
     }
 }

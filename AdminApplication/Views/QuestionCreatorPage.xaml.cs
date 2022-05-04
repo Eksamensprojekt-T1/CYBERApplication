@@ -27,6 +27,13 @@ namespace AdminApplication.Views
         public QuestionCreatorPage()
         {
             InitializeComponent();
+            FillCategory();
+        }
+
+        private void FillCategory()
+        {
+            Category_cb.ItemsSource = QuestionVM.CategoryVM;
+            Category_cb.DisplayMemberPath = "CategoryName";  
         }
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)
@@ -57,7 +64,9 @@ namespace AdminApplication.Views
 
         private void CreateCategory_btn_Click(object sender, RoutedEventArgs e)
         {
-            
+            string categoryName = Category_tb.Text;
+            QuestionVM.AddCategory(categoryName);
+            Category_tb.Clear();
         }
 
         private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
@@ -73,6 +82,7 @@ namespace AdminApplication.Views
                 AnswerList.Items.Add(Answer_tb.Text);
                 Answer_tb.Clear();
             }
+
         }
     }
 }

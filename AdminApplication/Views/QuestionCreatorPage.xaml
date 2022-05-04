@@ -57,7 +57,7 @@
         <ComboBox Name="Category_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="250"/>
         <Label Name="CreateCategory_lb" Grid.Column="3" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" HorizontalAlignment="Left" Content="Opret ny:"/>
         <Button Name="CreateCategory_btn" Grid.Column="4" Grid.Row="4" Style="{StaticResource PlusButtonStyle}" HorizontalAlignment="Center" Content="+" Click="CreateCategory_btn_Click"/>
-        <TextBox Name="Category_tb" Grid.Column="3" Grid.Row="4" Style="{StaticResource TextBoxStyle}"/>
+        <TextBox Name="Category_tb" Grid.Column="3" Grid.Row="4" Text="{Binding CategoryName}" Style="{StaticResource TextBoxStyle}"/>
 
         <Label Name="Difficulty_lb" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Sværhedsgrad:" />
         <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="250">

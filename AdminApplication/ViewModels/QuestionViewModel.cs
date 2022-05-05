@@ -20,6 +20,7 @@ namespace AdminApplication.ViewModels
         QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
         CategoryRepository CategoryRepo = new CategoryRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
         AnswerRepository AnswerRepo = new AnswerRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
+        PictureRepository PictureRepo = new PictureRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
 
         public QuestionViewModel()
         {
@@ -36,7 +37,7 @@ namespace AdminApplication.ViewModels
                 AnswerVM.Add(answer);
             }
         }
-        public void AddNewQuestion(string questionDescription, string categoryName, string difficulty)
+        public void AddNewQuestion(string questionDescription, string categoryName, string difficulty, string pictureName)
         {
             // Difficulty
             Level difficultyChosen = Level.easy;
@@ -63,16 +64,27 @@ namespace AdminApplication.ViewModels
                     targetCategory = category;
                     break;
                 }
-                return;
             }
 
+            Picture targetPicture = null;
+
+            foreach(Picture picture in PictureRepo.GetAll())
+            {
+                if (picture.PictureName == pictureName)
+                {
+                    targetPicture = picture;
+                    break;
+                }
+            } 
+
             Question newQuestion = new(questionDescription, difficultyChosen);
+            newQuestion.QuestionCategory = targetCategory;
+            newQuestion.QuestionPicture = targetPicture;
 
             // Add Object to Repository and gets ID
             newQuestion.QuestionID = QuestionRepo.Add(newQuestion);
 
             // Add object to ViewModel List
-            newQuestion.QuestionCategory = targetCategory;
             QuestionVM.Add(newQuestion);
 
         }

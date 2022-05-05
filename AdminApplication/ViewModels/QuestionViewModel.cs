@@ -14,10 +14,12 @@ namespace AdminApplication.ViewModels
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<Category> CategoryVM = new ObservableCollection<Category>();
+        public ObservableCollection<Answer> AnswerVM { get; set; } = new ObservableCollection<Answer>();
 
         // Defining repository objects
         QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
         CategoryRepository CategoryRepo = new CategoryRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
+        AnswerRepository AnswerRepo = new AnswerRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
 
         public QuestionViewModel()
         {
@@ -28,6 +30,10 @@ namespace AdminApplication.ViewModels
             foreach (Category category in CategoryRepo.GetAll())
             {
                 CategoryVM.Add(category);   
+            }
+            foreach (Answer answer in AnswerRepo.GetAll())
+            {
+                AnswerVM.Add(answer);
             }
 
         }
@@ -50,7 +56,6 @@ namespace AdminApplication.ViewModels
                     difficultyChosen = Level.hard;
                     break;
             }
-
 
             Category targetCategory = null;
 
@@ -77,7 +82,11 @@ namespace AdminApplication.ViewModels
 
         public void AddAnswer(string answerDescription, bool isItCorrect)
         {
+            Answer newAnswer = new Answer(answerDescription, isItCorrect);
 
+            newAnswer.AnswerID = AnswerRepo.Add(newAnswer);
+
+            AnswerVM.Add(newAnswer);
         }
 
         public ObservableCollection<Question> GetAllQuestions()
@@ -88,6 +97,11 @@ namespace AdminApplication.ViewModels
         public ObservableCollection<Category> GetAllCategories()
         {
             return CategoryVM;
+        }
+
+        public ObservableCollection<Answer> GetAllAnswers()
+        {
+            return AnswerVM;
         }
 
         public void AddPicture(string pictureName, string picturePath)
@@ -105,6 +119,5 @@ namespace AdminApplication.ViewModels
             // Add object to ViewModel List
             CategoryVM.Add(newCategory);
         }
-
     }
 }

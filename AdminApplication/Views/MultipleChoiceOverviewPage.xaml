@@ -34,12 +34,30 @@
         <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding MultipleChoiceVM.Count}" Grid.Column="0" Grid.Row="1" Margin="0,110,0,0" HorizontalContentAlignment="Center"></Label>
         <Label Foreground="#5D5F61" FontSize="22" Content="Multiple Choices" Grid.Column="0" Grid.Row="1" Margin="0,230,0,0" HorizontalContentAlignment="Center"/>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding MultipleChoiceVM}" AutoGenerateColumns="False">
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding MultipleChoiceVM}" AutoGenerateColumns="False" FontSize="20">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding MCName}"/>
-                <DataGridTextColumn Width="100" Header="Antal Spørgsmål"/>
-                <DataGridTextColumn Width="150" Header="Oprettelsesdato" Binding="{Binding DateOfCreation}"/>
-                <DataGridTemplateColumn Header="Rediger" Width="75">
+                <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding MCName}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="175" Header="Antal Spørgsmål" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="175" Header="Oprettelsesdato" Binding="{Binding DateOfCreation}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Rediger" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="Button_Click" Background="White">
@@ -48,7 +66,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Slet" Width="75">
+                <DataGridTemplateColumn Header="Slet" Width="100">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Click="Button_Click_1" Background="White">

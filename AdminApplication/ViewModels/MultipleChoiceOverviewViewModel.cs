@@ -20,6 +20,7 @@ namespace AdminApplication.ViewModels
         // Defining repository objects
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
 
+        //Constructor for adding object to observable collection
         public MultipleChoiceOverviewViewModel()
         {
             foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())

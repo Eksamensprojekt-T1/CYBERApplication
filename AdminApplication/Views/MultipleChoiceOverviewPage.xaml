@@ -34,7 +34,7 @@
         <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding MultipleChoiceVM}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding MCName}"/>
-                <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding }"/>
+                <DataGridTextColumn Width="*" Header="Antal Spørgsmål"/>
                 <DataGridTextColumn Width="*" Header="Oprettelsesdato" Binding="{Binding DateOfCreation}"/>
             </DataGrid.Columns>
         </DataGrid>

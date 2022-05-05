@@ -24,11 +24,6 @@ namespace BuinsnessLogic.Models
         public Answer(string answerDescription, bool isItCorrect)
             : this(null, answerDescription, isItCorrect) { }
 
-        public Answer(string answerDescription)
-        {
-            AnswerDescription = answerDescription;
-        }
-
         #endregion
     }
 }

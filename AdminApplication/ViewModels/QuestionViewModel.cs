@@ -35,12 +35,9 @@ namespace AdminApplication.ViewModels
             {
                 AnswerVM.Add(answer);
             }
-
         }
-        
         public void AddNewQuestion(string questionDescription, string categoryName, string difficulty)
         {
-
             // Difficulty
             Level difficultyChosen = Level.easy;
 

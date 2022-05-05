@@ -65,7 +65,7 @@
                 <RowDefinition Height="40px"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding MultipleChoiceVM.Count}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
             <Label Foreground="#5D5F61" FontSize="22" Content="Multiple choices" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
         </Grid>
 

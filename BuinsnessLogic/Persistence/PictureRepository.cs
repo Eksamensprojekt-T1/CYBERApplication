@@ -18,6 +18,7 @@ namespace BuinsnessLogic.Persistence
         public PictureRepository(string connectionString)
         {
             this.connectionString = connectionString;
+            loadAllEntitys();
             PictureList = new List<Picture>();
         }
 
@@ -71,7 +72,27 @@ namespace BuinsnessLogic.Persistence
         }
         private void loadAllEntitys()
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "PICTURE";
+                string values = "PICTURE.PictureID, PICTURE.PictureName, PICTURE.PicturePath";
+                string CommandText = $"SELECT {values} FROM {table}";
+
+                con.Open();
+                SqlCommand sQLCommand = new(CommandText, con);
+                using (SqlDataReader reader = sQLCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? pictureID = int.Parse(reader["PictureID"].ToString());
+                        string pictureName = reader["PictureName"].ToString();
+                        string picturePath = reader["PicturePath"].ToString();
+
+                        PictureList.Add(new Picture(pictureID, pictureName, picturePath));
+                    }
+                }
+
+            }
         }
 
     }

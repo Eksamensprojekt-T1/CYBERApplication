@@ -20,7 +20,7 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="250px"/>
-            <RowDefinition Height="390px"/>
+            <RowDefinition Height="370px"/>
             <RowDefinition Height="100px"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -31,30 +31,39 @@
 
         <Button x:Name="MainMenu_btn" Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Hovedmenu" Height="40px" Width="205px" Click="MainMenu_btn_Click"/>
 
+        <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding MultipleChoiceVM.Count}" Grid.Column="0" Grid.Row="1" Margin="0,110,0,0" HorizontalContentAlignment="Center"></Label>
+        <Label Foreground="#5D5F61" FontSize="22" Content="Multiple Choices" Grid.Column="0" Grid.Row="1" Margin="0,230,0,0" HorizontalContentAlignment="Center"/>
+
         <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding MultipleChoiceVM}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding MCName}"/>
                 <DataGridTextColumn Width="100" Header="Antal Spørgsmål"/>
                 <DataGridTextColumn Width="150" Header="Oprettelsesdato" Binding="{Binding DateOfCreation}"/>
-                <DataGridTemplateColumn Width="75">
+                <DataGridTemplateColumn Header="Rediger" Width="75">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Background="Yellow" Click="Button_Click">Rediger</Button>
+                            <Button Click="Button_Click" Background="White">
+                                <Image Source="/Views/Resources/Pen.png" Height="32"/>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="75">
+                <DataGridTemplateColumn Header="Slet" Width="75">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Background="Red" Click="Button_Click_1">Slet</Button>
+                            <Button Click="Button_Click_1" Background="White">
+                                <Button.Content>
+                                    <Image Source="/Views/Resources/Trashcan.png" Height="32"/>
+                                </Button.Content>
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button x:Name="Create_btn" Grid.Column="1" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Opret" Height="50px" Width="200px" Click="Create_btn_Click"/>
-        <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" Content="Slet" Height="50px" Width="200px"/>
-        <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Rediger" Height="50px" Width="200px"/>
+        <Button x:Name="Create_btn" Grid.Column="3" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Opret" Height="50px" Width="100px" Click="Create_btn_Click"/>
+        <!--<Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" Content="Slet" Height="50px" Width="200px"/>
+        <Button Grid.Column="3" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Rediger" Height="50px" Width="200px"/>-->
     </Grid>
 </Page>

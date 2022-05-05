@@ -9,15 +9,16 @@
 
   <ItemGroup>
     <None Remove="Views\logo.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Views\Resources\" />
+    <None Remove="Views\Resources\Pen.png" />
+    <None Remove="Views\Resources\trashcan.jpg" />
+    <None Remove="Views\Resources\Trashcan.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Views\cybergoat.png" />
     <Resource Include="Views\logo.png" />
+    <Resource Include="Views\Resources\Pen.png" />
+    <Resource Include="Views\Resources\Trashcan.png" />
   </ItemGroup>
 
   <ItemGroup>

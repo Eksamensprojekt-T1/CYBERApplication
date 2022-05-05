@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class MultipleChoiceOverviewPage : Page
     {
+        MultipleChoiceOverviewViewModel mcovm = new MultipleChoiceOverviewViewModel();
+        
         public MultipleChoiceOverviewPage()
         {
             InitializeComponent();
+            DataContext = mcovm;
         }
 
         private void MainMenu_btn_Click(object sender, RoutedEventArgs e)

@@ -31,7 +31,13 @@
 
         <Button x:Name="MainMenu_btn" Grid.Column="0" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Hovedmenu" Height="40px" Width="205px" Click="MainMenu_btn_Click"/>
 
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30"/>
+        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding MultipleChoiceVM}" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding MCName}"/>
+                <DataGridTextColumn Width="*" Header="Multiple Choice Navn" Binding="{Binding }"/>
+                <DataGridTextColumn Width="*" Header="Oprettelsesdato" Binding="{Binding DateOfCreation}"/>
+            </DataGrid.Columns>
+        </DataGrid>
 
         <Button x:Name="Create_btn" Grid.Column="1" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Opret" Height="50px" Width="200px" Click="Create_btn_Click"/>
         <Button Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" Content="Slet" Height="50px" Width="200px"/>

@@ -47,7 +47,7 @@ namespace AdminApplication.Views
             mccvm.AddMultipleChoice(mCName, dateOfCreation);
 
             //mccvm.AddMultipleChoice(mcName, dateOfCreation);
-            MessageBox.Show("MultipleChoice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
+            MessageBox.Show("Multiple Choice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }
     }

@@ -11,12 +11,13 @@ namespace BuinsnessLogic.Persistence
 {
     public class CategoryRepository : IRepository<Category>
     {
-        public List<Category> CategoryList { get; set; } = new List<Category>();
+        public List<Category> CategoryList { get; set; }
         private string connectionString;
 
         public CategoryRepository(string connectionString)
         {
             this.connectionString = connectionString;
+            CategoryList = new List<Category>();
             loadAllEntitys();
         }
 
@@ -33,7 +34,8 @@ namespace BuinsnessLogic.Persistence
                 string values = "@CategoryName";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +
-                    $"VALUES ({values})";
+                    $"VALUES ({values})" +
+                    $"SELECT @@IDENTITY";
 
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
@@ -43,9 +45,8 @@ namespace BuinsnessLogic.Persistence
                 }
 
                 CategoryList.Add(category);
-
-                return result;
             }
+            return result;
         }
 
         public void Delete(int? categoryID)

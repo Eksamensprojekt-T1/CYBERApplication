@@ -57,8 +57,9 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
+            string pictureName = Picture_tb.Text;
 
-            QuestionVM.AddNewQuestion(questionDescription, category, difficulty);
+            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureName);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

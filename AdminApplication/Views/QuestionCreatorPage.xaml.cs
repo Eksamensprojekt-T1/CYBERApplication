@@ -1,4 +1,5 @@
 ﻿using AdminApplication.ViewModels;
+using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -79,8 +80,8 @@ namespace AdminApplication.Views
             else
             {
                 CheckBox chk = new CheckBox();
-                AnswerList.Items.Add(chk);
                 AnswerList.Items.Add(Answer_tb.Text);
+                AnswerList.Items.Add(chk);
                 Answer_tb.Clear();
             }
 

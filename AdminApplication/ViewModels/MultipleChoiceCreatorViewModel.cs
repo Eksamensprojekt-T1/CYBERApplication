@@ -11,13 +11,14 @@ namespace AdminApplication.ViewModels
 {
     public class MultipleChoiceCreatorViewModel
     {
-        static private string CnnStr = Properties.Settings.Default.WPF_Connection;
+        // Creating connectionstring to DB
+        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
 
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
 
         // Defining repository objects
-        QuestionRepository QuestionRepo = new QuestionRepository(CnnStr);
+        QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
 
         public MultipleChoiceCreatorViewModel()
         {

@@ -118,6 +118,23 @@ namespace AdminApplication.ViewModels
 
         }
 
+        public string GetTranslateDifficulty(Question question)
+        {
+            string translate = "";
+
+            switch (question.Difficulty)
+            {
+                case Level.easy: translate = "Nem";
+                    break;
+                case Level.moderate: translate = "Moderat";
+                    break;
+                case Level.hard: translate = "Svær";
+                    break;
+            }
+
+            return translate;
+        }
+
         public void AddCategory(string categoryName)
         {
             Category newCategory = new Category(categoryName); 

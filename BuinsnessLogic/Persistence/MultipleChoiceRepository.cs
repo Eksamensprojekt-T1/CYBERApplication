@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,18 +11,56 @@ namespace BuinsnessLogic.Persistence
 {
     public class MultipleChoiceRepository : IRepository<MultipleChoice>
     {
-        public List<MultipleChoice> MultipleChoices { get; }
+
+        // Create list of MultipleChoices and prepare connection
+        public List<MultipleChoice> MultipleChoicesList { get; set; } = new List<MultipleChoice>();
+
+        //join multiplechoice_question
+        public List<Question> QuestionList { get; set; } = new List<Question>();
+
         private string connectionString;
 
+        //Create a constructor that takes connectionsting af argument for VM
         public MultipleChoiceRepository(string connectionString)
         {
             this.connectionString = connectionString;
-            MultipleChoices = new();
+            loadAllEntitys();
         }
 
-        public int? Add(MultipleChoice entity)
+        public int? Add(MultipleChoice multipleChoice)
         {
-            throw new NotImplementedException();
+            //Defining result
+            int? result = -1;
+
+            // Starts connection to database
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+
+                // Defining SQL-Query
+                string table = "MULTIPLECHOISE";
+                string colums = "MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
+                string values = "@MCName, @DateOfCreation";
+                string commandText = 
+                    $"INSERT INTO {table}({colums})" +
+                    $"VALUES ({values})" +
+                    $"SELECT @@IDENTITY";
+
+                // Setting up stream to the database
+                using (SqlCommand cmd = new SqlCommand(commandText, con))
+                {
+                    cmd.Parameters.Add("@MCName", SqlDbType.NVarChar).Value = multipleChoice.MCName;
+                    cmd.Parameters.Add("@DateOfCreation", SqlDbType.DateTime2).Value = multipleChoice.DateOfCreation;
+                    multipleChoice.MCID = Convert.ToInt32(cmd.ExecuteScalar());
+                    result = multipleChoice.MCID;
+                }
+                
+                //Add Multiple Choice to a local list
+                MultipleChoicesList.Add(multipleChoice);
+
+                // returns result (current QuestionID)
+                return result;
+            }
         }
 
         public void Delete(int? entityID)
@@ -30,7 +70,7 @@ namespace BuinsnessLogic.Persistence
 
         public IEnumerable<MultipleChoice> GetAll()
         {
-            throw new NotImplementedException();
+            return MultipleChoicesList;
         }
 
         public MultipleChoice GetByID(int? entityID)
@@ -44,7 +84,55 @@ namespace BuinsnessLogic.Persistence
         }
         private void loadAllEntitys()
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "MULTIPLECHOISE";
+                string values = "MULTIPLECHOISE.MCID, MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
+                string commandText = $"SELECT {values} FROM {table}";
+
+                con.Open();
+                SqlCommand sqlCommand = new(commandText, con);
+                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? mcID = int.Parse(reader["MCID"].ToString());
+                        string mcName = reader["MCName"].ToString();          
+                        DateTime dateOfCreation = DateTime.Parse(reader["DateOfCreation"].ToString());
+
+                        MultipleChoice multipleChoice = new(mcID, mcName, dateOfCreation);
+
+                        MultipleChoicesList.Add(multipleChoice);
+                    }
+                }
+
+            }
+
+            ////join multiplechoice_question
+            //using (SqlConnection con = new(connectionString))
+            //{
+            //    string table = "MULTIPLECHOISE_QUESTION";
+            //    string values = "MULTIPLECHOISE_QUESTION.MCID, MULTIPLECHOISE_QUESTION_QuestionID";
+            //    string commandText = $"SELECT {values} FROM {table}";
+
+            //    con.Open();
+            //    SqlCommand sqlCommand = new(commandText, con);
+            //    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+            //    {
+            //        while (reader.Read())
+            //        {
+            //            int? mcID = int.Parse(reader["MCID"].ToString());
+            //            int? QuestionID = int.Parse(reader["QuestionID"].ToString());
+
+            //            //MultipleChoice multipleChoice = new(mcID, QuestionID);
+
+            //            //MultipleChoicesList.Add(multipleChoice);
+            //        }
+            //    }
+
+            //}
+
+
         }
     }
 }

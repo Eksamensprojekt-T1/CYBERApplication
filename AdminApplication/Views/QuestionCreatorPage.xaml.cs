@@ -1,4 +1,5 @@
 ﻿using AdminApplication.ViewModels;
+using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,13 @@ namespace AdminApplication.Views
         public QuestionCreatorPage()
         {
             InitializeComponent();
+            FillCategory();
+        }
+
+        private void FillCategory()
+        {
+            Category_cb.ItemsSource = QuestionVM.CategoryVM;
+            Category_cb.DisplayMemberPath = "CategoryName";  
         }
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)
@@ -50,13 +58,31 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
+            string pictureName = Picture_tb.Text;
 
-            QuestionVM.AddNewQuestion(questionDescription, category, difficulty);
+            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureName);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void CreateCategory_btn_Click(object sender, RoutedEventArgs e)
         {
+            string categoryName = Category_tb.Text;
+            QuestionVM.AddCategory(categoryName);
+            Category_tb.Clear();
+        }
+
+        private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if(Answer_tb.Text.Length == 0)
+            {
+                MessageBox.Show("Du mangler en titel til svaret");
+            }
+            else
+            {
+                CheckBox chk = new CheckBox();
+                AnswerList.Items.Add(Answer_tb.Text);
+                Answer_tb.Clear();
+            }
 
         }
     }

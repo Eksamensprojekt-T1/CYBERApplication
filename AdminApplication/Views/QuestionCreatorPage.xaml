@@ -54,14 +54,10 @@
         <Image Name="Picture_pt" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="5" />
 
         <Label Name="Category_lb" Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" Content="Kategori:" />
-        <ComboBox Name="Category_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="250">
-            <ComboBoxItem>Oprativsystemerplusdetløse</ComboBoxItem>
-            <ComboBoxItem>Moderat</ComboBoxItem>
-            <ComboBoxItem>Svær</ComboBoxItem>
-        </ComboBox>
+        <ComboBox Name="Category_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="250"/>
         <Label Name="CreateCategory_lb" Grid.Column="3" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" HorizontalAlignment="Left" Content="Opret ny:"/>
-        <Button Name="CreateCategory_btn" Grid.Column="4" Grid.Row="4" Style="{StaticResource OpenButtonStyle}" HorizontalAlignment="Center" Content="+" Height="30" Width="30" Click="CreateCategory_btn_Click"/>
-        <TextBox Name="Category_tb" Grid.Column="3" Grid.Row="4" Style="{StaticResource TextBoxStyle}"/>
+        <Button Name="CreateCategory_btn" Grid.Column="4" Grid.Row="4" Style="{StaticResource PlusButtonStyle}" HorizontalAlignment="Center" Content="+" Click="CreateCategory_btn_Click"/>
+        <TextBox Name="Category_tb" Grid.Column="3" Grid.Row="4" Text="{Binding CategoryName}" Style="{StaticResource TextBoxStyle}"/>
 
         <Label Name="Difficulty_lb" Grid.Column="2" Grid.Row="5" Style="{StaticResource LabelStyleBlack}" Content="Sværhedsgrad:" />
         <ComboBox Name="Difficulty_cb" Grid.Column="2" Grid.Row="6" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="250">
@@ -73,20 +69,18 @@
         <!--Style="{StaticResource ComboStyle}"-->
 
         <Button Name="Accept_btn" Grid.Column="6" Grid.Row="13" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100" Click="Accept_btn_Click"/>
-        
+
         <Label Name="Svar_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
-        <TextBox Name="Answer_tb" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Style="{StaticResource TextBoxStyle}"/>
-        <Button Name="CreateAnswer_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource OpenButtonStyle}" HorizontalAlignment="Center" Content="+" Height="30" Width="30"/>
-        <ListView Name="AnswerList" Grid.Column="2" Grid.Row="10" Grid.ColumnSpan="4" Grid.RowSpan="4" Width="640" Height="200">
-            <ListViewItem>
-                <StackPanel>
-                    <CheckBox Content="æble"/>
-
-                </StackPanel>
-            </ListViewItem>
-        </ListView>
+        <TextBox Name="Answer_tb" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Style= "{StaticResource AnswerTextBoxStyle}" Foreground="#FFABADB3"/>
+        <Button Name="CreateAnswer_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource PlusButtonStyle}" HorizontalAlignment="Center" Content="+" Height="30" Width="30" Click="CreateAnswer_btn_Click"/>
+        <ListBox Name="AnswerList" Grid.Column="2" Grid.Row="10" Style="{StaticResource ListViewStyle}" Grid.ColumnSpan="4" Grid.RowSpan="4" Width="640" Height="200">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox DataContext="{Binding IsItCorrect}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
     </Grid>
-
-
-
 </Page>

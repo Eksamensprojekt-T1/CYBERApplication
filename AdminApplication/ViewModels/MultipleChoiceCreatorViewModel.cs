@@ -1,6 +1,8 @@
 ﻿using BuinsnessLogic.Models;
+using BuinsnessLogic.Persistence;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +11,33 @@ namespace AdminApplication.ViewModels
 {
     public class MultipleChoiceCreatorViewModel
     {
-        List<Question> QuestionList = new List<Question>();
+        // Creating connectionstring to DB
+        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
+
+        // Defining the ViewModel lists
+        public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
+        public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
+
+        // Defining repository objects
+        QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
+        MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
+
+        public MultipleChoiceCreatorViewModel()
+        {
+            foreach (Question question in QuestionRepo.GetAll())
+            {
+                QuestionVM.Add(question);
+            }
+            foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())
+            {
+                MultipleChoiceVM.Add(multipleChoice);
+            }
+        }
+
+        public ObservableCollection<Question> GetAllQuestions()
+        {
+            return QuestionVM;
+        }
 
         public void AddQuestion()
         {
@@ -19,6 +47,18 @@ namespace AdminApplication.ViewModels
         public void RemoveQuestion()
         {
 
+        }
+
+        public void AddMultipleChoice(string mCName, DateTime dateOfCreation)
+        {
+
+            MultipleChoice newMultipleChoice = new(mCName, dateOfCreation);
+
+            // Add Object to Repository and gets ID
+            newMultipleChoice.MCID = MultipleChoiceRepo.Add(newMultipleChoice);
+
+            // Add object to ViewModel List
+            MultipleChoiceVM.Add(newMultipleChoice);
         }
     }
 }

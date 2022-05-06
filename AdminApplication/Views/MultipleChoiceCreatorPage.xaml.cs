@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,24 +21,34 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class MultipleChoiceCreatorPage : Page
     {
+        MultipleChoiceCreatorViewModel mccvm = new MultipleChoiceCreatorViewModel();
+        
         public MultipleChoiceCreatorPage()
         {
             InitializeComponent();
+            DataContext = mccvm;
         }
 
-        private void Back_Click(object sender, RoutedEventArgs e)
+        private void Back_btn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Views/MultipleChoiceOverviewPage.xaml", UriKind.Relative));
         }
 
-        private void ViewQuestion_Click(object sender, RoutedEventArgs e)
+        private void Question_btn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Approve_Click(object sender, RoutedEventArgs e)
+        private void Approve_btn_Click(object sender, RoutedEventArgs e)
         {
+            string mCName = MultipleChoice_tb.Text;
+            DateTime dateOfCreation = DateTime.Now;
 
+            mccvm.AddMultipleChoice(mCName, dateOfCreation);
+
+            //mccvm.AddMultipleChoice(mcName, dateOfCreation);
+            MessageBox.Show("Multiple Choice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
+            
         }
     }
 }

@@ -11,12 +11,13 @@ namespace BuinsnessLogic.Persistence
 {
     public class CategoryRepository : IRepository<Category>
     {
-        public List<Category> CategoryList { get; set; } = new List<Category>();
+        public List<Category> CategoryList { get; set; }
         private string connectionString;
 
         public CategoryRepository(string connectionString)
         {
             this.connectionString = connectionString;
+            CategoryList = new List<Category>();
             loadAllEntitys();
         }
 
@@ -30,10 +31,11 @@ namespace BuinsnessLogic.Persistence
 
                 string table = "CATEGORY";
                 string coloumns = "CATEGORY.CategoryName";
-                string values = "@QuestionDescription, @Difficulty";
+                string values = "@CategoryName";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +
-                    $"VALUES ({values})";
+                    $"VALUES ({values})" +
+                    $"SELECT @@IDENTITY";
 
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
@@ -43,14 +45,13 @@ namespace BuinsnessLogic.Persistence
                 }
 
                 CategoryList.Add(category);
-
-                return result;
             }
+            return result;
         }
 
-        public void Delete(int? entityID)
+        public void Delete(int? categoryID)
         {
-            throw new NotImplementedException();
+            
         }
 
         public IEnumerable<Category> GetAll()
@@ -58,9 +59,19 @@ namespace BuinsnessLogic.Persistence
             return CategoryList;
         }
 
-        public Category GetByID(int? entityID)
+        public Category GetByID(int? categoryID)
         {
-            throw new NotImplementedException();
+            Category result = null;
+
+            foreach (Category category in CategoryList)
+            {
+                if (category.CategoryID.Equals(categoryID))
+                {
+                    result = category;
+                    break;
+                }
+            }
+            return result;
         }
 
         public void Update(Category entity)

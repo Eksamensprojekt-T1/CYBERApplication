@@ -51,9 +51,11 @@
         <Setter Property="FontSize" Value="22px"/>
         <Setter Property="FontWeight" Value="SemiBold"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Width" Value="30"/>
         <Style.Resources>
             <Style TargetType="Border">
-                <Setter Property="CornerRadius" Value="10,10,10,10"/>
+                <Setter Property="CornerRadius" Value="10"/>
             </Style>
         </Style.Resources>
     </Style>
@@ -76,6 +78,18 @@
 
     <Style x:Key="TextBoxStyle" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="#FFABADB3"></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+        <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
+        <Setter Property="FontSize" Value="18px"></Setter>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="5,5,5,5"/>
+            </Style>
+        </Style.Resources>
+    </Style>
+
+    <Style x:Key="AnswerTextBoxStyle" TargetType="{x:Type TextBox}">
+        <Setter Property="Foreground" Value="Black"></Setter>
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
         <Setter Property="VerticalContentAlignment" Value="Center"></Setter>
         <Setter Property="FontSize" Value="18px"></Setter>
@@ -247,6 +261,19 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <Style x:Key="ListViewStyle" TargetType="{x:Type ListBox}">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontSize" Value="12px"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="10,10,10,10"/>
+            </Style>
+        </Style.Resources>
     </Style>
 
 

@@ -32,27 +32,38 @@ namespace BuinsnessLogic.Persistence
 
                 // Defining SQL-Query
                 string table = "QUESTION";
-                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty"; // Mangler tilføjelse af kategorier og answers.
-                string values = "@QuestionDescription, @Difficulty";
+                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty, QUESTION.CategoryID, QUESTION.PictureID"; // Mangler tilføjelse af answers.
+                string values = "@QuestionDescription, @Difficulty, @CategoryID, @PictureID";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +
-                    $"VALUES ({values})";
+                    $"VALUES ({values})" +
+                     $"SELECT @@IDENTITY";
 
                 // Setting up stream to the database
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
                     cmd.Parameters.Add("@QuestionDescription", SqlDbType.NVarChar).Value = question.QuestionDescription;
                     cmd.Parameters.Add("@Difficulty", SqlDbType.NVarChar).Value = question.Difficulty;
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int).Value = question.QuestionCategory.CategoryID;
+
+                    if (question.QuestionPicture != null)
+                    {
+                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = question.QuestionPicture.PictureID;
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = DBNull.Value;
+                    }
+                    
                     question.QuestionID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = question.QuestionID;
                 }
 
                 // Add Question to local list
                 QuestionsList.Add(question);
-
-                // returns result (current QuestionID)
-                return result;
             }
+            // returns result (current QuestionID)
+            return result;
         }
 
         public void Delete(int? entityID)

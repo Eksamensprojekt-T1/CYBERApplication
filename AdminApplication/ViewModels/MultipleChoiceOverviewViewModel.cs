@@ -29,11 +29,6 @@ namespace AdminApplication.ViewModels
             }
         }
 
-        public void AddMultipleChoice()
-        {
-
-        }
-
         public void DeleteMultipleChoice()
         {
 

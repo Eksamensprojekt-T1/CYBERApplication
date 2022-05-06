@@ -14,9 +14,6 @@ namespace BuinsnessLogic.Persistence
         // Create list of MultipleChoices and prepare connection
         public List<MultipleChoice> MultipleChoicesList { get; set; } = new List<MultipleChoice>();
 
-        //join multiplechoice_question
-        public List<Question> QuestionList { get; set; } = new List<Question>();
-
         private string connectionString;
 
         //Create a constructor that takes connectionsting af argument for VM
@@ -105,32 +102,11 @@ namespace BuinsnessLogic.Persistence
                     }
                 }
 
+                //nyt kald for at finde count/ anatal af spørgsmål
+                //select COUNT(*) from MULTIPLECHOISE_QUESTION where MCID=1
+                //hvor skal det gemmes?
+
             }
-
-            ////join multiplechoice_question
-            //using (SqlConnection con = new(connectionString))
-            //{
-            //    string table = "MULTIPLECHOISE_QUESTION";
-            //    string values = "MULTIPLECHOISE_QUESTION.MCID, MULTIPLECHOISE_QUESTION_QuestionID";
-            //    string commandText = $"SELECT {values} FROM {table}";
-
-            //    con.Open();
-            //    SqlCommand sqlCommand = new(commandText, con);
-            //    using (SqlDataReader reader = sqlCommand.ExecuteReader())
-            //    {
-            //        while (reader.Read())
-            //        {
-            //            int? mcID = int.Parse(reader["MCID"].ToString());
-            //            int? QuestionID = int.Parse(reader["QuestionID"].ToString());
-
-            //            //MultipleChoice multipleChoice = new(mcID, QuestionID);
-
-            //            //MultipleChoicesList.Add(multipleChoice);
-            //        }
-            //    }
-
-            //}
-
 
         }
     }

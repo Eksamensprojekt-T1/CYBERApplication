@@ -28,6 +28,7 @@ namespace AdminApplication.Views
         {
             InitializeComponent();
             DataContext = qvm;
+            //string translate = qvm.GetTranslateDifficulty();
         }
 
         private void MainMenu_btn_Click(object sender, RoutedEventArgs e)

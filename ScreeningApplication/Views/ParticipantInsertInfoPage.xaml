@@ -41,7 +41,7 @@
         <Label Name="WelcomeTo_lb" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Hvad er din motivation?"/>
         <TextBox Name="Motivation_tb" Grid.Column="1" Grid.Row="10" Style="{StaticResource TextBoxStyle}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
         
-        <Button Content="Start screening" Grid.Column="1" Grid.Row="12" Style="{StaticResource RedButtonStyle}" Click="Button_Click"/>
+        <Button Content="Start screening" Grid.Column="1" Grid.Row="12" Style="{StaticResource RedButtonStyle}" Click="Start_Screening_btn"/>
 
     </Grid>
 </Page>

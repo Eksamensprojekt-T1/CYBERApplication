@@ -45,15 +45,14 @@ namespace BuinsnessLogic.Persistence
                     cmd.Parameters.Add("@QuestionDescription", SqlDbType.NVarChar).Value = question.QuestionDescription;
                     cmd.Parameters.Add("@Difficulty", SqlDbType.NVarChar).Value = question.Difficulty;
                     cmd.Parameters.Add("@CategoryID", SqlDbType.Int).Value = question.QuestionCategory.CategoryID;
-                    
-                    try
+
+                    if (question.QuestionPicture != null)
                     {
                         cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = question.QuestionPicture.PictureID;
                     }
-                    catch (NullReferenceException)
+                    else
                     {
-                        question.QuestionPicture = null;
-                        throw;
+                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = DBNull.Value;
                     }
                     
                     question.QuestionID = Convert.ToInt32(cmd.ExecuteScalar());

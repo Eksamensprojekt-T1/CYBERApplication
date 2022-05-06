@@ -34,9 +34,9 @@
         <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header=" Spørgsmål" Binding="{Binding QuestionDescription}"/>
-                <DataGridTextColumn Width="*" Header=" Hovedkategori" Binding="{Binding CategoryID}"/>
-                <DataGridTextColumn Width="*" Header=" Sværhedsgrad" Binding="{Binding Difficulty}"/>
-                <DataGridTextColumn Width="*" Header=" Muligheder"/>
+                <DataGridTextColumn Width="100" Header=" Kategori"/>
+                <DataGridTextColumn Width="100" Header=" Sværhedsgrad" Binding="{Binding Difficulty}"/>
+                <DataGridTextColumn Width="150" Header=" Muligheder"/>
             </DataGrid.Columns>
         </DataGrid>
         

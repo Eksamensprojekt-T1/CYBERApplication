@@ -11,6 +11,7 @@ namespace BuinsnessLogic.Persistence
 {
     public class MultipleChoiceRepository : IRepository<MultipleChoice>
     {
+
         // Create list of MultipleChoices and prepare connection
         public List<MultipleChoice> MultipleChoicesList { get; set; } = new List<MultipleChoice>();
 

@@ -13,10 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModels\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BuinsnessLogic\BuinsnessLogic.csproj" />
     <ProjectReference Include="..\BuisnessThemes\BuisnessThemes.csproj" />
   </ItemGroup>

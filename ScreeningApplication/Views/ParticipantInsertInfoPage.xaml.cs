@@ -25,9 +25,9 @@ namespace ScreeningApplication.Views
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Start_Screening_btn(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new Uri("Views/QuestionAnswerPage.xaml", UriKind.Relative));
         }
 
         private void ClearName(object sender, MouseButtonEventArgs e)

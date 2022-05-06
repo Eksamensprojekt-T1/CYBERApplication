@@ -124,11 +124,14 @@ namespace AdminApplication.ViewModels
 
             switch (question.Difficulty)
             {
-                case Level.easy: translate = "Nem";
+                case Level.easy: 
+                    translate = "Nem";
                     break;
-                case Level.moderate: translate = "Moderat";
+                case Level.moderate: 
+                    translate = "Moderat";
                     break;
-                case Level.hard: translate = "Svær";
+                case Level.hard: 
+                    translate = "Svær";
                     break;
             }
 

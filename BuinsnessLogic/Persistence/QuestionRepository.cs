@@ -90,8 +90,9 @@ namespace BuinsnessLogic.Persistence
             using (SqlConnection con = new(connectionString))
             {
                 string table = "QUESTION";
-                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, Question.Difficulty";
-                string CommandText = $"SELECT {values} FROM {table}";
+                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, QUESTION.PictureID, QUESTION.CategoryID, CATEGORY.CategoryName";
+                string innerJoin = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
+                string CommandText = $"SELECT {values} FROM {table} {innerJoin}";
 
                 con.Open();
                 SqlCommand sQLCommand = new(CommandText, con);
@@ -102,6 +103,7 @@ namespace BuinsnessLogic.Persistence
                         int? questionID = int.Parse(reader["QuestionID"].ToString());
                         string questionDescription = reader["QuestionDescription"].ToString();
                         string questionDifficulty = reader["Difficulty"].ToString();
+                        string questionCategoryName = reader["CategoryName"].ToString();
 
                         int diff = 0;
 
@@ -118,7 +120,7 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
-                        Question question = new(questionID, questionDescription, (Level)diff);
+                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName), new Picture("", ""));
 
                         QuestionsList.Add(question);
                     }

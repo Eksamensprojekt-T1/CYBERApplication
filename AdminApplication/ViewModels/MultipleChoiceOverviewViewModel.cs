@@ -31,21 +31,7 @@ namespace AdminApplication.ViewModels
 
         public void DeleteMultipleChoice(object selectedItem)
         {
-            //throw new NotImplementedException();
-            if (selectedItem != null)
-            {
-                //Fra budweg
-                for (int i = 0; i < MultipleChoiceVM.Count; i++)
-                {
-                    MultipleChoice multipleChoice = MultipleChoiceVM[i];
-                    MultipleChoiceVM.Remove(MultipleChoiceVM[i]);
-                    //selectedItem = multipleChoice;
-                    MultipleChoiceVM.Remove(multipleChoice);
-                }
-
-            }
-            selectedItem = null;
-
+            throw new NotImplementedException();
         }
     }
 }

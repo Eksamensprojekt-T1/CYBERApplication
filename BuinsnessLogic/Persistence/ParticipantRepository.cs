@@ -7,42 +7,37 @@ using BuinsnessLogic.Models;
 
 namespace BuinsnessLogic.Persistence
 {
-    public class MultipleChoiceRepository : IRepository<MultipleChoice>
+    public class ParticipantRepository : IRepository<Participant>
     {
-        public List<MultipleChoice> MultipleChoices { get; }
+        public List<Participant> Participants { get; set; }
         private string connectionString;
 
-        public MultipleChoiceRepository(string connectionString)
+        public ParticipantRepository(string connectionString)
         {
+            Participants = new();
             this.connectionString = connectionString;
-            MultipleChoices = new();
         }
-
-        public int? Add(MultipleChoice entity)
+        public int? Add(Participant participant)
         {
             throw new NotImplementedException();
         }
 
-        public void Delete(int? entityID)
+        public void Delete(int? participantID)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<MultipleChoice> GetAll()
+        public IEnumerable<Participant> GetAll()
         {
             throw new NotImplementedException();
         }
 
-        public MultipleChoice GetByID(int? entityID)
+        public Participant GetByID(int? participantID)
         {
             throw new NotImplementedException();
         }
 
-        public void Update(MultipleChoice entity)
-        {
-            throw new NotImplementedException();
-        }
-        private void loadAllEntitys()
+        public void Update(Participant participant)
         {
             throw new NotImplementedException();
         }

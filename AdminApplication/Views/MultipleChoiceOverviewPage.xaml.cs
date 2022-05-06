@@ -39,14 +39,15 @@ namespace AdminApplication.Views
             NavigationService.Navigate(new Uri("Views/MultipleChoiceCreatorPage.xaml", UriKind.Relative));
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Update_btn_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            //find selected item og slet
+            mcovm.DeleteMultipleChoice(MultipleChoice_dg.SelectedItem);
         }
     }
 }

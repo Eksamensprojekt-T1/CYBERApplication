@@ -29,14 +29,9 @@ namespace AdminApplication.ViewModels
             }
         }
 
-        public void AddMultipleChoice()
+        public void DeleteMultipleChoice(object selectedItem)
         {
-
-        }
-
-        public void DeleteMultipleChoice()
-        {
-
+            throw new NotImplementedException();
         }
     }
 }

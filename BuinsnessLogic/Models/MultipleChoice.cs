@@ -14,8 +14,6 @@ namespace BuinsnessLogic.Models
         public string MCName { get; set; }
         public DateTime DateOfCreation { get; set; }
 
-        //count constructor?
-        
         // Show related questions
         public List<Question> Questions { get; set; }
 
@@ -30,10 +28,12 @@ namespace BuinsnessLogic.Models
             DateOfCreation = dateOfCreation;
             // Show related questions
             Questions = new List<Question>();
+
         }
 
         public MultipleChoice(string mCName, DateTime dateOfCreation)
             : this(null, mCName, dateOfCreation) { }
+
 
         #endregion
     }

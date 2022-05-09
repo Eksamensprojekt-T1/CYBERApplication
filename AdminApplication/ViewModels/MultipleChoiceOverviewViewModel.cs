@@ -31,7 +31,17 @@ namespace AdminApplication.ViewModels
 
         public void DeleteMultipleChoice(object selectedItem)
         {
-            throw new NotImplementedException();
+            MultipleChoice multipleChoice = (MultipleChoice)selectedItem;
+
+            for (int i = 0; i < MultipleChoiceVM.Count; i++)
+            {
+                if (multipleChoice.MCID == MultipleChoiceVM[i].MCID)
+                {
+                    MultipleChoiceRepo.Delete(MultipleChoiceVM[i].MCID);
+                    MultipleChoiceVM.Remove(MultipleChoiceVM[i]);
+                }
+            }
+
         }
     }
 }

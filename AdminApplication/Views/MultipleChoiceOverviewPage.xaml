@@ -43,7 +43,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="175" Header="Antal Spørgsmål" FontSize="20">
+                <DataGridTextColumn Width="175" Header="Antal Spørgsmål" FontSize="20" Binding="{Binding Questions.Count}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>

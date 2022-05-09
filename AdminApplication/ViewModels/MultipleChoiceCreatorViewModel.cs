@@ -17,10 +17,12 @@ namespace AdminApplication.ViewModels
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
+        public ObservableCollection<Category> CategoryVM = new ObservableCollection<Category>();
 
         // Defining repository objects
         QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
+        CategoryRepository CategoryRepo = new CategoryRepository(ConnectionString);
 
         public MultipleChoiceCreatorViewModel()
         {
@@ -31,6 +33,10 @@ namespace AdminApplication.ViewModels
             foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())
             {
                 MultipleChoiceVM.Add(multipleChoice);
+            }
+            foreach (Category category in CategoryRepo.GetAll())
+            {
+                CategoryVM.Add(category);
             }
         }
 

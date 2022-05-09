@@ -46,7 +46,6 @@ namespace AdminApplication.Views
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
-            //find selected item og slet
             mcovm.DeleteMultipleChoice(MultipleChoice_dg.SelectedItem);
         }
     }

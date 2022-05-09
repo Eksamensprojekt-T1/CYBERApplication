@@ -41,7 +41,7 @@
         <DataGrid Grid.Column="1" Grid.Row="3" Grid.RowSpan="4" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Spørgsmål" Binding="{Binding QuestionDescription}"/>
-                <DataGridTextColumn Width="100" Header="Kategori"/>
+                <DataGridTextColumn Width="100" Header="Kategori" Binding="{Binding QuestionCategory.CategoryName}"/>
                 <DataGridCheckBoxColumn Width="40" Header="Tilføj"/>
             </DataGrid.Columns>
         </DataGrid>

@@ -62,7 +62,15 @@ namespace BuinsnessLogic.Persistence
 
         public void Delete(int? entityID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "MULTIPLECHOISE";
+                string commandText = $"DELETE FROM {table} WHERE {entityID} = MCID";
+
+                con.Open();
+                SqlCommand sqlCommand = new(commandText, con);
+                sqlCommand.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<MultipleChoice> GetAll()
@@ -100,12 +108,25 @@ namespace BuinsnessLogic.Persistence
                         MultipleChoice multipleChoice = new(mcID, mcName, dateOfCreation);
 
                         MultipleChoicesList.Add(multipleChoice);
+
                     }
                 }
 
-                //nyt kald for at finde count/ anatal af spørgsmål
-                //select COUNT(*) from MULTIPLECHOISE_QUESTION where MCID=1
-                //hvor skal det gemmes?
+            }
+
+            //nyt kald for at finde count/ anatal af spørgsmål
+            
+            //select COUNT(*) from MULTIPLECHOISE_QUESTION where MCID=1
+
+            //SELECT* FROM MULTIPLECHOISE INNER JOIN MULTIPLECHOISE_QUESTION on MULTIPLECHOISE_QUESTION.MCID = MULTIPLECHOISE.MCID
+            
+            //hvor skal det gemmes?
+
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "MULTIPLECHOISE_QUESTION";
+                string innerJoin = "INNER JOIN MULTIPLECHOISE on MULTIPLECHOISE.MCID = MULTIPLECHOISE_QUESTION.MCID";
+                string commandText = $"SELECT COUNT(*) FROM {table} {innerJoin}";
 
             }
 

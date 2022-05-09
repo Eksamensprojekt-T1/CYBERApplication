@@ -16,26 +16,18 @@ using System.Windows.Shapes;
 namespace ScreeningApplication.Views
 {
     /// <summary>
-    /// Interaction logic for QuestionAnswerPage.xaml
+    /// Interaction logic for GoodbyePage.xaml
     /// </summary>
-    public partial class QuestionAnswerPage : Page
+    public partial class GoodbyePage : Page
     {
-        public QuestionAnswerPage()
+        public GoodbyePage()
         {
             InitializeComponent();
         }
 
-        private void Save_And_Exit_btn(object sender, RoutedEventArgs e)
+        private void Continue_btn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new Uri("Views/GoodbyePage.xaml", UriKind.Relative));
-        }
-        private void Next_Question_btn(object sender, RoutedEventArgs e)
-        {
-
-        }
-        private void Last_Question_btn(object sender, RoutedEventArgs e)
-        {
-
+            NavigationService.Navigate(new Uri("Views/ParticipantWelcomePage.xaml", UriKind.Relative));
         }
     }
 }

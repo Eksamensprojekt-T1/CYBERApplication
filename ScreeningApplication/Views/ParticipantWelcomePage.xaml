@@ -29,8 +29,8 @@
 
         <Label Name="WelcomeTo_lb" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Welkommen til"/>
         <Label Name="Cyber_lb" Grid.Column="2" Grid.Row="2" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Cyberværnepligtens screeningtest"/>
-        <TextBox Name="ScreeningPassword_tb" Grid.Column="2" Grid.Row="3" Style="{StaticResource TextBoxStyle}" Text="Indtast Kode" MouseDoubleClick="ClearContent" />
-        <Button Name="Continue_btn" Grid.Column="3" Grid.Row="3" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Top" HorizontalAlignment="Center" Content="Gå videre" Height="50" Width="100" Click="Continue_btn_Click" Margin="0,8,0,0"/>
+        <TextBox  Name="ScreeningPassword_tb" Grid.Column="2" Grid.Row="3" Style="{StaticResource TextBoxStyle}" Text="{Binding ScreeningPassword}" TextChanged="ScreeningPassword_tb_TextChanged"/>
+        <Button Name="Continue_btn" Grid.Column="3" Grid.Row="3" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Gå videre" Height="50" Width="100" Click="Continue_btn_Click"/>
         <Image Grid.Column="4" Grid.Row="0" Grid.RowSpan="5" Source="/Views/cybergoat.png" HorizontalAlignment="Center" VerticalAlignment="Center" Opacity="0.50"/>
     </Grid>
 </Page>

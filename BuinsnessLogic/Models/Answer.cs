@@ -12,6 +12,7 @@ namespace BuinsnessLogic.Models
         public int? AnswerID { get; set; }
         public string AnswerDescription { get; set; }
         public bool IsItCorrect { get; set; }
+
         #endregion
 
         #region // Constructors

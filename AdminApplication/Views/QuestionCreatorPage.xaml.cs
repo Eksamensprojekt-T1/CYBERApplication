@@ -81,7 +81,7 @@ namespace AdminApplication.Views
             }
             else
             {
-                CheckBox chk = new CheckBox();
+                
                 AnswerList.Items.Add(Answer_tb.Text);
                 Answer_tb.Clear();
             }

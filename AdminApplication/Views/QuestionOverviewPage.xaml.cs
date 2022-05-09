@@ -40,5 +40,11 @@ namespace AdminApplication.Views
         {
             NavigationService.Navigate(new Uri("Views/QuestionCreatorPage.xaml", UriKind.Relative));
         }
+
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            //find selected item og slet
+            qvm.Q(MultipleChoice_dg.SelectedItem);
+        }
     }
 }

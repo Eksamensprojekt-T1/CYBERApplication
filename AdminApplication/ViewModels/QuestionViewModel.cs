@@ -13,7 +13,7 @@ namespace AdminApplication.ViewModels
     public class QuestionViewModel
     {
         // Creating connectionstring to DB
-        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
+        static private string connectionString = Properties.Settings.Default.WPF_Connection;
 
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
@@ -22,10 +22,10 @@ namespace AdminApplication.ViewModels
         public ObservableCollection<Picture> PictureVM { get; set; } = new ObservableCollection<Picture>();
 
         // Defining repository objects
-        PictureRepository PictureRepo = new PictureRepository(ConnectionString);
-        AnswerRepository AnswerRepo = new AnswerRepository(ConnectionString);
-        CategoryRepository CategoryRepo = new CategoryRepository(ConnectionString);
-        QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
+        QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
+        CategoryRepository CategoryRepo = new CategoryRepository(connectionString);
+        AnswerRepository AnswerRepo = new AnswerRepository(connectionString);
+        PictureRepository PictureRepo = new PictureRepository(connectionString);
 
         public QuestionViewModel()
         {

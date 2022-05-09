@@ -12,15 +12,15 @@ namespace AdminApplication.ViewModels
     public class OverviewViewModel
     {        
         // Creating connectionstring to DB
-        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
+        static private string connectionString = Properties.Settings.Default.WPF_Connection;
 
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
 
         // Defining repository objects
-        MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
-        QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
+        MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(connectionString);
+        QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
 
         //Constructor for adding object to observable collection
         public OverviewViewModel()

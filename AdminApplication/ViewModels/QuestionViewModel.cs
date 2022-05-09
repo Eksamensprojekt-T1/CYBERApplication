@@ -12,6 +12,9 @@ namespace AdminApplication.ViewModels
 {
     public class QuestionViewModel
     {
+        // Creating connectionstring to DB
+        static private string connectionString = Properties.Settings.Default.WPF_Connection;
+
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<Category> CategoryVM = new ObservableCollection<Category>();
@@ -19,10 +22,10 @@ namespace AdminApplication.ViewModels
         public ObservableCollection<Picture> PictureVM { get; set; } = new ObservableCollection<Picture>();
 
         // Defining repository objects
-        QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
-        CategoryRepository CategoryRepo = new CategoryRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
-        AnswerRepository AnswerRepo = new AnswerRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
-        PictureRepository PictureRepo = new PictureRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
+        QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
+        CategoryRepository CategoryRepo = new CategoryRepository(connectionString);
+        AnswerRepository AnswerRepo = new AnswerRepository(connectionString);
+        PictureRepository PictureRepo = new PictureRepository(connectionString);
 
         public QuestionViewModel()
         {

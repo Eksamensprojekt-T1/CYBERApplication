@@ -3,6 +3,7 @@ using BuinsnessLogic.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,7 +39,7 @@ namespace AdminApplication.ViewModels
                 AnswerVM.Add(answer);
             }
         }
-        public void AddNewQuestion(string questionDescription, string categoryName, string difficulty, string pictureName)
+        public void AddNewQuestion(string questionDescription, string categoryName, string difficulty, Bitmap? pictureBitmap)
         {
             // Difficulty
             Level difficultyChosen = Level.Nem;
@@ -71,7 +72,7 @@ namespace AdminApplication.ViewModels
 
             foreach(Picture picture in PictureRepo.GetAll())
             {
-                if (picture.PictureName == pictureName)
+                if (picture.PictureBitmap == pictureBitmap)
                 {
                     targetPicture = picture;
                     break;
@@ -87,6 +88,7 @@ namespace AdminApplication.ViewModels
 
             // Add object to ViewModel List
             QuestionVM.Add(newQuestion);
+            AddPicture(pictureBitmap);
 
         }
 
@@ -114,9 +116,9 @@ namespace AdminApplication.ViewModels
             return AnswerVM;
         }
 
-        public void AddPicture(string pictureName, string picturePath)
+        public void AddPicture(Bitmap? bitmap)
         {
-            Picture newPicture = new Picture(pictureName, picturePath);
+            Picture newPicture = new Picture(bitmap);
 
             //Add to Repo and gets ID
             newPicture.PictureID = PictureRepo.Add(newPicture);

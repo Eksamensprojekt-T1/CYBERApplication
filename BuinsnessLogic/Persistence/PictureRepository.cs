@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,8 @@ namespace BuinsnessLogic.Persistence
             {
                 con.Open();
                 string table = "PICTURE";
-                string coloumns = "PICTURE.PictureName, PICTURE.PicturePath";
-                string values = "@PictureName, @PicturePath";
+                string coloumns = "PICTURE.PictureBitmap";
+                string values = "@PictureBitmap";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +
                     $"VALUES ({values})" +
@@ -39,8 +40,7 @@ namespace BuinsnessLogic.Persistence
 
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
-                    cmd.Parameters.Add("@PictureName", SqlDbType.NVarChar).Value = picture.PictureName;
-                    cmd.Parameters.Add("@PicturePath", SqlDbType.NVarChar).Value = picture.PicturePath;
+                    cmd.Parameters.Add("@PictureBitmap", SqlDbType.VarBinary).Value = picture.PictureBitmap;
                     picture.PictureID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = picture.PictureID;
                 }
@@ -85,7 +85,7 @@ namespace BuinsnessLogic.Persistence
             using (SqlConnection con = new(connectionString))
             {
                 string table = "PICTURE";
-                string values = "PICTURE.PictureID, PICTURE.PictureName, PICTURE.PicturePath";
+                string values = "PICTURE.PictureID, PICTURE.PictureBitmap";
                 string CommandText = $"SELECT {values} FROM {table}";
 
                 con.Open();
@@ -95,10 +95,9 @@ namespace BuinsnessLogic.Persistence
                     while (reader.Read())
                     {
                         int? pictureID = int.Parse(reader["PictureID"].ToString());
-                        string pictureName = reader["PictureName"].ToString();
-                        string picturePath = reader["PicturePath"].ToString();
+                        Bitmap pictureBitmap = (Bitmap)reader["PictureBitmap"];
 
-                        PictureList.Add(new Picture(pictureID, pictureName, picturePath));
+                        PictureList.Add(new Picture(pictureID, pictureBitmap));
                     }
                 }
 

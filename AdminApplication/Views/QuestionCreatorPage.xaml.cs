@@ -3,6 +3,7 @@ using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -50,8 +51,6 @@ namespace AdminApplication.Views
                 Picture_tb.Text = openFileDialog.FileName;
                 Uri newPicture = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
                 Picture_pt.Source = new BitmapImage(newPicture);
-                string pictureInsert  = Picture_tb.Text;
-                //QuestionVM.AddPicture(pictureInsert);
             }
         }
 
@@ -60,9 +59,9 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
-            string pictureName = Picture_tb.Text;
+            Bitmap? pictureBitmap = new Bitmap(Picture_tb.Text);
 
-            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureName);
+            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureBitmap);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

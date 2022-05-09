@@ -104,6 +104,8 @@ namespace BuinsnessLogic.Persistence
                         string questionDescription = reader["QuestionDescription"].ToString();
                         string questionDifficulty = reader["Difficulty"].ToString();
                         string questionCategoryName = reader["CategoryName"].ToString();
+                        //int? pictureID = (int.Parse(reader["PictureID"].ToString()).Equals(DBNull.Value)) ? null : int.Parse(reader["PictureID"].ToString());
+                        int? pictureID = int.Parse(reader["PictureID"].ToString());
 
                         int diff = 0;
 
@@ -120,7 +122,19 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
-                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName), new Picture("", ""));
+                        PictureRepository pictureRepo = new PictureRepository(connectionString);
+
+                        Picture? getPicture = pictureRepo.GetByID(pictureID);
+
+                        if (getPicture == null)
+                        {
+                            getPicture = null;
+                        } else
+                        {
+                            getPicture = pictureRepo.GetByID(pictureID);
+                        }
+
+                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName), getPicture);
 
                         QuestionsList.Add(question);
                     }

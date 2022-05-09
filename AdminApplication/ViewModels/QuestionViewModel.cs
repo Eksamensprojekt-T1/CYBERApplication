@@ -46,7 +46,7 @@ namespace AdminApplication.ViewModels
                 PictureVM.Add(picture);
             }
         }
-        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName)
+        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName, string answer)
         {
             // Difficulty
             Level difficultyChosen = Level.Nem;

@@ -54,6 +54,7 @@ namespace AdminApplication.Views
             //bool IsItCorrect = (bool)IsItCorrect_CB.IsChecked;
 
             QuestionVM.AddNewQuestion(questionDescription, difficulty, category, Answer);
+            NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -72,7 +73,6 @@ namespace AdminApplication.Views
             }
             else
             {
-                
                 AnswerList.Items.Add(Answer_tb.Text);
                 Answer_tb.Clear();
             }

@@ -48,8 +48,10 @@ namespace AdminApplication.Views
             if (openFileDialog.ShowDialog() == true)
             {
                 Picture_tb.Text = openFileDialog.FileName;
-                Uri test = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
-                Picture_pt.Source = new BitmapImage(test);
+                Uri newPicture = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
+                Picture_pt.Source = new BitmapImage(newPicture);
+                string pictureInsert  = Picture_tb.Text;
+                //QuestionVM.AddPicture(pictureInsert);
             }
         }
 

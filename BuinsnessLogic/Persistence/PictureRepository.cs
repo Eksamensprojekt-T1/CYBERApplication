@@ -61,9 +61,19 @@ namespace BuinsnessLogic.Persistence
             return PictureList;
         }
 
-        public Picture GetByID(int? entityID)
+        public Picture GetByID(int? pictureID)
         {
-            throw new NotImplementedException();
+            Picture result = null;
+
+            foreach (Picture picture in PictureList)
+            {
+                if (picture.PictureID.Equals(pictureID))
+                {
+                    result = picture;
+                    break;
+                }
+            }
+            return result;
         }
 
         public void Update(Picture entity)

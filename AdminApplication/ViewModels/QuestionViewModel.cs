@@ -15,6 +15,7 @@ namespace AdminApplication.ViewModels
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<Category> CategoryVM = new ObservableCollection<Category>();
         public ObservableCollection<Answer> AnswerVM { get; set; } = new ObservableCollection<Answer>();
+        public ObservableCollection<Picture> PictureVM { get; set; } = new ObservableCollection<Picture>();
 
         // Defining repository objects
         QuestionRepository QuestionRepo = new QuestionRepository("Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;");
@@ -115,7 +116,13 @@ namespace AdminApplication.ViewModels
 
         public void AddPicture(string pictureName, string picturePath)
         {
+            Picture newPicture = new Picture(pictureName, picturePath);
 
+            //Add to Repo and gets ID
+            newPicture.PictureID = PictureRepo.Add(newPicture);
+
+            // Add object to ViewModel List
+            PictureVM.Add(newPicture);
         }
 
         public void AddCategory(string categoryName)

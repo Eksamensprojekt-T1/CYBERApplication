@@ -8,8 +8,8 @@ namespace BuinsnessLogic.Models
 {
     public enum Level
     {
-        easy = 0,
-        moderate = 1,
-        hard = 2
+        Nem = 0,
+        Moderat = 1,
+        Svær = 2
     };
 }

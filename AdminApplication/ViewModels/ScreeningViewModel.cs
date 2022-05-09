@@ -1,12 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace AdminApplication.ViewModels
+﻿namespace AdminApplication.ViewModels
 {
-    internal class ScreeningViewModel
+    public class ScreeningViewModel
     {
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
+
+        // bla bla bla
+
+
+        //=========================================================================
+        // Constructor
+        //=========================================================================
+
+        public ScreeningViewModel()
+        {
+
+        }
+
     }
 }

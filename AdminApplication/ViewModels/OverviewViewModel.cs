@@ -10,18 +10,27 @@ using System.Threading.Tasks;
 namespace AdminApplication.ViewModels
 {
     public class OverviewViewModel
-    {        
-        // Creating connectionstring to DB
+    {
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
+        // Connection string
         static private string connectionString = Properties.Settings.Default.WPF_Connection;
 
-        // Defining the ViewModel lists
+        // Observablecollections
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
-        // Defining repository objects
+
+        // Repositories
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(connectionString);
         QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
 
-        //Constructor for adding object to observable collection
+        //=========================================================================
+        // Constructor
+        //=========================================================================
+
         public OverviewViewModel()
         {
             foreach (Question question in QuestionRepo.GetAll())
@@ -33,5 +42,6 @@ namespace AdminApplication.ViewModels
                 MultipleChoiceVM.Add(multipleChoice);
             }
         }
+
     }
 }

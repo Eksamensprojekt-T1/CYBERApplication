@@ -11,16 +11,25 @@ namespace AdminApplication.ViewModels
 {
     public class MultipleChoiceOverviewViewModel
     {
-        // Creating connectionstring to DB
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
+        // Connection string
         static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
 
-        // Defining the ViewModel lists
+        // Observablecollections
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
 
-        // Defining repository objects
+        // Repositories
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
 
-        //Constructor for adding object to observable collection
+
+        //=========================================================================
+        // Constructors
+        //=========================================================================
+
         public MultipleChoiceOverviewViewModel()
         {
             foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())
@@ -28,6 +37,10 @@ namespace AdminApplication.ViewModels
                 MultipleChoiceVM.Add(multipleChoice);
             }
         }
+
+        //=========================================================================
+        // DeleteMultipleChoice (CRUD: Delete)
+        //=========================================================================
 
         public void DeleteMultipleChoice(object selectedItem)
         {

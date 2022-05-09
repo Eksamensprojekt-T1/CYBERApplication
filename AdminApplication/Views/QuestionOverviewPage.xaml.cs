@@ -40,5 +40,15 @@ namespace AdminApplication.Views
         {
             NavigationService.Navigate(new Uri("Views/QuestionCreatorPage.xaml", UriKind.Relative));
         }
+
+        private void Update_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

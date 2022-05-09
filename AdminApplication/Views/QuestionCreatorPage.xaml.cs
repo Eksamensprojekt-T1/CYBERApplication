@@ -1,20 +1,12 @@
 ﻿using AdminApplication.ViewModels;
-using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Drawing;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AdminApplication.Views
 {
@@ -50,21 +42,18 @@ namespace AdminApplication.Views
                 Picture_tb.Text = openFileDialog.FileName;
                 Uri newPicture = new Uri(openFileDialog.FileName, UriKind.RelativeOrAbsolute);
                 Picture_pt.Source = new BitmapImage(newPicture);
-                string pictureInsert  = Picture_tb.Text;
-                //QuestionVM.AddPicture(pictureInsert);
             }
         }
 
         private void Accept_btn_Click(object sender, RoutedEventArgs e)
         {
             string questionDescription = Title_tb.Text;
-            string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
-            string pictureName = Picture_tb.Text;
+            string category = Category_cb.Text;
             string Answer = Answer_tb.Text;
             //bool IsItCorrect = (bool)IsItCorrect_CB.IsChecked;
 
-            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureName, Answer);
+            QuestionVM.AddNewQuestion(questionDescription, difficulty, category, Answer);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

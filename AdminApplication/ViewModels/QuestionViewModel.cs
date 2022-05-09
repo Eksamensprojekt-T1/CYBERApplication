@@ -3,6 +3,7 @@ using BuinsnessLogic.Persistence;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,7 @@ namespace AdminApplication.ViewModels
     public class QuestionViewModel
     {
         // Creating connectionstring to DB
-        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
+        static private string connectionString = Properties.Settings.Default.WPF_Connection;
 
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
@@ -21,10 +22,10 @@ namespace AdminApplication.ViewModels
         public ObservableCollection<Picture> PictureVM { get; set; } = new ObservableCollection<Picture>();
 
         // Defining repository objects
-        QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
-        CategoryRepository CategoryRepo = new CategoryRepository(ConnectionString);
-        AnswerRepository AnswerRepo = new AnswerRepository(ConnectionString);
-        PictureRepository PictureRepo = new PictureRepository(ConnectionString);
+        QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
+        CategoryRepository CategoryRepo = new CategoryRepository(connectionString);
+        AnswerRepository AnswerRepo = new AnswerRepository(connectionString);
+        PictureRepository PictureRepo = new PictureRepository(connectionString);
 
         public QuestionViewModel()
         {
@@ -40,8 +41,12 @@ namespace AdminApplication.ViewModels
             {
                 AnswerVM.Add(answer);
             }
+            foreach (Picture picture in PictureRepo.GetAll())
+            {
+                PictureVM.Add(picture);
+            }
         }
-        public void AddNewQuestion(string questionDescription, string categoryName, string difficulty, string pictureName, string answer)
+        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName)
         {
             // Difficulty
             Level difficultyChosen = Level.Nem;
@@ -70,20 +75,7 @@ namespace AdminApplication.ViewModels
                 }
             }
 
-            Picture targetPicture = null;
-
-            foreach(Picture picture in PictureRepo.GetAll())
-            {
-                if (picture.PictureName == pictureName)
-                {
-                    targetPicture = picture;
-                    break;
-                }
-            } 
-
-            Question newQuestion = new(questionDescription, difficultyChosen);
-            newQuestion.QuestionCategory = targetCategory;
-            newQuestion.QuestionPicture = targetPicture;
+            Question newQuestion = new(questionDescription, difficultyChosen, targetCategory);
 
             // Add Object to Repository and gets ID
             newQuestion.QuestionID = QuestionRepo.Add(newQuestion);
@@ -102,27 +94,12 @@ namespace AdminApplication.ViewModels
             AnswerVM.Add(newAnswer);
         }
 
-        public ObservableCollection<Question> GetAllQuestions()
+        public void AddPicture(Byte[] bitmap)
         {
-            return QuestionVM;
-        }
+            Picture newPicture = new Picture(bitmap);
 
-        public ObservableCollection<Category> GetAllCategories()
-        {
-            return CategoryVM;
-        }
-
-        public ObservableCollection<Answer> GetAllAnswers()
-        {
-            return AnswerVM;
-        }
-
-        public void AddPicture(string pictureName, string picturePath)
-        {
-            Picture newPicture = new Picture(pictureName, picturePath);
-
-            //Add to Repo and gets ID
-            newPicture.PictureID = PictureRepo.Add(newPicture);
+            //Add to Repo
+            PictureRepo.Add(newPicture);
 
             // Add object to ViewModel List
             PictureVM.Add(newPicture);

@@ -54,7 +54,7 @@ namespace BuinsnessLogic.Persistence
                     {
                         cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = DBNull.Value;
                     }
-                    
+
                     question.QuestionID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = question.QuestionID;
                 }
@@ -120,7 +120,7 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
-                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName), new Picture("", ""));
+                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName));
 
                         QuestionsList.Add(question);
                     }

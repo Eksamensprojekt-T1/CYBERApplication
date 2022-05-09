@@ -68,7 +68,15 @@ namespace BuinsnessLogic.Persistence
 
         public void Delete(int? entityID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "QUESTION";
+                string commandText = $"DELETE FROM {table} WHERE {entityID} = QuestionID";
+
+                con.Open();
+                SqlCommand sqlCommand = new(commandText, con);
+                sqlCommand.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<Question> GetAll()

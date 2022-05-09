@@ -48,7 +48,7 @@ namespace AdminApplication.Views
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            qvm.DeleteQuestion(Question_dg.SelectedItem);
         }
     }
 }

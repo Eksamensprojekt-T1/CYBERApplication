@@ -86,6 +86,23 @@ namespace AdminApplication.ViewModels
         }
 
         //=========================================================================
+        // DeleteQuestion (CRUD: Delete)
+        //=========================================================================
+        public void DeleteQuestion(object selectedItem)
+        {
+            Question question = (Question)selectedItem;
+
+            for (int i = 0; i < QuestionVM.Count; i++)
+            {
+                if (question.QuestionID == QuestionVM[i].QuestionID)
+                {
+                    QuestionRepo.Delete(QuestionVM[i].QuestionID);
+                    QuestionVM.Remove(QuestionVM[i]);
+                }
+            }
+        }
+
+        //=========================================================================
         // AddAnswer (CRUD: Create)
         //=========================================================================
 

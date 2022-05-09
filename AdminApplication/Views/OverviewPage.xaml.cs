@@ -22,12 +22,10 @@ namespace AdminApplication.Views
     public partial class OverviewPage : Page
     {
 
-        OverviewViewModel ovm = new OverviewViewModel();
-
         public OverviewPage()
         {
             InitializeComponent();
-            DataContext = ovm;
+            DataContext = App.ovm;
         }
 
         private void Question_btn_Click(object sender, RoutedEventArgs e)

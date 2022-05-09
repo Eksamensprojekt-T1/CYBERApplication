@@ -76,20 +76,5 @@ namespace AdminApplication.Views
             }
 
         }
-        public byte[] ConvertToByte(System.Windows.Controls.Image x)
-        {
-            byte[] arr;
-
-            using (MemoryStream ms = new MemoryStream())
-            {
-                var bmp = x.Source as BitmapImage;
-                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
-                encoder.Frames.Add(BitmapFrame.Create(bmp));
-                encoder.Save(ms);
-                arr = ms.ToArray();
-            }
-
-            return arr;
-        }
     }
 }

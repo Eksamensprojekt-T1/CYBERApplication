@@ -1,21 +1,12 @@
 ﻿using AdminApplication.ViewModels;
-using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AdminApplication.Views
 {
@@ -57,11 +48,10 @@ namespace AdminApplication.Views
         private void Accept_btn_Click(object sender, RoutedEventArgs e)
         {
             string questionDescription = Title_tb.Text;
-            string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
-            Bitmap? pictureBitmap = new Bitmap(Picture_tb.Text);
+            string category = Category_cb.Text;
 
-            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureBitmap);
+            QuestionVM.AddNewQuestion(questionDescription, difficulty, category);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -85,6 +75,21 @@ namespace AdminApplication.Views
                 Answer_tb.Clear();
             }
 
+        }
+        public byte[] ConvertToByte(System.Windows.Controls.Image x)
+        {
+            byte[] arr;
+
+            using (MemoryStream ms = new MemoryStream())
+            {
+                var bmp = x.Source as BitmapImage;
+                JpegBitmapEncoder encoder = new JpegBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bmp));
+                encoder.Save(ms);
+                arr = ms.ToArray();
+            }
+
+            return arr;
         }
     }
 }

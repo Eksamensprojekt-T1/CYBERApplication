@@ -12,7 +12,7 @@ namespace BuinsnessLogic.Persistence
 {
     public class PictureRepository : IRepository<Picture>
     {
-        public List<Picture> PictureList { get; set; }
+        public List<Picture> PictureList { get; set; } = new List<Picture>();
 
         private string connectionString;
         
@@ -20,7 +20,6 @@ namespace BuinsnessLogic.Persistence
         {
             this.connectionString = connectionString;
             loadAllEntitys();
-            PictureList = new List<Picture>();
         }
 
         public int? Add(Picture picture)
@@ -95,7 +94,7 @@ namespace BuinsnessLogic.Persistence
                     while (reader.Read())
                     {
                         int? pictureID = int.Parse(reader["PictureID"].ToString());
-                        Bitmap pictureBitmap = (Bitmap)reader["PictureBitmap"];
+                        Byte[] pictureBitmap = (Byte[])reader["PictureBitmap"];
 
                         PictureList.Add(new Picture(pictureID, pictureBitmap));
                     }

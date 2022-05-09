@@ -11,18 +11,17 @@ namespace BuinsnessLogic.Models
     {
         #region // Propertys
         public int? PictureID { get; set; }
-        public Bitmap PictureBitmap { get; set; }
+        public Byte[] PictureBitmap { get; set; }
         #endregion
 
         #region // Constructors
-        public Picture(int? pictureID, Bitmap pictureBitmap)
+        public Picture(int? pictureID, Byte[] pictureBitmap)
         {
             PictureID = pictureID;
             PictureBitmap = pictureBitmap;
         }
 
-        public Picture(Bitmap pictureBitmap)
-            :this(null, pictureBitmap) { }
+        public Picture(Byte[] pictureBitmap) :this(null, pictureBitmap) { }
         #endregion
     }
 }

@@ -18,7 +18,7 @@ namespace BuinsnessLogic.Models
 
         public Category QuestionCategory { get; set; }
 
-        public Picture? QuestionPicture { get; set; }
+        public Picture QuestionPicture { get; set; }
 
         public List<Answer> answers{ get; }
 
@@ -26,7 +26,7 @@ namespace BuinsnessLogic.Models
 
         #region // Constructors
 
-        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture? questionPicture)
+        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture)
         {
             QuestionID = questionID;
             QuestionDescription = questionDescription;
@@ -37,19 +37,14 @@ namespace BuinsnessLogic.Models
 
         }
 
-        public Question(int? questionID, string questionDescription, Level difficulty)
-           : this(questionID, questionDescription, difficulty,null,null) { }
+        public Question(string questionDescription, Level difficulty, Category questionCategory)
+   : this(null, questionDescription, difficulty, questionCategory, null) { }
 
-        public Question(string questionDescription, Level difficulty, Category questionCategory )
-           : this(null, questionDescription, difficulty, questionCategory, null) { }
+        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory)
+           : this(questionID, questionDescription, difficulty, questionCategory, null) { }
 
-        public Question(string questionDescription, Level difficulty, Picture? questionPicture )
-            : this(null, questionDescription, difficulty, null, questionPicture) { }
-
-        public Question(string questionDescription, Level difficulty) 
-            : this (null, questionDescription, difficulty) { }
-
-        
+        public Question(string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture) 
+            : this (null, questionDescription, difficulty, questionCategory, questionPicture) { }
 
         #endregion
     }

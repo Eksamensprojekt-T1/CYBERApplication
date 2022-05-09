@@ -46,14 +46,14 @@ namespace BuinsnessLogic.Persistence
                     cmd.Parameters.Add("@Difficulty", SqlDbType.NVarChar).Value = question.Difficulty;
                     cmd.Parameters.Add("@CategoryID", SqlDbType.Int).Value = question.QuestionCategory.CategoryID;
 
-                    if (question.QuestionPicture != null)
-                    {
-                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = question.QuestionPicture.PictureID;
-                    }
-                    else
-                    {
-                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = DBNull.Value;
-                    }
+                    //if (question.QuestionPicture != null)
+                    //{
+                    //    cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = question.QuestionPicture.PictureID;
+                    //}
+                    //else
+                    //{
+                    //    cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = DBNull.Value;
+                    //}
                     
                     question.QuestionID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = question.QuestionID;
@@ -104,8 +104,6 @@ namespace BuinsnessLogic.Persistence
                         string questionDescription = reader["QuestionDescription"].ToString();
                         string questionDifficulty = reader["Difficulty"].ToString();
                         string questionCategoryName = reader["CategoryName"].ToString();
-                        //int? pictureID = (int.Parse(reader["PictureID"].ToString()).Equals(DBNull.Value)) ? null : int.Parse(reader["PictureID"].ToString());
-                        int? pictureID = int.Parse(reader["PictureID"].ToString());
 
                         int diff = 0;
 
@@ -122,19 +120,7 @@ namespace BuinsnessLogic.Persistence
                                 break;
                         }
 
-                        PictureRepository pictureRepo = new PictureRepository(connectionString);
-
-                        Picture? getPicture = pictureRepo.GetByID(pictureID);
-
-                        if (getPicture == null)
-                        {
-                            getPicture = null;
-                        } else
-                        {
-                            getPicture = pictureRepo.GetByID(pictureID);
-                        }
-
-                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName), getPicture);
+                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName));
 
                         QuestionsList.Add(question);
                     }

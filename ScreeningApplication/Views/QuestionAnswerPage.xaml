@@ -28,8 +28,18 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <ComboBox Width="120" Grid.Column="1" Grid.Row="1" Margin="0,15"/>
+            <ComboBox Width="150" Grid.Column="1" Grid.Row="1" Margin="0,15" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"/>
             <Button Content="Gem og afslut" Grid.Column="3" Grid.Row="1" Style="{StaticResource OpenButtonStyle}" Click="Save_And_Exit_btn" Height="50"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Label Content="Test Test Test Test Test Test Test" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
+            <ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListViewStyle}" Margin="150,200,150,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <CheckBox x:Name="Answer_cb"  IsChecked="{Binding Path=AnswerChecked, Mode=TwoWay}" Content="{Binding Path=AnswerDescription}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
@@ -41,8 +51,8 @@
                 <ColumnDefinition Width="95"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
-            <Label Content="Vis resterende tid" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            <Button Content="Forrige" Grid.Column="3" Grid.Row="1" Style="{StaticResource PlusButtonStyle}" Click="Last_Question_btn" Height="50"/>
+            <Label Content="Rest tid" Grid.Column="1" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Style="{StaticResource LabelStyle}"/>
+            <Button Content="Forrige" Grid.Column="3" Grid.Row="1" Style="{StaticResource OpenButtonStyle}" Click="Last_Question_btn" Height="50"/>
             <Button Content="Næste" Grid.Column="5" Grid.Row="1" Style="{StaticResource RedButtonStyle}" Click="Next_Question_btn" Height="50"/>
         </Grid>
     </Grid>

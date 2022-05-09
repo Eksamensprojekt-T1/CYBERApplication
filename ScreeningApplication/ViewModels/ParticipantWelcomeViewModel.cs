@@ -12,7 +12,7 @@ namespace ScreeningApplication.ViewModels
 {
     public class ParticipantWelcomeViewModel
     {
-        readonly string connectionPath;
+        readonly string connectionPath = Properties.Settings.Default.WPF_Connection;
 
         public ObservableCollection<Screening> Screenings;
         public ObservableCollection<MultipleChoice> MultipleChoices;
@@ -27,7 +27,6 @@ namespace ScreeningApplication.ViewModels
 
         public ParticipantWelcomeViewModel()
         {
-            connectionPath = Properties.Settings.Default.WPF_Connection;
 
             Screenings = new();
             MultipleChoices = new();

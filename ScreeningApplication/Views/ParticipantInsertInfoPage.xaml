@@ -33,12 +33,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Name="AboutYou_lb" Grid.Column="1" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Lidt om dig"/>
-        <TextBox Name="Name_tb" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}" Text="Navn" MouseDoubleClick="ClearName" />
-        <TextBox Name="DOB_tb" Grid.Column="1" Grid.Row="4" Style="{StaticResource TextBoxStyle}" Text="Fødseldato" MouseDoubleClick="ClearDOB" />
-        <TextBox Name="Gender_tb" Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBoxStyle}" Text="Køn" MouseDoubleClick="ClearGender" />
-        <TextBox Name="Education_tb" Grid.Column="1" Grid.Row="8" Style="{StaticResource TextBoxStyle}" Text="Uddannelses baggrund" MouseDoubleClick="ClearEducation" />
-        <Label Name="WelcomeTo_lb" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Hvad er din motivation?"/>
+        <Label x:Name="AboutYou_lb" Grid.Column="1" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Lidt om dig"/>
+        <TextBox x:Name="Name_tb" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}" Text="Navn" MouseDoubleClick="ClearName" />
+        <DatePicker  x:Name="DOB_dp" Grid.Column="1" Grid.Row="4"/>
+        <TextBox x:Name="Gender_tb" Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBoxStyle}" Text="Køn" MouseDoubleClick="ClearGender" />
+        <TextBox x:Name="Education_tb" Grid.Column="1" Grid.Row="8" Style="{StaticResource TextBoxStyle}" Text="Uddannelses baggrund" MouseDoubleClick="ClearEducation" />
+        <Label x:Name="WelcomeTo_lb" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Hvad er din motivation?"/>
         <TextBox Name="Motivation_tb" Grid.Column="1" Grid.Row="10" Style="{StaticResource TextBoxStyle}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
         
         <Button Content="Start screening" Grid.Column="1" Grid.Row="12" Style="{StaticResource RedButtonStyle}" Click="Start_Screening_btn"/>

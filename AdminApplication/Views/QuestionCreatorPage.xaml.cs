@@ -59,8 +59,10 @@ namespace AdminApplication.Views
             string category = Category_cb.Text;
             string difficulty = Difficulty_cb.Text;
             string pictureName = Picture_tb.Text;
+            string Answer = Answer_tb.Text;
+            //bool IsItCorrect = (bool)IsItCorrect_CB.IsChecked;
 
-            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureName);
+            QuestionVM.AddNewQuestion(questionDescription, category, difficulty, pictureName, Answer);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 

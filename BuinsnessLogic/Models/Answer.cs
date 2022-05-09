@@ -23,7 +23,6 @@ namespace BuinsnessLogic.Models
         }
         public Answer(string answerDescription, bool isItCorrect)
             : this(null, answerDescription, isItCorrect) { }
-
         #endregion
     }
 }

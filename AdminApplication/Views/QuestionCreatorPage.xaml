@@ -77,7 +77,8 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <CheckBox DataContext="{Binding IsItCorrect}"/>
+                        <CheckBox Name="IsItCorrect_CB" DataContext="{Binding IsItCorrect}"/>
+                        <TextBlock Text="{Binding AnswerDescription}"/>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

@@ -12,7 +12,7 @@ namespace ScreeningApplication.ViewModels
 {
     public class ParticipantWelcomeViewModel
     {
-        readonly string connectionPath;
+        readonly string connectionPath = Properties.Settings.Default.WPF_Connection;
 
         public ObservableCollection<Screening> Screenings;
         public ObservableCollection<MultipleChoice> MultipleChoices;
@@ -27,7 +27,6 @@ namespace ScreeningApplication.ViewModels
 
         public ParticipantWelcomeViewModel()
         {
-            connectionPath = "Server=10.56.8.36;Database=PEDB01;User Id=PE-01;Password=OPENDB_01;";
 
             Screenings = new();
             MultipleChoices = new();
@@ -40,6 +39,20 @@ namespace ScreeningApplication.ViewModels
             participantRepository = new(connectionPath);
             answerRepository = new(connectionPath);
             questionRepository = new(connectionPath);
+        }
+
+        public bool ScreeningExistsWithPassword(int screeningPassword)
+        {
+            bool result = false;
+            foreach (Screening screening in screeningRepository.Screenings)
+            {
+                if (screening.ScreeningPassword == screeningPassword)
+                {
+                    result = true;
+                    break;
+                }
+            }
+            return result;
         }
     }
 }

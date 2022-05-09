@@ -17,7 +17,6 @@ namespace AdminApplication.ViewModels
         // Defining the ViewModel lists
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
-
         // Defining repository objects
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(connectionString);
         QuestionRepository QuestionRepo = new QuestionRepository(connectionString);

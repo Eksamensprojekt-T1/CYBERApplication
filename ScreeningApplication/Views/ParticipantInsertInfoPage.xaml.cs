@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreeningApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,13 +21,21 @@ namespace ScreeningApplication.Views
     /// </summary>
     public partial class ParticipantInsertInfoPage : Page
     {
+        ParticipantInsertInfoViewModel participantWM;
         public ParticipantInsertInfoPage()
         {
             InitializeComponent();
+            participantWM = new();
         }
 
         private void Start_Screening_btn(object sender, RoutedEventArgs e)
         {
+            string name = Name_tb.Text.Length == 0 ? Name_tb.Text : "";
+            DateTime dob = DOB_dp.DisplayDate;
+            string gender = Gender_tb.Text.Length == 0 ? Gender_tb.Text : "";
+            string education = Education_tb.Text.Length == 0 ? Education_tb.Text : "";
+            string motivation = Motivation_tb.Text.Length == 0 ? Motivation_tb.Text : "";
+            participantWM.MakeAndLoadParticipant(name, dob, gender, education, motivation);
             NavigationService.Navigate(new Uri("Views/QuestionAnswerPage.xaml", UriKind.Relative));
         }
 
@@ -34,10 +43,7 @@ namespace ScreeningApplication.Views
         {
             Name_tb.Clear();
         }
-        private void ClearDOB(object sender, MouseButtonEventArgs e)
-        {
-            DOB_tb.Clear();
-        }
+
         private void ClearGender(object sender, MouseButtonEventArgs e)
         {
             Gender_tb.Clear();

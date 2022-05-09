@@ -50,8 +50,10 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string difficulty = Difficulty_cb.Text;
             string category = Category_cb.Text;
+            string Answer = Answer_tb.Text;
+            //bool IsItCorrect = (bool)IsItCorrect_CB.IsChecked;
 
-            QuestionVM.AddNewQuestion(questionDescription, difficulty, category);
+            QuestionVM.AddNewQuestion(questionDescription, difficulty, category, Answer);
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
@@ -70,7 +72,7 @@ namespace AdminApplication.Views
             }
             else
             {
-                CheckBox chk = new CheckBox();
+                
                 AnswerList.Items.Add(Answer_tb.Text);
                 Answer_tb.Clear();
             }

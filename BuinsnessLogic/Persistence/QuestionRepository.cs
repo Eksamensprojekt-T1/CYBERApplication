@@ -109,13 +109,13 @@ namespace BuinsnessLogic.Persistence
 
                         switch (questionDifficulty)
                         {
-                            case "easy":
+                            case "Nem":
                                 diff = 0;
                                 break;
-                            case "moderate":
+                            case "Moderat":
                                 diff = 1;
                                 break;
-                            case "hard":
+                            case "Svær":
                                 diff = 2;
                                 break;
                         }

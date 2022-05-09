@@ -40,18 +40,18 @@ namespace AdminApplication.ViewModels
         public void AddNewQuestion(string questionDescription, string categoryName, string difficulty, string pictureName)
         {
             // Difficulty
-            Level difficultyChosen = Level.easy;
+            Level difficultyChosen = Level.Nem;
 
             switch (difficulty)
             {
                 case "Nem":
-                    difficultyChosen = Level.easy;
+                    difficultyChosen = Level.Nem;
                     break;
                 case "Moderat":
-                    difficultyChosen = Level.moderate;
+                    difficultyChosen = Level.Moderat;
                     break;
                 case "Svær":
-                    difficultyChosen = Level.hard;
+                    difficultyChosen = Level.Svær;
                     break;
             }
 
@@ -116,26 +116,6 @@ namespace AdminApplication.ViewModels
         public void AddPicture(string pictureName, string picturePath)
         {
 
-        }
-
-        public string GetTranslateDifficulty(Question question)
-        {
-            string translate = "";
-
-            switch (question.Difficulty)
-            {
-                case Level.easy: 
-                    translate = "Nem";
-                    break;
-                case Level.moderate: 
-                    translate = "Moderat";
-                    break;
-                case Level.hard: 
-                    translate = "Svær";
-                    break;
-            }
-
-            return translate;
         }
 
         public void AddCategory(string categoryName)

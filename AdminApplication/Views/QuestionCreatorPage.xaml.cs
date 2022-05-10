@@ -15,6 +15,8 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class QuestionCreatorPage : Page
     {
+        QuestionViewModel qvm = new QuestionViewModel();
+
         public QuestionCreatorPage()
         {
             InitializeComponent();
@@ -23,7 +25,7 @@ namespace AdminApplication.Views
 
         private void FillCategory()
         {
-            Category_cb.ItemsSource = App.qvm.CategoryVM;
+            Category_cb.ItemsSource = qvm.CategoryVM;
             Category_cb.DisplayMemberPath = "CategoryName";  
         }
 
@@ -51,7 +53,7 @@ namespace AdminApplication.Views
             string Answer = Answer_tb.Text;
             //bool IsItCorrect = (bool)IsItCorrect_CB.IsChecked;
 
-            App.qvm.AddNewQuestion(questionDescription, difficulty, category, Answer);
+            qvm.AddNewQuestion(questionDescription, difficulty, category, Answer);
             NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -59,7 +61,7 @@ namespace AdminApplication.Views
         private void CreateCategory_btn_Click(object sender, RoutedEventArgs e)
         {
             string categoryName = Category_tb.Text;
-            App.qvm.AddCategory(categoryName);
+            qvm.AddCategory(categoryName);
             Category_tb.Clear();
         }
 

@@ -38,7 +38,7 @@ namespace BuinsnessLogic.Persistence
                 string table = "MULTIPLECHOISE";
                 string colums = "MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
                 string values = "@MCName, @DateOfCreation";
-                string commandText = 
+                string commandText =
                     $"INSERT INTO {table}({colums})" +
                     $"VALUES ({values})" +
                     $"SELECT @@IDENTITY";
@@ -51,7 +51,7 @@ namespace BuinsnessLogic.Persistence
                     multipleChoice.MCID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = multipleChoice.MCID;
                 }
-                
+
                 //Add Multiple Choice to a local list
                 MultipleChoicesList.Add(multipleChoice);
 
@@ -102,10 +102,10 @@ namespace BuinsnessLogic.Persistence
                     while (reader.Read())
                     {
                         int? mcID = int.Parse(reader["MCID"].ToString());
-                        string mcName = reader["MCName"].ToString();          
+                        string mcName = reader["MCName"].ToString();
                         DateTime dateOfCreation = DateTime.Parse(reader["DateOfCreation"].ToString());
 
-                        MultipleChoice multipleChoice = new(mcID, mcName, dateOfCreation);
+                        MultipleChoice multipleChoice = new(mcID, mcName, dateOfCreation, MakeListOfQuestions(mcID));
 
                         MultipleChoicesList.Add(multipleChoice);
 
@@ -113,23 +113,59 @@ namespace BuinsnessLogic.Persistence
                 }
 
             }
+        }
 
-            //nyt kald for at finde count/ anatal af spørgsmål
-            
-            //select COUNT(*) from MULTIPLECHOISE_QUESTION where MCID=1
-
-            //SELECT* FROM MULTIPLECHOISE INNER JOIN MULTIPLECHOISE_QUESTION on MULTIPLECHOISE_QUESTION.MCID = MULTIPLECHOISE.MCID
-            
-            //hvor skal det gemmes?
+        private List<Question> MakeListOfQuestions(int? id)
+        {
+            List<Question> list = new List<Question>();
 
             using (SqlConnection con = new(connectionString))
             {
-                string table = "MULTIPLECHOISE_QUESTION";
-                string innerJoin = "INNER JOIN MULTIPLECHOISE on MULTIPLECHOISE.MCID = MULTIPLECHOISE_QUESTION.MCID";
-                string commandText = $"SELECT COUNT(*) FROM {table} {innerJoin}";
+                string values = "MULTIPLECHOISE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
+                string innerJoin1 = "INNER JOIN MULTIPLECHOISE_QUESTION as mq on MULTIPLECHOISE.MCID = mq.MCID";
+                string innerJoin2 = "INNER JOIN QUESTION on mq.QuestionID = QUESTION.QuestionID";
+                string innerJoin3 = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
+                string where = $"WHERE MULTIPLECHOISE.MCID = {id}";
+                string commandText = $"SELECT {values} FROM MULTIPLECHOISE {innerJoin1} {innerJoin2} {innerJoin3} {where}";
 
+                con.Open();
+                SqlCommand sQLCommand = new(commandText, con);
+                using (SqlDataReader reader = sQLCommand.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        int? questionID = int.Parse(reader["QuestionID"].ToString());
+                        string questionDesc = reader["QuestionDescription"].ToString();
+                        string questionDifficulty = reader["Difficulty"].ToString();
+                        string categoryName = reader["CategoryName"].ToString();
+
+                        Level difficulty;
+
+                        switch (questionDifficulty)
+                        {
+                            case "Nem":
+                                difficulty = Level.Nem;
+                                break;
+                            case "Moderat":
+                                difficulty = Level.Moderat;
+                                break;
+                            case "Svær":
+                                difficulty = Level.Svær;
+                                break;
+                            default:
+                                difficulty= Level.Nem;
+                                break;
+                                    
+                        }
+
+                        Question question = new Question(questionID, questionDesc, difficulty, new Category(categoryName));
+
+                        list.Add(question);
+                    }
+                }
+
+                return list;
             }
-
         }
     }
 }

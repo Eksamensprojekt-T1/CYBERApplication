@@ -12,17 +12,28 @@ namespace BuinsnessLogic.Persistence
     public class MultipleChoiceRepository : IRepository<MultipleChoice>
     {
 
-        // Create list of MultipleChoices and prepare connection
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
         public List<MultipleChoice> MultipleChoicesList { get; set; } = new List<MultipleChoice>();
 
         private string connectionString;
 
-        //Create a constructor that takes connectionsting af argument for VM
+        //=========================================================================
+        // Constructors
+        //=========================================================================
+
         public MultipleChoiceRepository(string connectionString)
         {
             this.connectionString = connectionString;
             loadAllEntitys();
         }
+
+        //=========================================================================
+        // Add (CRUD: Create)
+        // Adds a multiple choice to the database
+        //=========================================================================
 
         public int? Add(MultipleChoice multipleChoice)
         {
@@ -32,18 +43,15 @@ namespace BuinsnessLogic.Persistence
             // Starts connection to database
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                con.Open();
-
-                // Defining SQL-Query
                 string table = "MULTIPLECHOISE";
                 string colums = "MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
                 string values = "@MCName, @DateOfCreation";
-                string commandText = 
+                string commandText =
                     $"INSERT INTO {table}({colums})" +
                     $"VALUES ({values})" +
                     $"SELECT @@IDENTITY";
 
-                // Setting up stream to the database
+                con.Open();
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
                     cmd.Parameters.Add("@MCName", SqlDbType.NVarChar).Value = multipleChoice.MCName;
@@ -51,14 +59,17 @@ namespace BuinsnessLogic.Persistence
                     multipleChoice.MCID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = multipleChoice.MCID;
                 }
-                
-                //Add Multiple Choice to a local list
+
                 MultipleChoicesList.Add(multipleChoice);
 
-                // returns result (current QuestionID)
                 return result;
             }
         }
+
+        //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a multiplechoice from the database
+        //=========================================================================
 
         public void Delete(int? entityID)
         {
@@ -73,20 +84,42 @@ namespace BuinsnessLogic.Persistence
             }
         }
 
+        //=========================================================================
+        // GetAll (CRUD: Read)
+        // Returns all multiplechoice objects from database
+        //=========================================================================
+
         public IEnumerable<MultipleChoice> GetAll()
         {
             return MultipleChoicesList;
         }
+
+        //=========================================================================
+        // GetByID (CRUD: Read)
+        // Returns a specific multiple choice object.
+        //=========================================================================
 
         public MultipleChoice GetByID(int? entityID)
         {
             throw new NotImplementedException();
         }
 
+        //=========================================================================
+        // Update (CRUD: Update)
+        // Updates a already existing multiplechoice object
+        //=========================================================================
+
         public void Update(MultipleChoice entity)
         {
             throw new NotImplementedException();
         }
+
+        //=========================================================================
+        // LoadAllEntitys (CRUD: Read)
+        // Loads all objects from the MULTIPLECHOICE table in the database
+        // to the Repository list
+        //=========================================================================
+
         private void loadAllEntitys()
         {
             using (SqlConnection con = new(connectionString))
@@ -96,40 +129,83 @@ namespace BuinsnessLogic.Persistence
                 string commandText = $"SELECT {values} FROM {table}";
 
                 con.Open();
-                SqlCommand sqlCommand = new(commandText, con);
-                using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                using (SqlCommand sqlCommand = new(commandText, con))
                 {
-                    while (reader.Read())
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
                     {
-                        int? mcID = int.Parse(reader["MCID"].ToString());
-                        string mcName = reader["MCName"].ToString();          
-                        DateTime dateOfCreation = DateTime.Parse(reader["DateOfCreation"].ToString());
+                        while (reader.Read())
+                        {
+                            int? mcID = int.Parse(reader["MCID"].ToString());
+                            string mcName = reader["MCName"].ToString();
+                            DateTime dateOfCreation = DateTime.Parse(reader["DateOfCreation"].ToString());
 
-                        MultipleChoice multipleChoice = new(mcID, mcName, dateOfCreation);
+                            MultipleChoice multipleChoice = new(mcID, mcName, dateOfCreation, MakeListOfQuestions(mcID));
 
-                        MultipleChoicesList.Add(multipleChoice);
+                            MultipleChoicesList.Add(multipleChoice);
 
+                        }
                     }
                 }
-
             }
+        }
 
-            //nyt kald for at finde count/ anatal af spørgsmål
-            
-            //select COUNT(*) from MULTIPLECHOISE_QUESTION where MCID=1
+        //=========================================================================
+        // MakeListOfQuestions (CRUD: Create)
+        // Returns a lists with questions in relation to the multiple choice id chosen
+        //=========================================================================
 
-            //SELECT* FROM MULTIPLECHOISE INNER JOIN MULTIPLECHOISE_QUESTION on MULTIPLECHOISE_QUESTION.MCID = MULTIPLECHOISE.MCID
-            
-            //hvor skal det gemmes?
+        private List<Question> MakeListOfQuestions(int? id)
+        {
+            List<Question> list = new List<Question>();
 
             using (SqlConnection con = new(connectionString))
             {
-                string table = "MULTIPLECHOISE_QUESTION";
-                string innerJoin = "INNER JOIN MULTIPLECHOISE on MULTIPLECHOISE.MCID = MULTIPLECHOISE_QUESTION.MCID";
-                string commandText = $"SELECT COUNT(*) FROM {table} {innerJoin}";
+                string values = "MULTIPLECHOISE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
+                string innerJoin1 = "INNER JOIN MULTIPLECHOISE_QUESTION as mq on MULTIPLECHOISE.MCID = mq.MCID";
+                string innerJoin2 = "INNER JOIN QUESTION on mq.QuestionID = QUESTION.QuestionID";
+                string innerJoin3 = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
+                string where = $"WHERE MULTIPLECHOISE.MCID = {id}";
+                string commandText = $"SELECT {values} FROM MULTIPLECHOISE {innerJoin1} {innerJoin2} {innerJoin3} {where}";
 
+                con.Open();
+                using (SqlCommand sQLCommand = new(commandText, con))
+                {
+                    using (SqlDataReader reader = sQLCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int? questionID = int.Parse(reader["QuestionID"].ToString());
+                            string questionDesc = reader["QuestionDescription"].ToString();
+                            string questionDifficulty = reader["Difficulty"].ToString();
+                            string categoryName = reader["CategoryName"].ToString();
+
+                            Level difficulty;
+
+                            switch (questionDifficulty)
+                            {
+                                case "Nem":
+                                    difficulty = Level.Nem;
+                                    break;
+                                case "Moderat":
+                                    difficulty = Level.Moderat;
+                                    break;
+                                case "Svær":
+                                    difficulty = Level.Svær;
+                                    break;
+                                default:
+                                    difficulty = Level.Nem;
+                                    break;
+                            }
+
+                            Question question = new Question(questionID, questionDesc, difficulty, new Category(categoryName));
+
+                            list.Add(question);
+                        }
+                    }
+                }
             }
 
+            return list;
         }
     }
 }

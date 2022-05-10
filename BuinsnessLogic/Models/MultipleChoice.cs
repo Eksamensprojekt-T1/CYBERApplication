@@ -21,18 +21,17 @@ namespace BuinsnessLogic.Models
         #endregion
 
         #region // Constructors
-        public MultipleChoice(int? mCID, string mCName, DateTime dateOfCreation)
+        public MultipleChoice(int? mCID, string mCName, DateTime dateOfCreation, List<Question> questions)
         {
             MCID = mCID;
             MCName = mCName;
             DateOfCreation = dateOfCreation;
-            // Show related questions
-            Questions = new List<Question>();
+            Questions = questions;
 
         }
 
         public MultipleChoice(string mCName, DateTime dateOfCreation)
-            : this(null, mCName, dateOfCreation) { }
+            : this(null, mCName, dateOfCreation, null) { }
 
 
         #endregion

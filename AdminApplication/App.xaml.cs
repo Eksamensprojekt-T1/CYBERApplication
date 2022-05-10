@@ -14,7 +14,5 @@ namespace AdminApplication
     /// </summary>
     public partial class App : Application
     {
-        public static OverviewViewModel ovm = new OverviewViewModel();
-        public static QuestionViewModel qvm = new QuestionViewModel();
     }
 }

@@ -37,11 +37,11 @@
 
         <Rectangle Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="8" Fill="#DEE2E6"></Rectangle>
 
-        <DataGrid Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
+        <DataGrid x:Name="AddQuestions_dg" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Spørgsmål" Binding="{Binding QuestionDescription}"/>
                 <DataGridTextColumn Width="150" Header="Kategori" Binding="{Binding QuestionCategory.CategoryName}"/>
-                <DataGridCheckBoxColumn Width="100" Header="Tilføj"/>
+                <DataGridCheckBoxColumn x:Name="AddQuestion_chk" Width="100" Header="Tilføj"/>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -21,13 +21,10 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class QuestionOverviewPage : Page
     {
-
-        QuestionViewModel qvm = new QuestionViewModel();
-
         public QuestionOverviewPage()
         {
             InitializeComponent();
-            DataContext = qvm;
+            DataContext = App.qvm;
             //string translate = qvm.GetTranslateDifficulty();
         }
 
@@ -48,7 +45,7 @@ namespace AdminApplication.Views
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
-
+            App.qvm.DeleteQuestion(Question_dg.SelectedItem);
         }
     }
 }

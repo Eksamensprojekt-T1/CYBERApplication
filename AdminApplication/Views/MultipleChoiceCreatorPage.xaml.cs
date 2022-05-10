@@ -47,6 +47,7 @@ namespace AdminApplication.Views
             mccvm.AddMultipleChoice(mCName, dateOfCreation);
 
             //mccvm.AddMultipleChoice(mcName, dateOfCreation);
+            NavigationService.Navigate(new Uri("Views/MultipleChoiceOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Multiple Choice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }

@@ -41,12 +41,16 @@ namespace AdminApplication.Views
 
         private void Approve_btn_Click(object sender, RoutedEventArgs e)
         {
-            string mcName = MultipleChoice_tb.Text;
+            string mCName = MultipleChoice_tb.Text;
             DateTime dateOfCreation = DateTime.Now;
+            //bool isSelected = false;
 
+            mccvm.AddMultipleChoice(mCName, dateOfCreation);
+            
+            //mccvm.AddMultipleChoice_Question(isSelected);
 
-            //mccvm.AddMultipleChoice(mcName, dateOfCreation);
-            MessageBox.Show("MultipleChoice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
+            NavigationService.Navigate(new Uri("Views/MultipleChoiceOverviewPage.xaml", UriKind.Relative));
+            MessageBox.Show("Multiple Choice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
             
         }
     }

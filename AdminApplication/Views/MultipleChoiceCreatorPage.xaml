@@ -12,10 +12,9 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="50"/>
-            <ColumnDefinition Width="360px"/>
+            <ColumnDefinition Width="250px"/>
             <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="360"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="50"/>
@@ -29,34 +28,39 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>            
             <RowDefinition Height="50"/>
             <RowDefinition Height="10"/>
-            <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
 
         </Grid.RowDefinitions>
 
-        <Rectangle Grid.Column="3" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="6" Fill="#DEE2E6"></Rectangle>
+        <Rectangle Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="8" Fill="#DEE2E6"></Rectangle>
 
-        <DataGrid Grid.Column="1" Grid.Row="3" Grid.RowSpan="4" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
+        <DataGrid x:Name="AddQuestions_dg" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Spørgsmål" Binding="{Binding QuestionDescription}"/>
-                <DataGridTextColumn Width="100" Header="Kategori"/>
-                <DataGridCheckBoxColumn Width="40" Header="Tilføj"/>
+                <DataGridTextColumn Width="150" Header="Kategori" Binding="{Binding QuestionCategory.CategoryName}"/>
+                <!--<DataGridCheckBoxColumn x:Name="AddQuestion_chk" Width="100" Header="Tilføj" Binding="{Binding IsChecked}"/>-->
+                <DataGridTemplateColumn x:Name="AddQuestion_chk" Header="Tilføj" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
-        <Label Name="MultipleChoice_lb" Grid.Column="4" Grid.Row="1" Content="MultipleChoice Navn:" Style="{StaticResource LabelStyleBlack}"/>
-        <TextBox Name="MultipleChoice_tb" Grid.Column="4" Grid.Row="2" Style="{StaticResource TextBoxStyle}"/>
+        <Label Name="MultipleChoice_lb" Grid.Column="2" Grid.Row="1" Content="Multiple Choice navn:" Style="{StaticResource LabelStyleBlack}"/>
+        <TextBox Name="MultipleChoice_tb" Grid.Column="2" Grid.Row="2" Style="{StaticResource TextBoxStyle}"/>
 
-        <Label Name="Question_lb" Grid.Column="4" Grid.Row="3" Content="Spørgsmål:" Style="{StaticResource LabelStyleBlack}"/>
-        <TextBox Name="Question_tb" Grid.Column="4" Grid.Row="4" Grid.RowSpan="2" Style="{StaticResource TextBoxStyle}"/>
+        <Label Name="Question_lb" Grid.Column="2" Grid.Row="3" Content="Vælg spørgsmål:" Style="{StaticResource LabelStyleBlack}"/>
 
-        <Label Name="QuestionCount_lb" Grid.Column="4" Grid.Row="8" Content="Antal spørgsmål:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center"/>
-        <TextBox Name="QuestionCount_tb" Grid.Column="4" Grid.Row="8" Width="100" Height="50" Background="Transparent" HorizontalAlignment="Left" Margin="175,0,0,0"/>
+        <Label Foreground="#5D5F61" Grid.Column="0" Grid.Row="6" Content="Antal spørgsmål:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        <Label Foreground="#DEE2E6" FontSize="32" Name="QuestionCount_tb" Grid.Column="0" Grid.Row="7" Width="100" Height="50" Background="Transparent" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="0"/>
 
-        <Button Name="Back_btn" Grid.Column="1" Grid.Row="1" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50px" Width="100px" Click="Back_btn_Click"/>
-        <Button Name="Question_btn" Grid.Column="1" Grid.Row="8" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Se spørgsmål" Height="50px" Width="150px" Click="Question_btn_Click"/>
-        <Button Name="Approve_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50px" Width="200px" Margin="0,0,25,0" Click="Approve_btn_Click"/>
+        <Button Name="Back_btn" Grid.Column="0" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50px" Width="100px" Click="Back_btn_Click"/>
+        <Button Name="Approve_btn" Grid.Column="3" Grid.Row="7" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50px" Width="100px" Margin="0,0,25,0" Click="Approve_btn_Click"/>
     </Grid>
 </Page>

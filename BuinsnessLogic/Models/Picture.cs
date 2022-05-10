@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,20 +11,17 @@ namespace BuinsnessLogic.Models
     {
         #region // Propertys
         public int? PictureID { get; set; }
-        public string PictureName { get; set; }
-        public string PicturePath { get; set; }
+        public Byte[] PictureBitmap { get; set; }
         #endregion
 
         #region // Constructors
-        public Picture(int? pictureID, string pictureName, string picturePath)
+        public Picture(int? pictureID, Byte[] pictureBitmap)
         {
             PictureID = pictureID;
-            PictureName = pictureName;
-            PicturePath = picturePath;
+            PictureBitmap = pictureBitmap;
         }
 
-        public Picture(string pictureName, string picturePath)
-            :this(null, pictureName, picturePath) { }
+        public Picture(Byte[] pictureBitmap) :this(null, pictureBitmap) { }
         #endregion
     }
 }

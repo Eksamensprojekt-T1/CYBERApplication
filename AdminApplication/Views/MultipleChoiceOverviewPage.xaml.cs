@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class MultipleChoiceOverviewPage : Page
     {
+        MultipleChoiceOverviewViewModel mcovm = new MultipleChoiceOverviewViewModel();
+        
         public MultipleChoiceOverviewPage()
         {
             InitializeComponent();
+            DataContext = mcovm;
         }
 
         private void MainMenu_btn_Click(object sender, RoutedEventArgs e)
@@ -33,6 +37,16 @@ namespace AdminApplication.Views
         private void Create_btn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Views/MultipleChoiceCreatorPage.xaml", UriKind.Relative));
+        }
+
+        private void Update_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            mcovm.DeleteMultipleChoice(MultipleChoice_dg.SelectedItem);
         }
     }
 }

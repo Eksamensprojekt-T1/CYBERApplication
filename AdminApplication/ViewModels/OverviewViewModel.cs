@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AdminApplication.ViewModels
 {
-    public class MultipleChoiceOverviewViewModel
+    public class OverviewViewModel
     {
 
         //=========================================================================
@@ -17,44 +17,31 @@ namespace AdminApplication.ViewModels
         //=========================================================================
 
         // Connection string
-        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
+        static private string connectionString = Properties.Settings.Default.WPF_Connection;
 
         // Observablecollections
+        public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
 
         // Repositories
-        MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
-
+        MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(connectionString);
+        QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
 
         //=========================================================================
-        // Constructors
+        // Constructor
         //=========================================================================
 
-        public MultipleChoiceOverviewViewModel()
+        public OverviewViewModel()
         {
+            foreach (Question question in QuestionRepo.GetAll())
+            {
+                QuestionVM.Add(question);
+            }
             foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())
             {
                 MultipleChoiceVM.Add(multipleChoice);
             }
         }
 
-        //=========================================================================
-        // DeleteMultipleChoice (CRUD: Delete)
-        //=========================================================================
-
-        public void DeleteMultipleChoice(object selectedItem)
-        {
-            MultipleChoice multipleChoice = (MultipleChoice)selectedItem;
-
-            for (int i = 0; i < MultipleChoiceVM.Count; i++)
-            {
-                if (multipleChoice.MCID == MultipleChoiceVM[i].MCID)
-                {
-                    MultipleChoiceRepo.Delete(MultipleChoiceVM[i].MCID);
-                    MultipleChoiceVM.Remove(MultipleChoiceVM[i]);
-                }
-            }
-
-        }
     }
 }

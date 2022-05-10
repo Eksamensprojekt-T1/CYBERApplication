@@ -2,8 +2,7 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:AdminApplication.Views"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="1280"
       Title="CyberScreening | Spørgsmålsbank"
@@ -30,21 +29,53 @@
 
         <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding QuestionVM.Count}" Grid.Column="0" Grid.Row="1" Margin="0,110,0,0" HorizontalContentAlignment="Center"></Label>
         <Label Foreground="#5D5F61" FontSize="22" Content="Spørgsmål" Grid.Column="0" Grid.Row="1" Margin="0,230,0,0" HorizontalContentAlignment="Center"/>
-
-        <DataGrid Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
+        <DataGrid x:Name="Question_dg" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False" FontSize="20">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header=" Spørgsmål" Binding="{Binding QuestionDescription}"/>
-                <DataGridTextColumn Width="*" Header=" Hovedkategori"/>
-                <DataGridTextColumn Width="*" Header=" Sværhedsgrad" Binding="{Binding Difficulty}"/>
-                <DataGridTextColumn Width="*" Header=" Muligheder"/>
+                <DataGridTextColumn Width="*" Header=" Spørgsmål" Binding="{Binding QuestionDescription}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Header=" Kategori" Binding="{Binding QuestionCategory.CategoryName}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Header=" Sværhedsgrad" Binding="{Binding Difficulty}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Header="Rediger" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Update_btn_Click" Background="White">
+                                <Image Source="/Views/Resources/Pen.png" Height="32"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn Header="Slet" Width="100">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Click="Delete_btn_Click" Background="White">
+                                <Button.Content>
+                                    <Image Source="/Views/Resources/Trashcan.png" Height="32"/>
+                                </Button.Content>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        
-        
-
-        <Button x:Name="Create_btn" Grid.Column="1" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Opret" Height="50px" Width="200px" Click="Create_btn_Click"/>
-        <Button x:Name="Delete_btn" Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" Content="Slet" Height="50px" Width="200px"/>
-        <Button x:Name="Edit_btn" Grid.Column="3" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Rediger" Height="50px" Width="200px"/>
+      
+        <Button x:Name="Create_btn" Grid.Column="2" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Opret" Height="50px" Width="200px" Click="Create_btn_Click"/>
 
     </Grid>
 </Page>

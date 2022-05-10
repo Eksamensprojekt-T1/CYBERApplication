@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdminApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,7 @@ namespace AdminApplication
     /// </summary>
     public partial class App : Application
     {
+        public static OverviewViewModel ovm = new OverviewViewModel();
+        public static QuestionViewModel qvm = new QuestionViewModel();
     }
 }

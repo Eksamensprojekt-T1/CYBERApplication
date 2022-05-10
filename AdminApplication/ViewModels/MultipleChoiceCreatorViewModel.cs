@@ -11,13 +11,27 @@ namespace AdminApplication.ViewModels
 {
     public class MultipleChoiceCreatorViewModel
     {
-        static private string CnnStr = Properties.Settings.Default.WPF_Connection;
 
-        // Defining the ViewModel lists
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
+        // Connection string
+        static private string ConnectionString = Properties.Settings.Default.WPF_Connection;
+
+        // Observablecollections
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
+        public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
+        public ObservableCollection<Category> CategoryVM = new ObservableCollection<Category>();
 
-        // Defining repository objects
-        QuestionRepository QuestionRepo = new QuestionRepository(CnnStr);
+        // Repositories
+        QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
+        MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
+        CategoryRepository CategoryRepo = new CategoryRepository(ConnectionString);
+
+        //=========================================================================
+        // Constructors
+        //=========================================================================
 
         public MultipleChoiceCreatorViewModel()
         {
@@ -25,26 +39,50 @@ namespace AdminApplication.ViewModels
             {
                 QuestionVM.Add(question);
             }
+            foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())
+            {
+                MultipleChoiceVM.Add(multipleChoice);
+            }
+            foreach (Category category in CategoryRepo.GetAll())
+            {
+                CategoryVM.Add(category);
+            }
         }
 
-        public ObservableCollection<Question> GetAllQuestions()
-        {
-            return QuestionVM;
-        }
+        //=========================================================================
+        // AddQuestion (CRUD: Create)
+        // Adds a question to a multiple choice
+        //=========================================================================
 
         public void AddQuestion()
         {
 
         }
 
+        //=========================================================================
+        // RemoveQuestion (CRUD: Delete)
+        // Removes a question from a multiple choice
+        //=========================================================================
+
         public void RemoveQuestion()
         {
 
         }
 
-        public void AddMultipleChoice()
-        {
+        //=========================================================================
+        // AddMultipleChoice (CRUD: Create)
+        //=========================================================================
 
+        public void AddMultipleChoice(string mCName, DateTime dateOfCreation)
+        {
+            MultipleChoice newMultipleChoice = new(mCName, dateOfCreation);
+            
+            // Adds multiple choice to repository (database)
+            newMultipleChoice.MCID = MultipleChoiceRepo.Add(newMultipleChoice);
+
+            // Adds multiple choice to ViewModel observableList
+            MultipleChoiceVM.Add(newMultipleChoice);
         }
+
     }
 }

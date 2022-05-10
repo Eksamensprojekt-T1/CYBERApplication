@@ -1,0 +1,17 @@
+﻿<Page x:Class="ScreeningApplication.Views.GoodbyePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:ScreeningApplication.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="CyberScreening | Goodbey page"
+      Background="#212529">
+
+    <Grid>
+        <Label Name="Goodbye_lb" Style="{StaticResource LabelStyle}" Content="Tak for din deltagelse i cyberværnepligtens screeningtest." HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,200"/>
+        <Button Name="GoToWelcomePage_btn" Style="{StaticResource RedButtonStyle}" VerticalAlignment="center" HorizontalAlignment="Center" Content="Afslut" Height="50" Width="100" Click="Continue_btn_Click" Margin="0,8,0,0"/>
+
+    </Grid>
+</Page>

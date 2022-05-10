@@ -14,6 +14,9 @@ namespace BuinsnessLogic.Models
         public string MCName { get; set; }
         public DateTime DateOfCreation { get; set; }
 
+        // Show related questions
+        public List<Question> Questions { get; set; }
+
 
         #endregion
 
@@ -23,10 +26,14 @@ namespace BuinsnessLogic.Models
             MCID = mCID;
             MCName = mCName;
             DateOfCreation = dateOfCreation;
+            // Show related questions
+            Questions = new List<Question>();
+
         }
 
         public MultipleChoice(string mCName, DateTime dateOfCreation)
             : this(null, mCName, dateOfCreation) { }
+
 
         #endregion
     }

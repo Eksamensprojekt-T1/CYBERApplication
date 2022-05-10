@@ -21,13 +21,11 @@ namespace AdminApplication.Views
     /// </summary>
     public partial class QuestionOverviewPage : Page
     {
-
-        QuestionViewModel qvm = new QuestionViewModel();
-
         public QuestionOverviewPage()
         {
             InitializeComponent();
-            DataContext = qvm;
+            DataContext = App.qvm;
+            //string translate = qvm.GetTranslateDifficulty();
         }
 
         private void MainMenu_btn_Click(object sender, RoutedEventArgs e)
@@ -38,6 +36,16 @@ namespace AdminApplication.Views
         private void Create_btn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Views/QuestionCreatorPage.xaml", UriKind.Relative));
+        }
+
+        private void Update_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            App.qvm.DeleteQuestion(Question_dg.SelectedItem);
         }
     }
 }

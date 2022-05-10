@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ScreeningApplication.ViewModels;
 
 namespace ScreeningApplication.Views
 {
@@ -20,20 +21,27 @@ namespace ScreeningApplication.Views
     /// </summary>
     public partial class ParticipantWelcomePage : Page
     {
+        ParticipantWelcomeViewModel participantWelcomeVM;
+
         public ParticipantWelcomePage()
         {
             InitializeComponent();
+            participantWelcomeVM = new();
+            DataContext = participantWelcomeVM;
         }
 
         private void Continue_btn_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("Views/ParticipantInsertInfoPage.xaml", UriKind.Relative));
-
         }
 
-        private void ClearContent(object sender, MouseButtonEventArgs e)
+        private void ScreeningPassword_tb_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ScreeningPassword_tb.Clear();
+            // Hides button until a correct screening password is entered in the textbox and exists.
+            if (int.TryParse(ScreeningPassword_tb.Text, out int screeningPassword)) 
+            {
+                Continue_btn.IsEnabled = participantWelcomeVM.ScreeningExistsWithPassword(screeningPassword);
+            }
         }
     }
 }

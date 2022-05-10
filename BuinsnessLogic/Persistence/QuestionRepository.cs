@@ -32,32 +32,51 @@ namespace BuinsnessLogic.Persistence
 
                 // Defining SQL-Query
                 string table = "QUESTION";
-                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty"; // Mangler tilføjelse af kategorier og answers.
-                string values = "@QuestionDescription, @Difficulty";
+                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty, QUESTION.CategoryID, QUESTION.PictureID"; // Mangler tilføjelse af answers.
+                string values = "@QuestionDescription, @Difficulty, @CategoryID, @PictureID";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +
-                    $"VALUES ({values})";
+                    $"VALUES ({values})" +
+                     $"SELECT @@IDENTITY";
 
                 // Setting up stream to the database
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
                 {
                     cmd.Parameters.Add("@QuestionDescription", SqlDbType.NVarChar).Value = question.QuestionDescription;
                     cmd.Parameters.Add("@Difficulty", SqlDbType.NVarChar).Value = question.Difficulty;
+                    cmd.Parameters.Add("@CategoryID", SqlDbType.Int).Value = question.QuestionCategory.CategoryID;
+
+                    if (question.QuestionPicture != null)
+                    {
+                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = question.QuestionPicture.PictureID;
+                    }
+                    else
+                    {
+                        cmd.Parameters.Add("@PictureID", SqlDbType.Int).Value = DBNull.Value;
+                    }
+
                     question.QuestionID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = question.QuestionID;
                 }
 
                 // Add Question to local list
                 QuestionsList.Add(question);
-
-                // returns result (current QuestionID)
-                return result;
             }
+            // returns result (current QuestionID)
+            return result;
         }
 
         public void Delete(int? entityID)
         {
-            throw new NotImplementedException();
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "QUESTION";
+                string commandText = $"DELETE FROM {table} WHERE {entityID} = QuestionID";
+
+                con.Open();
+                SqlCommand sqlCommand = new(commandText, con);
+                sqlCommand.ExecuteNonQuery();
+            }
         }
 
         public IEnumerable<Question> GetAll()
@@ -79,8 +98,9 @@ namespace BuinsnessLogic.Persistence
             using (SqlConnection con = new(connectionString))
             {
                 string table = "QUESTION";
-                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, Question.Difficulty";
-                string CommandText = $"SELECT {values} FROM {table}";
+                string values = "QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, QUESTION.PictureID, QUESTION.CategoryID, CATEGORY.CategoryName";
+                string innerJoin = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
+                string CommandText = $"SELECT {values} FROM {table} {innerJoin}";
 
                 con.Open();
                 SqlCommand sQLCommand = new(CommandText, con);
@@ -91,23 +111,24 @@ namespace BuinsnessLogic.Persistence
                         int? questionID = int.Parse(reader["QuestionID"].ToString());
                         string questionDescription = reader["QuestionDescription"].ToString();
                         string questionDifficulty = reader["Difficulty"].ToString();
+                        string questionCategoryName = reader["CategoryName"].ToString();
 
                         int diff = 0;
 
                         switch (questionDifficulty)
                         {
-                            case "easy":
+                            case "Nem":
                                 diff = 0;
                                 break;
-                            case "moderate":
+                            case "Moderat":
                                 diff = 1;
                                 break;
-                            case "hard":
+                            case "Svær":
                                 diff = 2;
                                 break;
                         }
 
-                        Question question = new(questionID, questionDescription, (Level)diff);
+                        Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName));
 
                         QuestionsList.Add(question);
                     }

@@ -18,24 +18,35 @@ namespace BuinsnessLogic.Models
 
         public Category QuestionCategory { get; set; }
 
+        public Picture QuestionPicture { get; set; }
+
+        public List<Answer> answers{ get; }
+
+        public bool IsChecked { get; set; }
+
         #endregion
 
         #region // Constructors
 
-        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory)
+        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture)
         {
             QuestionID = questionID;
             QuestionDescription = questionDescription;
             Difficulty = difficulty;
             QuestionCategory = questionCategory;
+            QuestionPicture = questionPicture;
+            answers = new List<Answer>();
+
         }
 
-        public Question(int? questionID, string questionDescription, Level difficulty)
-           : this(questionID, questionDescription, difficulty,null) { } 
-        
+        public Question(string questionDescription, Level difficulty, Category questionCategory)
+   : this(null, questionDescription, difficulty, questionCategory, null) { }
 
-        public Question(string questionDescription, Level difficulty) 
-            : this (null, questionDescription, difficulty) { }
+        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory)
+           : this(questionID, questionDescription, difficulty, questionCategory, null) { }
+
+        public Question(string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture) 
+            : this (null, questionDescription, difficulty, questionCategory, questionPicture) { }
 
         #endregion
     }

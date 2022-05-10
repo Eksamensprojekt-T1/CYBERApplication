@@ -153,7 +153,7 @@ namespace BuinsnessLogic.Persistence
                                 difficulty = Level.Svær;
                                 break;
                             default:
-                                difficulty= Level.Nem;
+                                difficulty = Level.Nem;
                                 break;
                                     
                         }

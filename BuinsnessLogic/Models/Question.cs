@@ -22,6 +22,8 @@ namespace BuinsnessLogic.Models
 
         public List<Answer> answers{ get; }
 
+        public bool IsChecked { get; set; }
+
         #endregion
 
         #region // Constructors

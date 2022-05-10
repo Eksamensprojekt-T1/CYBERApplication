@@ -43,10 +43,12 @@ namespace AdminApplication.Views
         {
             string mCName = MultipleChoice_tb.Text;
             DateTime dateOfCreation = DateTime.Now;
+            //bool isSelected = false;
 
             mccvm.AddMultipleChoice(mCName, dateOfCreation);
+            
+            //mccvm.AddMultipleChoice_Question(isSelected);
 
-            //mccvm.AddMultipleChoice(mcName, dateOfCreation);
             NavigationService.Navigate(new Uri("Views/MultipleChoiceOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Multiple Choice oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
             

@@ -21,7 +21,7 @@ namespace ScreeningApplication.Views
     /// </summary>
     public partial class ParticipantInsertInfoPage : Page
     {
-        ParticipantInsertInfoViewModel participantWM;
+        InfoViewModel participantWM;
         public ParticipantInsertInfoPage()
         {
             InitializeComponent();
@@ -35,7 +35,7 @@ namespace ScreeningApplication.Views
             string gender = Gender_tb.Text.Length == 0 ? Gender_tb.Text : "";
             string education = Education_tb.Text.Length == 0 ? Education_tb.Text : "";
             string motivation = Motivation_tb.Text.Length == 0 ? Motivation_tb.Text : "";
-            participantWM.MakeAndLoadParticipant(name, dob, gender, education, motivation);
+            participantWM.StartScreening(name, dob, gender, education, motivation);
             NavigationService.Navigate(new Uri("Views/QuestionAnswerPage.xaml", UriKind.Relative));
         }
 

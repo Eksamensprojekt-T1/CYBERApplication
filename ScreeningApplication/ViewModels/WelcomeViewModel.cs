@@ -10,7 +10,7 @@ using System.Collections.ObjectModel;
 
 namespace ScreeningApplication.ViewModels
 {
-    public class ParticipantWelcomeViewModel
+    public class WelcomeViewModel
     {
         readonly string connectionPath = Properties.Settings.Default.WPF_Connection;
 
@@ -25,7 +25,7 @@ namespace ScreeningApplication.ViewModels
         private QuestionRepository questionRepository;
         private AnswerRepository answerRepository;
 
-        public ParticipantWelcomeViewModel()
+        public WelcomeViewModel()
         {
 
             Screenings = new();

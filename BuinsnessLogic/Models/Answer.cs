@@ -8,7 +8,7 @@ namespace BuinsnessLogic.Models
 {
     public class Answer
     {
-        #region // Propertys
+        #region // Properties
         public int? AnswerID { get; set; }
         public string AnswerDescription { get; set; }
         public bool IsItCorrect { get; set; }

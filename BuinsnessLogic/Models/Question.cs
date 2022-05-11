@@ -11,18 +11,11 @@ namespace BuinsnessLogic.Models
         #region // Properties
 
         public int? QuestionID { get; set; }
-
         public string QuestionDescription { get; set; }
-
         public Level Difficulty { get; set; }
-
         public Category QuestionCategory { get; set; }
-
         public Picture QuestionPicture { get; set; }
-
-        public List<Answer> answers{ get; }
-
-        public bool IsChecked { get; set; }
+        public List<Answer> Answers { get; }
 
         #endregion
 
@@ -35,7 +28,7 @@ namespace BuinsnessLogic.Models
             Difficulty = difficulty;
             QuestionCategory = questionCategory;
             QuestionPicture = questionPicture;
-            answers = new List<Answer>();
+            Answers = new List<Answer>();
 
         }
 

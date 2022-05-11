@@ -21,7 +21,7 @@ namespace ScreeningApplication.Views
     /// </summary>
     public partial class ParticipantWelcomePage : Page
     {
-        ParticipantWelcomeViewModel participantWelcomeVM;
+        WelcomeViewModel participantWelcomeVM;
 
         public ParticipantWelcomePage()
         {

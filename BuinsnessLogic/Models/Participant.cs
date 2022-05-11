@@ -12,8 +12,8 @@ namespace BuinsnessLogic.Models
 
         public int? ParticipantID { get; set; }
         public string ParticipantName { get; set; }
-        public DateTime DateOfBirht { get; set; }
-        public string EducationalBackground { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public string Education { get; set; }
         public string Gender { get; set; }
         public string Motivation { get; set; }
 
@@ -21,18 +21,18 @@ namespace BuinsnessLogic.Models
         #endregion
 
         #region // Constructors
-        public Participant(int? participantID, string participantName, DateTime dateOfBirht, string educationalBackground, string gender, string motivation)
+        public Participant(int? participantID, string participantName, DateTime dateOfBirth, string education, string gender, string motivation)
         {
             ParticipantID = participantID;
             ParticipantName = participantName;
-            DateOfBirht = dateOfBirht;
-            EducationalBackground = educationalBackground;
+            DateOfBirth = dateOfBirth;
+            Education = education;
             Gender = gender;
             Motivation = motivation;
         }
 
-        public Participant(string participantName, DateTime dateOfBirht, string educationalBackground, string gender, string motivation)
-            : this(null, participantName, dateOfBirht, educationalBackground, gender, motivation) { }
+        public Participant(string participantName, DateTime dateOfBirth, string education, string gender, string motivation)
+            : this(null, participantName, dateOfBirth, education, gender, motivation) { }
 
         #endregion
     }

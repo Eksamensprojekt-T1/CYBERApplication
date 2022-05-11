@@ -10,18 +10,18 @@ using System.Collections.ObjectModel;
 
 namespace ScreeningApplication.ViewModels
 {
-    public class ParticipantInsertInfoViewModel
+    public class InfoViewModel
     {
         readonly string connectionPath = Properties.Settings.Default.WPF_Connection;
         private ParticipantRepository participantRepository;
-        public ParticipantInsertInfoViewModel()
+        public InfoViewModel()
         {
             participantRepository = new(connectionPath);
         }
 
-        public void MakeAndLoadParticipant(string name, DateTime dob, string education, string gender, string motivation)
+        public void StartScreening(string participantName, DateTime dateOfBirth, string education, string gender, string motivation)
         {
-            Participant participant = new(name, dob, education, gender, motivation);
+            Participant participant = new(participantName, dateOfBirth, education, gender, motivation);
             participantRepository.Add(participant);
         }
     }

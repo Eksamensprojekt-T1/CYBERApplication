@@ -29,6 +29,7 @@ namespace AdminApplication.Views
         {
             InitializeComponent();
             FillCategory();
+            DataContext = QuestionVM;
         }
 
         private void FillCategory()
@@ -83,7 +84,6 @@ namespace AdminApplication.Views
             }
             else
             {
-                
                 AnswerList.Items.Add(Answer_tb.Text);
                 Answer_tb.Clear();
             }

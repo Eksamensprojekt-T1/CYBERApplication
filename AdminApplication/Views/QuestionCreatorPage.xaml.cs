@@ -21,6 +21,7 @@ namespace AdminApplication.Views
         {
             InitializeComponent();
             FillCategory();
+            DataContext = QuestionVM;
         }
 
         private void FillCategory()

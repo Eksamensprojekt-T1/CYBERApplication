@@ -263,7 +263,7 @@
         </Setter>
     </Style>
 
-    <Style x:Key="ListViewStyle" TargetType="{x:Type ListBox}">
+    <Style x:Key="ListViewStyle" TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontSize" Value="12px"/>

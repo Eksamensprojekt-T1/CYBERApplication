@@ -51,10 +51,10 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string difficulty = Difficulty_cb.Text;
             string category = Category_cb.Text;
-            string Answer = Answer_tb.Text;
+            //string Answer = Answer_tb.Text;
             //bool IsItCorrect = (bool)IsItCorrect_CB.IsChecked;
 
-            qvm.AddNewQuestion(questionDescription, difficulty, category, Answer);
+            //qvm.AddNewQuestion(questionDescription, difficulty, category);
             NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -66,18 +66,20 @@ namespace AdminApplication.Views
             Category_tb.Clear();
         }
 
-        private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
-        {
-            if(Answer_tb.Text.Length == 0)
-            {
-                MessageBox.Show("Du mangler en titel til svaret");
-            }
-            else
-            {
-                AnswerList.Items.Add(Answer_tb.Text);
-                Answer_tb.Clear();
-            }
+        ////private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
+        ////{
+        //    if(Answer_tb.Text.Length == 0)
+        //    {
+        //        MessageBox.Show("Du mangler en titel til svaret");
+        //    }
+        //    else
+        //    {
+        //        string ASName = Answer_tb.Text;
+        //        bool isItCorrect = false;
+        //        qvm.AddAnswer(ASName, isItCorrect);
+        //        Answer_tb.Clear();
+        //    }
 
-        }
+        //}
     }
 }

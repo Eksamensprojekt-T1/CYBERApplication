@@ -33,7 +33,6 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -51,7 +50,7 @@
         <Label Name="Picture_lb" Grid.Column="6" Grid.Row="1" Style="{StaticResource LabelStyleBlack}" Content="Billede:" HorizontalAlignment="Left"/>
         <TextBox Name="Picture_tb" Grid.Column="6" Grid.Row="2" Width="250" Style="{StaticResource TextBoxStyle}" HorizontalAlignment="Left"></TextBox >
         <Button Name="Picture_btn" Grid.Column="6" Grid.Row="2" Style="{StaticResource OpenButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="..." Height="30" Width="40" Click="Picture_btn_Click"/>
-        <Image Name="Picture_pt" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="5" />
+        <Image Name="Picture_pt" Grid.Column="5" Grid.Row="4" Grid.ColumnSpan="2" Grid.RowSpan="4" />
 
         <Label Name="Category_lb" Grid.Column="2" Grid.Row="3" Style="{StaticResource LabelStyleBlack}" Content="Kategori:" />
         <ComboBox Name="Category_cb" Grid.Column="2" Grid.Row="4" Style="{StaticResource ComboStyle}" HorizontalAlignment="Left" Width="250"/>
@@ -71,17 +70,23 @@
         <Button Name="Accept_btn" Grid.Column="6" Grid.Row="13" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100" Click="Accept_btn_Click"/>
 
         <Label Name="Svar_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
-        <TextBox Name="Answer_tb" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2" Style= "{StaticResource AnswerTextBoxStyle}" Foreground="#FFABADB3"/>
-        <Button Name="CreateAnswer_btn" Grid.Column="4" Grid.Row="8" Style="{StaticResource PlusButtonStyle}" HorizontalAlignment="Center" Content="+" Height="30" Width="30" Click="CreateAnswer_btn_Click"/>
-        <ListBox Name="AnswerList" Grid.Column="2" Grid.Row="10" Style="{StaticResource ListViewStyle}" Grid.ColumnSpan="4" Grid.RowSpan="4" Width="640" Height="200">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel Orientation="Horizontal">
-                        <CheckBox Name="IsItCorrect_CB" DataContext="{Binding IsItCorrect}"/>
-                        <TextBlock Text="{Binding AnswerDescription}"/>
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <DataGrid Name="AnswerList" Grid.Column="2" Grid.Row="8" ItemsSource="{Binding QuestionVM}" Style="{StaticResource ListViewStyle}" Grid.ColumnSpan="4" Grid.RowSpan="5" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Svarbeskrivelse:" Binding="{Binding AnswerDescription, Mode=TwoWay}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock" >
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTemplateColumn Width="110" Header="Vælge rigtig svar">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <CheckBox IsChecked="{Binding isItCorrect, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

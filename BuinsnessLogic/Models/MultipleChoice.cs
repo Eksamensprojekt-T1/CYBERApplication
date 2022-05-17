@@ -13,8 +13,6 @@ namespace BuinsnessLogic.Models
         public int? MCID { get; set; }
         public string MCName { get; set; }
         public DateTime DateOfCreation { get; set; }
-
-        // Show related questions
         public List<Question> Questions { get; set; }
 
 

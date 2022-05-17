@@ -24,30 +24,7 @@ namespace BuinsnessLogic.Persistence
 
         public int? Add(Picture picture)
         {
-            int? result = -1;
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            {
-                con.Open();
-                string table = "PICTURE";
-                string coloumns = "PICTURE.PictureBitmap";
-                string values = "@PictureBitmap";
-                string commandText =
-                    $"INSERT INTO {table} ({coloumns})" +
-                    $"VALUES ({values})" +
-                    $"SELECT @@IDENTITY";
-
-                using (SqlCommand cmd = new SqlCommand(commandText, con))
-                {
-                    cmd.Parameters.Add("@PictureBitmap", SqlDbType.VarBinary).Value = picture.PictureBitmap;
-                    picture.PictureID = Convert.ToInt32(cmd.ExecuteScalar());
-                    result = picture.PictureID;
-                }
-
-                PictureList.Add(picture);
-            }
-
-              return result;
+            throw new NotImplementedException();
         }
 
         public void Delete(int? entityID)
@@ -62,17 +39,7 @@ namespace BuinsnessLogic.Persistence
 
         public Picture GetByID(int? pictureID)
         {
-            Picture result = null;
-
-            foreach (Picture picture in PictureList)
-            {
-                if (picture.PictureID.Equals(pictureID))
-                {
-                    result = picture;
-                    break;
-                }
-            }
-            return result;
+            throw new NotImplementedException();
         }
 
         public void Update(Picture entity)
@@ -81,26 +48,7 @@ namespace BuinsnessLogic.Persistence
         }
         private void loadAllEntitys()
         {
-            using (SqlConnection con = new(connectionString))
-            {
-                string table = "PICTURE";
-                string values = "PICTURE.PictureID, PICTURE.PictureBitmap";
-                string CommandText = $"SELECT {values} FROM {table}";
-
-                con.Open();
-                SqlCommand sQLCommand = new(CommandText, con);
-                using (SqlDataReader reader = sQLCommand.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        int? pictureID = int.Parse(reader["PictureID"].ToString());
-                        Byte[] pictureBitmap = (Byte[])reader["PictureBitmap"];
-
-                        PictureList.Add(new Picture(pictureID, pictureBitmap));
-                    }
-                }
-
-            }
+            throw new NotImplementedException();
         }
 
     }

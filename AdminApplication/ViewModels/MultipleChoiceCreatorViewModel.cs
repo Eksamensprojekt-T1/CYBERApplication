@@ -22,13 +22,9 @@ namespace AdminApplication.ViewModels
         // Observablecollections
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
-        public ObservableCollection<Category> CategoryVM = new ObservableCollection<Category>();
-
         // Repositories
         QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
-        CategoryRepository CategoryRepo = new CategoryRepository(ConnectionString);
-
         //=========================================================================
         // Constructors
         //=========================================================================
@@ -42,10 +38,6 @@ namespace AdminApplication.ViewModels
             foreach (MultipleChoice multipleChoice in MultipleChoiceRepo.GetAll())
             {
                 MultipleChoiceVM.Add(multipleChoice);
-            }
-            foreach (Category category in CategoryRepo.GetAll())
-            {
-                CategoryVM.Add(category);
             }
         }
 
@@ -73,9 +65,9 @@ namespace AdminApplication.ViewModels
         // AddMultipleChoice (CRUD: Create)
         //=========================================================================
 
-        public void AddMultipleChoice(string mCName, DateTime dateOfCreation)
+        public void AddMultipleChoice(string multipleChoiceName, DateTime dateOfCreation)
         {
-            MultipleChoice newMultipleChoice = new(mCName, dateOfCreation);
+            MultipleChoice newMultipleChoice = new(multipleChoiceName, dateOfCreation);
             
             // Adds multiple choice to repository (database)
             newMultipleChoice.MCID = MultipleChoiceRepo.Add(newMultipleChoice);

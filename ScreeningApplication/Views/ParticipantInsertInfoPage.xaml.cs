@@ -52,5 +52,6 @@ namespace ScreeningApplication.Views
         {
             Education_tb.Clear();
         }
+
     }
 }

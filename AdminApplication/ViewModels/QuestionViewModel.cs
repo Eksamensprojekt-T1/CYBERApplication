@@ -1,5 +1,6 @@
 ﻿using BuinsnessLogic.Models;
 using BuinsnessLogic.Persistence;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace AdminApplication.ViewModels
@@ -50,7 +51,7 @@ namespace AdminApplication.ViewModels
         // AddNewQuestion (CRUD: Create)
         //=========================================================================
 
-        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName, string answer)
+        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName, IEnumerable<Answer> answers)
         {
             Level difficultyChosen;
 
@@ -80,9 +81,16 @@ namespace AdminApplication.ViewModels
                 }
             }
 
-            Question newQuestion = new(questionDescription, difficultyChosen, categoryChosen);
+            Question newQuestion = new(questionDescription, difficultyChosen, categoryChosen, answers);
+
             newQuestion.QuestionID = QuestionRepo.Add(newQuestion);
             QuestionVM.Add(newQuestion);
+
+            foreach (Answer answer in answers)
+            {
+                answer.QuestionID = newQuestion.QuestionID;
+                AnswerRepo.Add(answer);
+            }
         }
 
         //=========================================================================

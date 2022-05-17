@@ -24,8 +24,8 @@ namespace BuinsnessLogic.Persistence
         {
             int? result = -1;
             string table = "ANSWER";
-            string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect";
-            string values = "@answerDescription, @isItCorrect";
+            string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect, ANSWER.QuestionID";
+            string values = "@answerDescription, @isItCorrect, @QuestionID";
             string commandText =
                 $"INSERT INTO {table} ({coloumns})" +
                 $"VALUES ({values})" +
@@ -37,6 +37,7 @@ namespace BuinsnessLogic.Persistence
                 SqlCommand cmd = new(commandText, con);
                 cmd.Parameters.Add("@answerDescription", SqlDbType.NVarChar).Value = answer.AnswerDescription;
                 cmd.Parameters.Add("@isItCorrect", SqlDbType.Bit).Value = answer.IsItCorrect;
+                cmd.Parameters.Add("@QuestionID", SqlDbType.Int).Value = answer.QuestionID;
                 answer.AnswerID = Convert.ToInt32(cmd.ExecuteScalar());
                 result = answer.AnswerID;
             }
@@ -112,7 +113,7 @@ namespace BuinsnessLogic.Persistence
             using (SqlConnection connection = new(connectionPath))
             {
                 string table = "ANSWER";
-                string values = "ANSWER.AnswerID, ANSWER.AnswerDescription, ANSWER.IsItCorrect";
+                string values = "ANSWER.AnswerID, ANSWER.AnswerDescription, ANSWER.IsItCorrect, ANSWER.QuestionID";
                 string CommandText = $"SELECT {values} FROM {table}";
 
                 // Loads to RAM from database
@@ -125,8 +126,9 @@ namespace BuinsnessLogic.Persistence
                         int? answerID = int.Parse(sqlDataReader["AnswerID"].ToString());
                         string answerDescription = sqlDataReader["AnswerDescription"].ToString();
                         bool isItCorrect = sqlDataReader["IsItCorrect"].ToString() == "1";
+                        int? questionID = int.Parse(sqlDataReader["QuestionID"].ToString());
 
-                        Answer answer = new(answerID, answerDescription, isItCorrect);
+                        Answer answer = new(answerID, answerDescription, isItCorrect, questionID);
 
                         Answers.Add(answer);
                     }

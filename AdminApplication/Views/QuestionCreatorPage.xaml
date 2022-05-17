@@ -33,7 +33,6 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="10"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="50"/>
@@ -71,7 +70,7 @@
         <Button Name="Accept_btn" Grid.Column="6" Grid.Row="13" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Content="Godkend" Height="50" Width="100" Click="Accept_btn_Click"/>
 
         <Label Name="Svar_lb" Grid.Column="2" Grid.Row="7" Style="{StaticResource LabelStyleBlack}" Content="Svar:" />
-        <DataGrid Name="AnswerList" Grid.Column="2" Grid.Row="10" ItemsSource="{Binding QuestionVM}" Style="{StaticResource ListViewStyle}" Grid.ColumnSpan="4" Grid.RowSpan="4" AutoGenerateColumns="False">
+        <DataGrid Name="AnswerList" Grid.Column="2" Grid.Row="8" ItemsSource="{Binding QuestionVM}" Style="{StaticResource ListViewStyle}" Grid.ColumnSpan="4" Grid.RowSpan="5" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Svarbeskrivelse:" Binding="{Binding AnswerDescription, Mode=TwoWay}" FontSize="20" IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
@@ -89,6 +88,5 @@
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <TextBox x:Name="Answer_tb" Grid.Column="2" Grid.Row="8" Grid.ColumnSpan="2"  Text="{Binding AnswerDescription}" Style="{StaticResource TextBoxStyle}"/>
     </Grid>
 </Page>

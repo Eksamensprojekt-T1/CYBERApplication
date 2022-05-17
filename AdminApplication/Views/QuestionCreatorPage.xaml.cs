@@ -1,8 +1,11 @@
 ﻿using AdminApplication.ViewModels;
+using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
+using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -17,11 +20,14 @@ namespace AdminApplication.Views
     {
         QuestionViewModel qvm = new QuestionViewModel();
 
+        ObservableCollection<Answer> answerList = new ObservableCollection<Answer>();
+
         public QuestionCreatorPage()
         {
             InitializeComponent();
             FillCategory();
             DataContext = qvm;
+            AnswerList.ItemsSource = answerList;
         }
 
         private void FillCategory()
@@ -51,9 +57,9 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string difficulty = Difficulty_cb.Text;
             string category = Category_cb.Text;
-            bool isItCorrect = false;
 
-            //qvm.AddNewQuestion(questionDescription, difficulty, category);
+            qvm.AddNewQuestion(questionDescription, difficulty, category, answerList);
+
             NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
         }
@@ -63,6 +69,18 @@ namespace AdminApplication.Views
             string categoryName = Category_tb.Text;
             qvm.AddCategory(categoryName);
             Category_tb.Clear();
+        }
+
+        private void CreateAnswer_btn_Click(object sender, RoutedEventArgs e)
+        {
+            string ansewerDescription = Answer_tb.Text;
+            bool isCorrect = (bool)IsCorrect_cb.IsChecked;
+
+            answerList.Add(new Answer(ansewerDescription, isCorrect));
+
+            Answer_tb.Text = "";
+            IsCorrect_cb.IsChecked = false;
+
         }
     }
 }

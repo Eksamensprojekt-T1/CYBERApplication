@@ -51,9 +51,7 @@ namespace AdminApplication.Views
             string questionDescription = Title_tb.Text;
             string difficulty = Difficulty_cb.Text;
             string category = Category_cb.Text;
-            string asName = Answer_tb.Text;
             bool isItCorrect = false;
-            qvm.AddAnswer(asName, isItCorrect);
 
             //qvm.AddNewQuestion(questionDescription, difficulty, category);
             NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));

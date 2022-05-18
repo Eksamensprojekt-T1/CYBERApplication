@@ -19,9 +19,9 @@ namespace ScreeningApplication.ViewModels
             participantRepository = new(connectionPath);
         }
 
-        public void StartScreening(string participantName, DateTime dateOfBirth, string education, string gender, string motivation)
+        public void StartScreening(string participantName, int participantNumber, DateTime dateOfBirth, string education, string gender, string motivation)
         {
-            Participant participant = new(participantName, dateOfBirth, education, gender, motivation);
+            Participant participant = new(participantName, participantNumber, dateOfBirth, education, gender, motivation);
             participantRepository.Add(participant);
         }
     }

@@ -32,12 +32,12 @@
             <Button Content="Gem og afslut" Grid.Column="3" Grid.Row="1" Style="{StaticResource OpenButtonStyle}" Click="Save_And_Exit_btn" Height="50"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Label Content="Test Test Test Test Test Test Test" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
+            <Label x:Name="question_description_lb" Content="{Binding QuestionDescription}" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
             <!--<ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListViewStyle}" Margin="150,200,150,0">-->
                 <ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="150,200,150,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox x:Name="Answer_cb"  IsChecked="{Binding Path=AnswerChecked, Mode=TwoWay}" Content="{Binding Path=AnswerDescription}"/>
+                        <CheckBox x:Name="Answer_cb" Content="{Binding Path=AnswerDescription}"/>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

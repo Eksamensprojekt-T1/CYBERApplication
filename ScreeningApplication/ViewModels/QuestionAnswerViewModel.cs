@@ -38,5 +38,10 @@ namespace ScreeningApplication.ViewModels
                 AnswerVM.Add(answer);
             }
         }
+
+        public IEnumerable<Answer> getAnswersForQuestion(Question question)
+        {
+            return question.Answers;
+        }
     }
 }

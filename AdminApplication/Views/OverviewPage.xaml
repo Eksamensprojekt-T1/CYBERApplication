@@ -112,7 +112,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="175" Header="Multiple Choice" FontSize="20">
+                <DataGridTextColumn Width="175" Header="Multiple Choice" Binding="{Binding MCID}" FontSize="20">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>

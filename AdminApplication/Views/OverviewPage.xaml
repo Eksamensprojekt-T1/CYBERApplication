@@ -35,7 +35,7 @@
 
 
         <Image Grid.Column="1" Grid.Row="1" Source="/Views/logo.png" HorizontalAlignment="Left"/>
-        <Button x:Name="StartScreening_btn" Style="{StaticResource RedButtonStyle}" Height="55px" Width="280px" HorizontalAlignment="Right" Content="Start en screening" Grid.Column="5" Grid.Row="1"></Button>
+        <Button x:Name="StartScreening_btn" Style="{StaticResource RedButtonStyle}" Height="55px" Width="280px" HorizontalAlignment="Right" Content="Aktiver en screening" Grid.Column="5" Grid.Row="1"></Button>
 
         <Rectangle Style="{StaticResource RectangleStyle}" Fill="#161718" Grid.Column="1" Grid.Row="3"></Rectangle>
         <Grid Grid.Column="1" Grid.Row="3">
@@ -81,14 +81,52 @@
                 <RowDefinition Height="40px"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="0" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
+            <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding ScreeningVM.Count}" Grid.Column="1" Grid.Row="1" HorizontalContentAlignment="Center"></Label>
             <Label Foreground="#5D5F61" FontSize="22" Content="Screenings" Grid.Column="1" Grid.Row="3" HorizontalContentAlignment="Center"/>
         </Grid>
 
         <Button x:Name="Question_btn" Style="{StaticResource ActionButtonStyle}" Content="Spørgsmål" Grid.Column="1" Grid.Row="5" Click="Question_btn_Click"></Button>
         <Button x:Name="MultipleChoice_btn" Style="{StaticResource ActionButtonStyle}" Content="Multiple choice" Grid.Column="3" Grid.Row="5" Click="MultipleChoice_btn_Click"></Button>
-        <Button x:Name="Screening_btn" Style="{StaticResource ActionButtonStyle}" Content="Screening" Grid.Column="5" Grid.Row="5"></Button>
+        <Button x:Name="Report_btn" Style="{StaticResource ActionButtonStyle}" Content="Rapport" Grid.Column="5" Grid.Row="5"></Button>
 
-        <DataGrid Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5"/>
+        <DataGrid x:Name="Screening_dg" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" ItemsSource="{Binding ScreeningVM}" AutoGenerateColumns="False" FontSize="20">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*" Header="Afholdte Screenings" Binding="{Binding ScreeningName}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Header="Start Dato" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Header="Slut Dato" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="200" Header="Beståelseskrav %" Binding="{Binding PassingScore}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Header="Antal beståede" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Page>

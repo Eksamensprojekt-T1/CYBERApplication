@@ -32,7 +32,7 @@ namespace BuinsnessLogic.Persistence
 
                 // Defining SQL-Query
                 string table = "QUESTION";
-                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty, QUESTION.CategoryID, QUESTION.PictureID"; // Mangler tilføjelse af answers.
+                string coloumns = "QUESTION.QuestionDescription, QUESTION.Difficulty, QUESTION.CategoryID, QUESTION.PictureID";
                 string values = "@QuestionDescription, @Difficulty, @CategoryID, @PictureID";
                 string commandText =
                     $"INSERT INTO {table} ({coloumns})" +
@@ -140,8 +140,35 @@ namespace BuinsnessLogic.Persistence
                         }
 
                         Question question = new(questionID, questionDescription, (Level)diff, new Category(questionCategoryName));
-
+                        fillAnswersForQuestion(question);
                         QuestionsList.Add(question);
+                    }
+                }
+            }
+        }
+
+        private void fillAnswersForQuestion(Question question)
+        {
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "ANSWER";
+                string values = "ANSWER.AnswerID, ANSWER.AnswerDescription ,ANSWER.IsItCorrect";
+                string commandText = $"SELECT {values} FROM {table} WHERE QuestionID = {question.QuestionID}; ";
+
+                con.Open();
+
+                using (SqlCommand sQLCommand = new(commandText, con))
+                {
+                    using (SqlDataReader reader = sQLCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int? answerID = int.Parse(reader["AnswerID"].ToString());
+                            string answerDescription = reader["AnswerDescription"].ToString();
+                            bool isItCorrect = reader["IsItCorrect"].ToString() == "1";
+                            Answer answer = new(answerID, answerDescription, isItCorrect, question.QuestionID);
+                            question.Answers.Add(answer);
+                        }
                     }
                 }
             }

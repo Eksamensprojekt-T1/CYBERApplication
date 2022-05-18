@@ -98,28 +98,35 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="150" Header="Start Dato" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
+                <DataGridTextColumn Width="125" Header="Start Dato" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="150" Header="Slut Dato" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
+                <DataGridTextColumn Width="125" Header="Slut Dato" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="200" Header="Beståelseskrav %" Binding="{Binding PassingScore}" FontSize="20">
+                <DataGridTextColumn Width="175" Header="Multiple Choice" FontSize="20">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="150" Header="Antal beståede" FontSize="20">
+                <DataGridTextColumn Width="175" Header="Beståelseskrav i %" Binding="{Binding PassingScore}" FontSize="20">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn Width="150" Header="Antal Beståede" FontSize="20">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>

@@ -28,12 +28,13 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <ComboBox Width="150" Grid.Column="1" Grid.Row="1" Margin="0,15" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"/>
+            <ComboBox x:Name="question_cb" Width="150" Grid.Column="1" Grid.Row="1" Margin="0,15" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"/>
             <Button Content="Gem og afslut" Grid.Column="3" Grid.Row="1" Style="{StaticResource OpenButtonStyle}" Click="Save_And_Exit_btn" Height="50"/>
         </Grid>
         <Grid Grid.Row="1">
             <Label Content="Test Test Test Test Test Test Test" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
-            <ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListViewStyle}" Margin="150,200,150,0">
+            <!--<ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListViewStyle}" Margin="150,200,150,0">-->
+                <ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="150,200,150,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <CheckBox x:Name="Answer_cb"  IsChecked="{Binding Path=AnswerChecked, Mode=TwoWay}" Content="{Binding Path=AnswerDescription}"/>

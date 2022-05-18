@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreeningApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace ScreeningApplication.Views
     /// </summary>
     public partial class QuestionAnswerPage : Page
     {
+        QuestionAnswerViewModel qvm = new QuestionAnswerViewModel();
+
         public QuestionAnswerPage()
         {
             InitializeComponent();
+            FillComboBox();
+            DataContext = qvm;
+        }
+
+        private void FillComboBox()
+        {
+            question_cb.ItemsSource = qvm.QuestionVM;
+            question_cb.DisplayMemberPath = "QuestionDescription";
         }
 
         private void Save_And_Exit_btn(object sender, RoutedEventArgs e)

@@ -21,25 +21,24 @@ namespace BuinsnessLogic.Models
 
         #region // Constructors
 
-        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture)
+        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture, List<Answer> answers)
         {
             QuestionID = questionID;
             QuestionDescription = questionDescription;
             Difficulty = difficulty;
             QuestionCategory = questionCategory;
             QuestionPicture = questionPicture;
-            Answers = new();
+            Answers = answers;
 
         }
 
         public Question(string questionDescription, Level difficulty, Category questionCategory)
-            : this(null, questionDescription, difficulty, questionCategory, null) { }
-        /*
-        public Question(string questionDescription, Level difficulty, Category questionCategory, IEnumerable<Answer> answers)
+            : this(null, questionDescription, difficulty, questionCategory, null, new List<Answer>()) { }
+        
+        public Question(string questionDescription, Level difficulty, Category questionCategory, List<Answer> answers)
             : this(null, questionDescription, difficulty, questionCategory, null, answers) { }
-        */
         public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory)
-           : this(questionID, questionDescription, difficulty, questionCategory, null) { }
+           : this(questionID, questionDescription, difficulty, questionCategory, null, new List<Answer>()) { }
 
         #endregion
     }

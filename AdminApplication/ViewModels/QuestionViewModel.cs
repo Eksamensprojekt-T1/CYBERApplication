@@ -51,7 +51,7 @@ namespace AdminApplication.ViewModels
         // AddNewQuestion (CRUD: Create)
         //=========================================================================
 
-        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName, IEnumerable<Answer> answers)
+        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName, List<Answer> answers)
         {
             Level difficultyChosen;
 

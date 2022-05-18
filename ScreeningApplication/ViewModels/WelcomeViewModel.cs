@@ -44,7 +44,7 @@ namespace ScreeningApplication.ViewModels
         public bool ScreeningExistsWithPassword(int screeningPassword)
         {
             bool result = false;
-            foreach (Screening screening in screeningRepository.Screenings)
+            foreach (Screening screening in screeningRepository.ScreeningsList)
             {
                 if (screening.ScreeningPassword == screeningPassword)
                 {

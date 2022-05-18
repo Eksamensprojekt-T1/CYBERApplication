@@ -2,6 +2,7 @@
 using BuinsnessLogic.Models;
 using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
@@ -58,7 +59,7 @@ namespace AdminApplication.Views
             string difficulty = Difficulty_cb.Text;
             string category = Category_cb.Text;
 
-            qvm.AddNewQuestion(questionDescription, difficulty, category, answerList);
+            qvm.AddNewQuestion(questionDescription, difficulty, category, new List<Answer>(answerList));
 
             NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);

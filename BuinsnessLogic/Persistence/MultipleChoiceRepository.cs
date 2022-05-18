@@ -161,8 +161,8 @@ namespace BuinsnessLogic.Persistence
             using (SqlConnection con = new(connectionString))
             {
                 string values = "MULTIPLECHOISE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
-                string innerJoin1 = "INNER JOIN MULTIPLECHOISE_QUESTION as mq on MULTIPLECHOISE.MCID = mq.MCID";
-                string innerJoin2 = "INNER JOIN QUESTION on mq.QuestionID = QUESTION.QuestionID";
+                string innerJoin1 = "INNER JOIN MULTIPLECHOISE_QUESTION on MULTIPLECHOISE.MCID = MULTIPLECHOISE_QUESTION.MCID";
+                string innerJoin2 = "INNER JOIN QUESTION on MULTIPLECHOISE_QUESTION.QuestionID = QUESTION.QuestionID";
                 string innerJoin3 = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
                 string where = $"WHERE MULTIPLECHOISE.MCID = {id}";
                 string commandText = $"SELECT {values} FROM MULTIPLECHOISE {innerJoin1} {innerJoin2} {innerJoin3} {where}";

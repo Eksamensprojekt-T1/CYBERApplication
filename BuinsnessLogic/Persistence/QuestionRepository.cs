@@ -70,12 +70,23 @@ namespace BuinsnessLogic.Persistence
         {
             using (SqlConnection con = new(connectionString))
             {
-                string table = "QUESTION";
-                string commandText = $"DELETE FROM {table} WHERE {entityID} = QuestionID";
+                string questionTable = "QUESTION";
+                string answerTable = "ANSWER";
+                string commandText = $"DELETE FROM {answerTable} WHERE QuestionID = {entityID}; DELETE FROM {questionTable} WHERE {entityID} = QuestionID";
 
                 con.Open();
                 SqlCommand sqlCommand = new(commandText, con);
                 sqlCommand.ExecuteNonQuery();
+
+                foreach (Question question in QuestionsList)
+                {
+                    if (question.QuestionID == entityID)
+                    {
+                        QuestionsList.Remove(question);
+                        break;
+                    }
+                }
+
             }
         }
 

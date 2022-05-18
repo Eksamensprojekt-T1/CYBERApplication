@@ -43,7 +43,11 @@ namespace AdminApplication.Views
         {
             string mCName = MultipleChoice_tb.Text;
             DateTime dateOfCreation = DateTime.Now;
-            //bool isSelected = false;
+            
+            for (int i = 0; i < AddQuestions_dg.SelectedItems.Count; i++)
+            {
+                mccvm.SelectedQuestions.Add((dynamic)AddQuestions_dg.SelectedItems[i]);
+            }
 
             mccvm.AddMultipleChoice(mCName, dateOfCreation);
             

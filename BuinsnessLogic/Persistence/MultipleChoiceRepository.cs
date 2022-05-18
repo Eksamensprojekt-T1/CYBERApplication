@@ -43,13 +43,11 @@ namespace BuinsnessLogic.Persistence
             // Starts connection to database
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string table = "MULTIPLECHOISE";
-                string colums = "MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
+                // insert multiplechoice
+                string multipleChoiceTable = "MULTIPLECHOICE";
+                string columns = "MULTIPLECHOICE.MCName, MULTIPLECHOICE.DateOfCreation";
                 string values = "@MCName, @DateOfCreation";
-                string commandText =
-                    $"INSERT INTO {table}({colums})" +
-                    $"VALUES ({values})" +
-                    $"SELECT @@IDENTITY";
+                string commandText = $"INSERT INTO {multipleChoiceTable} ({columns}) VALUES ({values}) SELECT @@IDENTITY";
 
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
@@ -58,6 +56,11 @@ namespace BuinsnessLogic.Persistence
                     cmd.Parameters.Add("@DateOfCreation", SqlDbType.DateTime2).Value = multipleChoice.DateOfCreation;
                     multipleChoice.MCID = Convert.ToInt32(cmd.ExecuteScalar());
                     result = multipleChoice.MCID;
+                }
+
+                foreach(Question question in multipleChoice.Questions)
+                {
+                    AddQuestions(multipleChoice, question);
                 }
 
                 MultipleChoicesList.Add(multipleChoice);
@@ -75,8 +78,8 @@ namespace BuinsnessLogic.Persistence
         {
             using (SqlConnection con = new(connectionString))
             {
-                string table = "MULTIPLECHOISE";
-                string commandText = $"DELETE FROM {table} WHERE {entityID} = MCID";
+                string table = "MULTIPLECHOICE";
+                string commandText = $"DELETE FROM MULTIPLECHOICE_QUESTION WHERE {entityID} = MCID; DELETE FROM {table} WHERE {entityID} = MCID";
 
                 con.Open();
                 SqlCommand sqlCommand = new(commandText, con);
@@ -124,8 +127,8 @@ namespace BuinsnessLogic.Persistence
         {
             using (SqlConnection con = new(connectionString))
             {
-                string table = "MULTIPLECHOISE";
-                string values = "MULTIPLECHOISE.MCID, MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
+                string table = "MULTIPLECHOICE";
+                string values = "MULTIPLECHOICE.MCID, MULTIPLECHOICE.MCName, MULTIPLECHOICE.DateOfCreation";
                 string commandText = $"SELECT {values} FROM {table}";
 
                 con.Open();
@@ -150,6 +153,31 @@ namespace BuinsnessLogic.Persistence
         }
 
         //=========================================================================
+        // AddQuestions (CRUD: Create)
+        // Inserts the MCID and questionID into MULTIPLECHOICE_QUESTION to create the relation between them
+        //=========================================================================
+
+        private void AddQuestions(MultipleChoice multipleChoice, Question question)
+        {
+            // insert multipleChoice_Question
+            string mqTable = "MULTIPLECHOICE_QUESTION";
+            string columns = "MULTIPLECHOICE_QUESTION.MCID, MULTIPLECHOICE_QUESTION.QuestionID";
+            string values = "@MCID, @QuestionID";
+            string commandText = $"INSERT INTO {mqTable} ({columns}) VALUES ({values})";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(commandText, con))
+                {
+                    cmd.Parameters.Add("@MCID", SqlDbType.Int).Value = multipleChoice.MCID;
+                    cmd.Parameters.Add("@QuestionID", SqlDbType.Int).Value = question.QuestionID;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //=========================================================================
         // MakeListOfQuestions (CRUD: Create)
         // Returns a lists with questions in relation to the multiple choice id chosen
         //=========================================================================
@@ -160,12 +188,12 @@ namespace BuinsnessLogic.Persistence
 
             using (SqlConnection con = new(connectionString))
             {
-                string values = "MULTIPLECHOISE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
-                string innerJoin1 = "INNER JOIN MULTIPLECHOISE_QUESTION on MULTIPLECHOISE.MCID = MULTIPLECHOISE_QUESTION.MCID";
-                string innerJoin2 = "INNER JOIN QUESTION on MULTIPLECHOISE_QUESTION.QuestionID = QUESTION.QuestionID";
+                string values = "MULTIPLECHOICE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
+                string innerJoin1 = "INNER JOIN MULTIPLECHOICE_QUESTION on MULTIPLECHOICE.MCID = MULTIPLECHOICE_QUESTION.MCID";
+                string innerJoin2 = "INNER JOIN QUESTION on MULTIPLECHOICE_QUESTION.QuestionID = QUESTION.QuestionID";
                 string innerJoin3 = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
-                string where = $"WHERE MULTIPLECHOISE.MCID = {id}";
-                string commandText = $"SELECT {values} FROM MULTIPLECHOISE {innerJoin1} {innerJoin2} {innerJoin3} {where}";
+                string where = $"WHERE MULTIPLECHOICE.MCID = {id}";
+                string commandText = $"SELECT {values} FROM MULTIPLECHOICE {innerJoin1} {innerJoin2} {innerJoin3} {where}";
 
                 con.Open();
                 using (SqlCommand sQLCommand = new(commandText, con))

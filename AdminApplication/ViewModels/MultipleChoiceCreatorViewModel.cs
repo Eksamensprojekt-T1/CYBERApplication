@@ -1,4 +1,5 @@
-﻿using BuinsnessLogic.Models;
+﻿using AdminApplication.Views;
+using BuinsnessLogic.Models;
 using BuinsnessLogic.Persistence;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,9 @@ namespace AdminApplication.ViewModels
         // Observablecollections
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
+
+        public List<Question> SelectedQuestions { get; set; } = new List<Question>();
+
         // Repositories
         QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
@@ -46,9 +50,16 @@ namespace AdminApplication.ViewModels
         // Adds a question to a multiple choice
         //=========================================================================
 
-        public void AddQuestion()
+        public List<Question> AddQuestions()
         {
+            List<Question> selectedQuestions = new List<Question>();
 
+            foreach (Question question in SelectedQuestions)
+            {
+                selectedQuestions.Add(question);
+            }
+
+            return selectedQuestions;
         }
 
         //=========================================================================
@@ -67,7 +78,7 @@ namespace AdminApplication.ViewModels
 
         public void AddMultipleChoice(string multipleChoiceName, DateTime dateOfCreation)
         {
-            MultipleChoice newMultipleChoice = new(multipleChoiceName, dateOfCreation);
+            MultipleChoice newMultipleChoice = new(multipleChoiceName, dateOfCreation, AddQuestions());
             
             // Adds multiple choice to repository (database)
             newMultipleChoice.MCID = MultipleChoiceRepo.Add(newMultipleChoice);

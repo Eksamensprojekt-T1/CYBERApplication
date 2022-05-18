@@ -37,18 +37,11 @@
 
         <Rectangle Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="8" Fill="#DEE2E6"></Rectangle>
 
-        <DataGrid x:Name="AddQuestions_dg" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False">
+        <DataGrid x:Name="AddQuestions_dg" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" IsReadOnly="True" SelectionMode="Extended" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Spørgsmål" Binding="{Binding QuestionDescription}"/>
-                <DataGridTextColumn Width="150" Header="Kategori" Binding="{Binding QuestionCategory.CategoryName}"/>
+                <DataGridTextColumn Width="200" Header="Kategori" Binding="{Binding QuestionCategory.CategoryName}"/>
                 <!--<DataGridCheckBoxColumn x:Name="AddQuestion_chk" Width="100" Header="Tilføj" Binding="{Binding IsChecked}"/>-->
-                <DataGridTemplateColumn x:Name="AddQuestion_chk" Header="Tilføj" Width="100">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsChecked, UpdateSourceTrigger=PropertyChanged}"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
 
@@ -58,7 +51,7 @@
         <Label Name="Question_lb" Grid.Column="2" Grid.Row="3" Content="Vælg spørgsmål:" Style="{StaticResource LabelStyleBlack}"/>
 
         <Label Foreground="#5D5F61" Grid.Column="0" Grid.Row="6" Content="Antal spørgsmål:" Style="{StaticResource LabelStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Label Foreground="#DEE2E6" FontSize="32" Name="QuestionCount_tb" Grid.Column="0" Grid.Row="7" Width="100" Height="50" Background="Transparent" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="0"/>
+        <Label Foreground="#DEE2E6" FontSize="32" Name="QuestionCount_tb" Grid.Column="0" Grid.Row="7" Width="100" Height="50" Background="Transparent" HorizontalAlignment="Center" HorizontalContentAlignment="Center" Content="{Binding ElementName=AddQuestions_dg, Path=SelectedItems.Count}"/>
 
         <Button Name="Back_btn" Grid.Column="0" Grid.Row="2" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Center" Content="Tilbage" Height="50px" Width="100px" Click="Back_btn_Click"/>
         <Button Name="Approve_btn" Grid.Column="3" Grid.Row="7" Style="{StaticResource RedButtonStyle}" VerticalAlignment="Center" HorizontalAlignment="Right" Content="Godkend" Height="50px" Width="100px" Margin="0,0,25,0" Click="Approve_btn_Click"/>

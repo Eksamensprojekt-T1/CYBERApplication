@@ -31,6 +31,9 @@ namespace BuinsnessLogic.Models
         public MultipleChoice(string mCName, DateTime dateOfCreation)
             : this(null, mCName, dateOfCreation, null) { }
 
+        public MultipleChoice(string mCName, DateTime dateOfCreation, List<Question> questions)
+            : this(null, mCName, dateOfCreation, questions) { }
+
 
         #endregion
     }

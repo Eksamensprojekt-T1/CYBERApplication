@@ -37,7 +37,7 @@
 
         <Rectangle Grid.Column="1" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="8" Fill="#DEE2E6"></Rectangle>
 
-        <DataGrid x:Name="AddQuestions_dg" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" IsReadOnly="True" SelectionMode="Extended" AutoGenerateColumns="False">
+        <DataGrid x:Name="AddQuestions_dg" Style="{StaticResource DataGridStyle}" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" ItemsSource="{Binding QuestionVM}" IsReadOnly="True" SelectionMode="Extended" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Spørgsmål" Binding="{Binding QuestionDescription}"/>
                 <DataGridTextColumn Width="200" Header="Kategori" Binding="{Binding QuestionCategory.CategoryName}"/>

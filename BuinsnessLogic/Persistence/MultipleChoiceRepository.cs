@@ -104,7 +104,33 @@ namespace BuinsnessLogic.Persistence
 
         public MultipleChoice GetByID(int? entityID)
         {
-            throw new NotImplementedException();
+            MultipleChoice result = null;
+            int count = 0;
+
+            try
+            {
+                foreach (MultipleChoice multipleChoice in MultipleChoicesList)
+                {
+                    if (multipleChoice.MCID.Equals(entityID))
+                    {
+                        result = multipleChoice;
+                        break;
+                    }
+                    count++;
+                }
+            }
+            catch (Exception e) when (entityID is null)
+            {
+                string message = "Multiplechoice ID is not set.";
+                throw new Exception(message, e);
+            }
+            catch (Exception e) when (count == MultipleChoicesList.Count)
+            {
+                string message = "Multiplechoice ID does not exist.";
+                throw new Exception(message, e);
+            }
+
+            return result;
         }
 
         //=========================================================================

@@ -29,7 +29,7 @@
 
         <Label Foreground="#DEE2E6" FontSize="82" FontWeight="SemiBold" Content="{Binding QuestionVM.Count}" Grid.Column="0" Grid.Row="1" Margin="0,110,0,0" HorizontalContentAlignment="Center"></Label>
         <Label Foreground="#5D5F61" FontSize="22" Content="Spørgsmål" Grid.Column="0" Grid.Row="1" Margin="0,230,0,0" HorizontalContentAlignment="Center"/>
-        <DataGrid x:Name="Question_dg" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False" FontSize="20">
+        <DataGrid x:Name="Question_dg" Style="{StaticResource DataGridStyle}" Grid.Column="1" Grid.ColumnSpan="3" Grid.Row="0" Grid.RowSpan="2" Margin="30" ItemsSource="{Binding QuestionVM}" AutoGenerateColumns="False" FontSize="20">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header=" Spørgsmål" Binding="{Binding QuestionDescription}" FontSize="20">
                     <DataGridTextColumn.ElementStyle>

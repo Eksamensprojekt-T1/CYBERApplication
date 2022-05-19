@@ -40,7 +40,7 @@ namespace ScreeningApplication.Views
 
         private void setupQuestion(int questionNumber)
         {
-            question_description_lb.Content = qvm.QuestionVM[questionNumber].QuestionDescription;
+            question_description_lb.Text = qvm.QuestionVM[questionNumber].QuestionDescription;
             FillAnswerListBox(questionNumber);
         }
 

@@ -180,13 +180,14 @@
                         <TextBox x:Name="PART_EditableTextBox"
                             Style="{x:Null}" 
                             Template="{StaticResource ComboBoxTextBox}" 
-                            HorizontalAlignment="Left" 
+                            HorizontalAlignment="center" 
                             VerticalAlignment="Center" 
                             Margin="3,3,23,3"
                             Focusable="True"
-                            Background="Black"
-                            Foreground="Green"
+                            Background="White"
+                            Foreground="Gray"
                             Visibility="Hidden"
+                            FontSize="14"
                             IsReadOnly="{TemplateBinding IsReadOnly}"/>
                         <Popup 
                             Name="Popup"

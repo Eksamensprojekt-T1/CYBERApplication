@@ -89,7 +89,7 @@
         <Button x:Name="MultipleChoice_btn" Style="{StaticResource ActionButtonStyle}" Content="Multiple choice" Grid.Column="3" Grid.Row="5" Click="MultipleChoice_btn_Click"></Button>
         <Button x:Name="Report_btn" Style="{StaticResource ActionButtonStyle}" Content="Rapport" Grid.Column="5" Grid.Row="5"></Button>
 
-        <DataGrid x:Name="Screening_dg" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" ItemsSource="{Binding ScreeningVM}" AutoGenerateColumns="False" FontSize="20">
+        <DataGrid x:Name="Screening_dg" Style="{StaticResource DataGridStyle}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" ItemsSource="{Binding ScreeningVM}" AutoGenerateColumns="False" FontSize="20">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Afholdte Screenings" Binding="{Binding ScreeningName}" FontSize="20">
                     <DataGridTextColumn.ElementStyle>

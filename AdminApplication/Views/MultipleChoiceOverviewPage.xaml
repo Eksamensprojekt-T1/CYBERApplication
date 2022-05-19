@@ -50,7 +50,7 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="175" Header="Oprettelsesdato" Binding="{Binding DateOfCreation}">
+                <DataGridTextColumn Width="175" Header="Oprettelsesdato" Binding="{Binding DateOfCreation, StringFormat=\{0:dd.MM.yyyy\}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>

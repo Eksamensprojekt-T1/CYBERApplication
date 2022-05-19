@@ -91,42 +91,42 @@
 
         <DataGrid x:Name="Screening_dg" Style="{StaticResource DataGridStyle}" Grid.Column="1" Grid.Row="7" Grid.ColumnSpan="5" ItemsSource="{Binding ScreeningVM}" AutoGenerateColumns="False" FontSize="20">
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Afholdte Screenings" Binding="{Binding ScreeningName}" FontSize="20">
+                <DataGridTextColumn Width="*" Header="Afholdte Screenings" Binding="{Binding ScreeningName}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="125" Header="Start Dato" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
+                <DataGridTextColumn Width="125" Header="Start Dato" Binding="{Binding StartDate, StringFormat=\{0:dd.MM.yyyy\}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="125" Header="Slut Dato" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}" FontSize="20">
+                <DataGridTextColumn Width="125" Header="Slut Dato" Binding="{Binding EndDate, StringFormat=\{0:dd.MM.yyyy\}}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="175" Header="Multiple Choice" Binding="{Binding MCID}" FontSize="20">
+                <DataGridTextColumn Width="175" Header="Multiple Choice" Binding="{Binding MCID}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="175" Header="Beståelseskrav i %" Binding="{Binding PassingScore}" FontSize="20">
+                <DataGridTextColumn Width="175" Header="Beståelseskrav i %" Binding="{Binding PassingScore}">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn Width="150" Header="Antal Beståede" FontSize="20">
+                <DataGridTextColumn Width="150" Header="Antal Beståede">
                     <DataGridTextColumn.ElementStyle>
                         <Style TargetType="TextBlock">
                             <Setter Property="VerticalAlignment" Value="Center"/>

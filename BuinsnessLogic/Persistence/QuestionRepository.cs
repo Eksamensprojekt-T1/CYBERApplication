@@ -72,7 +72,8 @@ namespace BuinsnessLogic.Persistence
             {
                 string questionTable = "QUESTION";
                 string answerTable = "ANSWER";
-                string commandText = $"DELETE FROM {answerTable} WHERE QuestionID = {entityID}; DELETE FROM {questionTable} WHERE {entityID} = QuestionID";
+                string multipleChoiceTable = "MULTIPLECHOICE_QUESTION";
+                string commandText = $"DELETE from {multipleChoiceTable} WHERE QuestionID = {entityID}; DELETE FROM {answerTable} WHERE QuestionID = {entityID}; DELETE FROM {questionTable} WHERE {entityID} = QuestionID";
 
                 con.Open();
                 SqlCommand sqlCommand = new(commandText, con);

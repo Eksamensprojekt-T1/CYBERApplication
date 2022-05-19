@@ -28,7 +28,7 @@ namespace AdminApplication.Views
             InitializeComponent();
             FillCategory();
             DataContext = qvm;
-            AnswerList.ItemsSource = answerList;
+            AnswerList_dg.ItemsSource = answerList;
         }
 
         private void FillCategory()
@@ -82,6 +82,11 @@ namespace AdminApplication.Views
             Answer_tb.Text = "";
             IsCorrect_cb.IsChecked = false;
 
+        }
+
+        private void Remove_btn_Click(object sender, RoutedEventArgs e)
+        {
+            answerList.Remove((Answer)AnswerList_dg.SelectedItem);
         }
     }
 }

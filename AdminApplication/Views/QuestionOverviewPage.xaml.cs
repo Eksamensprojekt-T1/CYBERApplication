@@ -42,7 +42,11 @@ namespace AdminApplication.Views
 
         private void Update_btn_Click(object sender, RoutedEventArgs e)
         {
+            //NavigationService.Navigate(new Uri("Views/QuestionUpdaterPage.xaml?SelectedItem="+Question_dg.SelectedItem, UriKind.Relative));
 
+            var questionID = Question_dg.SelectedItem;            
+            QuestionUpdaterPage questionUpdaterPage = new QuestionUpdaterPage();
+            NavigationService.Navigate(questionUpdaterPage, questionID);
         }
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)

@@ -27,6 +27,10 @@ namespace ScreeningApplication.ViewModels
         QuestionRepository QuestionRepo = new QuestionRepository(connectionString);
         AnswerRepository AnswerRepo = new AnswerRepository(connectionString);
 
+        //=========================================================================
+        // Constructors
+        //=========================================================================
+
         public QuestionAnswerViewModel()
         {
             foreach (Question question in QuestionRepo.GetAll())
@@ -38,6 +42,11 @@ namespace ScreeningApplication.ViewModels
                 AnswerVM.Add(answer);
             }
         }
+
+        //=========================================================================
+        // getAnswersForQuestion (CRUD: Read)
+        // Returns all answers in relation to the referenced question
+        //=========================================================================
 
         public IEnumerable<Answer> getAnswersForQuestion(Question question)
         {

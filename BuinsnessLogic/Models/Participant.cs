@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuinsnessLogic.Models
 {
@@ -17,9 +13,11 @@ namespace BuinsnessLogic.Models
         public string Education { get; set; }
         public string Gender { get; set; }
         public string Motivation { get; set; }
+
         #endregion
 
         #region // Constructors
+
         public Participant(int? participantID, string participantName, int participantNumber, DateTime dateOfBirth, string education, string gender, string motivation)
         {
             ParticipantID = participantID;

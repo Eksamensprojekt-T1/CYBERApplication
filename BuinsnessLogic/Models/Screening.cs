@@ -1,15 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Timers;
-using System.Threading.Tasks;
 
 namespace BuinsnessLogic.Models
 {
     public class Screening
     {
-        private int screeningTimer;
         #region // Properties
 
         public int? ScreeningID { get; set; }
@@ -20,12 +15,11 @@ namespace BuinsnessLogic.Models
         public DateTime EndDate { get; set; }
         public Timer ScreeningTimer { get; set; }
 
-
         #endregion
 
         #region // Constructors
 
-        public Screening(int? screeningID, string screeningName, int screeningPassword, double passingScore, DateTime startDate, DateTime endDate, int screeningTimer)
+        public Screening(int? screeningID, string screeningName, int screeningPassword, double passingScore, DateTime startDate, DateTime endDate, Timer screeningTimer)
         {
             ScreeningID = screeningID;
             ScreeningName = screeningName;
@@ -33,7 +27,7 @@ namespace BuinsnessLogic.Models
             PassingScore = passingScore;
             StartDate = startDate;
             EndDate = endDate;
-            this.screeningTimer = screeningTimer;
+            ScreeningTimer = screeningTimer;
         }
 
         public Screening(string screeningName, int screeningPassword, double passingScore, DateTime startDate, DateTime endDate, int screeningTimer)

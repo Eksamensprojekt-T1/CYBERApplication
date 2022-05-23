@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BuinsnessLogic.Models
+﻿namespace BuinsnessLogic.Models
 {
     public class Answer
     {
         #region // Properties
+
         public int? AnswerID { get; set; }
         public string AnswerDescription { get; set; }
         public bool IsItCorrect { get; set; }
@@ -17,6 +12,7 @@ namespace BuinsnessLogic.Models
         #endregion
 
         #region // Constructors
+
         public Answer(int? answerID, string answerDescription, bool isItCorrect, int? questionID)
         {
             AnswerID = answerID;
@@ -27,6 +23,7 @@ namespace BuinsnessLogic.Models
 
         public Answer(string answerDescription, bool isItCorrect)
             : this(null, answerDescription, isItCorrect, null) { }
+
         #endregion
     }
 }

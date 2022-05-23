@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
 using System.Timers;
-using System.Threading.Tasks;
 using BuinsnessLogic.Models;
 
 namespace BuinsnessLogic.Persistence
@@ -136,7 +133,7 @@ namespace BuinsnessLogic.Persistence
                             double passingScore = double.Parse(reader["PassingScore"].ToString());
                             DateTime startDate = DateTime.Parse(reader["StartDate"].ToString());
                             DateTime endDate = DateTime.Parse(reader["EndDate"].ToString());
-                            int screeningTimer = int.Parse(reader["ScreeningTimer"].ToString());
+                            Timer screeningTimer = (Timer)reader["ScreeningTimer"];
 
                             Screening screening = new(screeningID, screeningName, screeningPassword, passingScore, startDate, endDate, screeningTimer);
 

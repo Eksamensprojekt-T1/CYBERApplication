@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuinsnessLogic.Models
 {
@@ -14,10 +10,10 @@ namespace BuinsnessLogic.Models
         public string ReportName { get; set; }
         public DateTime ReportDate { get; set; }
 
-
         #endregion
 
         #region // Constructors
+
         public Report(int? reportID, string reportName, DateTime reportDate)
         {
             ReportID = reportID;

@@ -1,12 +1,8 @@
-﻿using AdminApplication.Views;
-using BuinsnessLogic.Models;
-using BuinsnessLogic.Persistence;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BuinsnessLogic.Models;
+using BuinsnessLogic.Persistence;
 
 namespace AdminApplication.ViewModels
 {
@@ -23,7 +19,6 @@ namespace AdminApplication.ViewModels
         // Observablecollections
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
-
         public List<Question> SelectedQuestions { get; set; } = new List<Question>();
 
         // Repositories

@@ -96,6 +96,7 @@ namespace AdminApplication.ViewModels
         //=========================================================================
         // DeleteQuestion (CRUD: Delete)
         //=========================================================================
+
         public void DeleteQuestion(object selectedItem)
         {
             Question question = (Question)selectedItem;

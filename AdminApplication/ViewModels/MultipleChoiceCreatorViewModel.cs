@@ -29,6 +29,7 @@ namespace AdminApplication.ViewModels
         // Repositories
         QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
+        
         //=========================================================================
         // Constructors
         //=========================================================================
@@ -69,11 +70,12 @@ namespace AdminApplication.ViewModels
 
         public void RemoveQuestion()
         {
-
+            throw new NotImplementedException();
         }
 
         //=========================================================================
         // AddMultipleChoice (CRUD: Create)
+        // Adds a multiple choice
         //=========================================================================
 
         public void AddMultipleChoice(string multipleChoiceName, DateTime dateOfCreation)

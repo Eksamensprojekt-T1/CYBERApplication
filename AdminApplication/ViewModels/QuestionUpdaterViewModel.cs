@@ -52,7 +52,7 @@ namespace AdminApplication.ViewModels
 
         public void UpdateQuestion()
         {
-
+            throw new NotImplementedException();
         }
 
         //=========================================================================

@@ -40,6 +40,7 @@ namespace AdminApplication.ViewModels
 
         //=========================================================================
         // DeleteMultipleChoice (CRUD: Delete)
+        // Deletes a multiple choice
         //=========================================================================
 
         public void DeleteMultipleChoice(object selectedItem)

@@ -17,7 +17,6 @@ namespace BuinsnessLogic.Persistence
         //=========================================================================
 
         public List<MultipleChoice> MultipleChoicesList { get; set; } = new List<MultipleChoice>();
-
         private string connectionString;
 
         //=========================================================================
@@ -70,26 +69,8 @@ namespace BuinsnessLogic.Persistence
         }
 
         //=========================================================================
-        // Delete (CRUD: Delete)
-        // Removes a multiplechoice from the database
-        //=========================================================================
-
-        public void Delete(int? entityID)
-        {
-            using (SqlConnection con = new(connectionString))
-            {
-                string table = "MULTIPLECHOICE";
-                string commandText = $"DELETE FROM MULTIPLECHOICE_QUESTION WHERE {entityID} = MCID; DELETE FROM {table} WHERE {entityID} = MCID";
-
-                con.Open();
-                SqlCommand sqlCommand = new(commandText, con);
-                sqlCommand.ExecuteNonQuery();
-            }
-        }
-
-        //=========================================================================
         // GetAll (CRUD: Read)
-        // Returns all multiplechoice objects from database
+        // Returns all multiplechoice objects from the list
         //=========================================================================
 
         public IEnumerable<MultipleChoice> GetAll()
@@ -144,9 +125,26 @@ namespace BuinsnessLogic.Persistence
         }
 
         //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a multiplechoice from the database
+        //=========================================================================
+
+        public void Delete(int? entityID)
+        {
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "MULTIPLECHOICE";
+                string commandText = $"DELETE FROM MULTIPLECHOICE_QUESTION WHERE {entityID} = MCID; DELETE FROM {table} WHERE {entityID} = MCID";
+
+                con.Open();
+                SqlCommand sqlCommand = new(commandText, con);
+                sqlCommand.ExecuteNonQuery();
+            }
+        }
+
+        //=========================================================================
         // LoadAllEntitys (CRUD: Read)
-        // Loads all objects from the MULTIPLECHOICE table in the database
-        // to the Repository list
+        // Loads all entities from the database table MULTIPLECHOICE
         //=========================================================================
 
         private void loadAllEntitys()

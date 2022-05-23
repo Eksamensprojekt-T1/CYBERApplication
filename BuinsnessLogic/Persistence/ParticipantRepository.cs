@@ -11,14 +11,29 @@ namespace BuinsnessLogic.Persistence
 {
     public class ParticipantRepository : IRepository<Participant>
     {
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
         public List<Participant> Participants { get; set; }
         private string connectionString;
+
+        //=========================================================================
+        // Constructors
+        //=========================================================================
 
         public ParticipantRepository(string connectionString)
         {
             Participants = new();
             this.connectionString = connectionString;
         }
+
+        //=========================================================================
+        // Add (CRUD: Create)
+        // Adds a participant to the database
+        //=========================================================================
+
         public int? Add(Participant participant)
         {
             int? result = -1;
@@ -55,6 +70,50 @@ namespace BuinsnessLogic.Persistence
             return result;
         }
 
+        //=========================================================================
+        // GetAll (CRUD: Read)
+        // Returns all participant objects from the list
+        //=========================================================================
+
+        public IEnumerable<Participant> GetAll()
+        {
+            return Participants;
+        }
+
+        //=========================================================================
+        // GetByID (CRUD: Read)
+        // Returns a specific participant object.
+        //=========================================================================
+
+        public Participant GetByID(int? participantID)
+        {
+            Participant participant = null;
+            foreach (Participant currentParticipant in Participants)
+            {
+                if (currentParticipant.ParticipantID.Equals(participantID))
+                {
+                    participant = currentParticipant;
+                    break;
+                }
+            }
+            return participant;
+        }
+
+        //=========================================================================
+        // Update (CRUD: Update)
+        // Updates a already existing participant object
+        //=========================================================================
+
+        public void Update(Participant participant)
+        {
+            throw new NotImplementedException();
+        }
+
+        //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a participant from the database
+        //=========================================================================
+
         public void Delete(int? participantID)
         {
             foreach (Participant participant in Participants)
@@ -77,33 +136,14 @@ namespace BuinsnessLogic.Persistence
 
         }
 
-        public IEnumerable<Participant> GetAll()
-        {
-            return Participants;
-        }
-
-        public Participant GetByID(int? participantID)
-        {
-            Participant participant = null;
-            foreach (Participant currentParticipant in Participants)
-            {
-                if (currentParticipant.ParticipantID.Equals(participantID))
-                {
-                    participant = currentParticipant;
-                    break;
-                }
-            }
-            return participant;
-        }
-
-        public void Update(Participant participant)
-        {
-            throw new NotImplementedException();
-        }
+        //=========================================================================
+        // LoadAllEntitys (CRUD: Read)
+        // Loads all entities from the database table PARTICIPANT
+        //=========================================================================
 
         private void loadAllEntitys()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

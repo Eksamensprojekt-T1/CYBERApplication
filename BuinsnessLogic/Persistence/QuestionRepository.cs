@@ -11,14 +11,28 @@ namespace BuinsnessLogic.Persistence
 {
     public class QuestionRepository : IRepository<Question>
     {
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
         public List<Question> QuestionsList { get; set; } = new List<Question>();
         private string connectionString;
+
+        //=========================================================================
+        // Constructors
+        //=========================================================================
 
         public QuestionRepository(string connectionString)
         {
             this.connectionString = connectionString;
             loadAllEntitys();
         }
+
+        //=========================================================================
+        // Add (CRUD: Create)
+        // Adds a question to the database
+        //=========================================================================
 
         public int? Add(Question question)
         {
@@ -66,6 +80,41 @@ namespace BuinsnessLogic.Persistence
             return result;
         }
 
+        //=========================================================================
+        // GetAll (CRUD: Read)
+        // Returns all question objects from list
+        //=========================================================================
+
+        public IEnumerable<Question> GetAll()
+        {
+            return QuestionsList;
+        }
+
+        //=========================================================================
+        // GetByID (CRUD: Read)
+        // Returns a specific question object.
+        //=========================================================================
+
+        public Question GetByID(int? entityID)
+        {
+            throw new NotImplementedException();
+        }
+
+        //=========================================================================
+        // Update (CRUD: Update)
+        // Updates a already existing question object
+        //=========================================================================
+
+        public void Update(Question entity)
+        {
+            throw new NotImplementedException();
+        }
+
+        //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a question from the database
+        //=========================================================================
+
         public void Delete(int? entityID)
         {
             using (SqlConnection con = new(connectionString))
@@ -91,20 +140,11 @@ namespace BuinsnessLogic.Persistence
             }
         }
 
-        public IEnumerable<Question> GetAll()
-        {
-            return QuestionsList;
-        }
+        //=========================================================================
+        // LoadAllEntitys (CRUD: Read)
+        // Loads all entities from the database table QUESTION
+        //=========================================================================
 
-        public Question GetByID(int? entityID)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Question entity)
-        {
-            throw new NotImplementedException();
-        }
         private void loadAllEntitys()
         {
             using (SqlConnection con = new(connectionString))
@@ -147,6 +187,11 @@ namespace BuinsnessLogic.Persistence
                 }
             }
         }
+
+        //=========================================================================
+        // fillAnswersForQuestion (CRUD: Read)
+        // Adds all answers in relation to the referenced with the given question
+        //=========================================================================
 
         private void fillAnswersForQuestion(Question question)
         {

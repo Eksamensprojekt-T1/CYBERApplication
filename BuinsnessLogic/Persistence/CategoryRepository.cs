@@ -11,8 +11,17 @@ namespace BuinsnessLogic.Persistence
 {
     public class CategoryRepository : IRepository<Category>
     {
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
         public List<Category> CategoryList { get; set; }
         private string connectionString;
+
+        //=========================================================================
+        // Constructors
+        //=========================================================================
 
         public CategoryRepository(string connectionString)
         {
@@ -20,6 +29,11 @@ namespace BuinsnessLogic.Persistence
             CategoryList = new List<Category>();
             loadAllEntitys();
         }
+
+        //=========================================================================
+        // Add (CRUD: Create)
+        // Adds a category to the database
+        //=========================================================================
 
         public int? Add(Category category)
         {
@@ -49,15 +63,20 @@ namespace BuinsnessLogic.Persistence
             return result;
         }
 
-        public void Delete(int? categoryID)
-        {
-            
-        }
+        //=========================================================================
+        // GetAll (CRUD: Read)
+        // Returns all category objects from the list
+        //=========================================================================
 
         public IEnumerable<Category> GetAll()
         {
             return CategoryList;
         }
+
+        //=========================================================================
+        // GetByID (CRUD: Read)
+        // Returns a specific category object.
+        //=========================================================================
 
         public Category GetByID(int? categoryID)
         {
@@ -74,10 +93,31 @@ namespace BuinsnessLogic.Persistence
             return result;
         }
 
+        //=========================================================================
+        // Update (CRUD: Update)
+        // Updates an already existing category in the database
+        //=========================================================================
+
         public void Update(Category entity)
         {
             throw new NotImplementedException();
         }
+
+        //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a catorgy from the database
+        //=========================================================================
+
+        public void Delete(int? categoryID)
+        {
+            throw new NotImplementedException();
+        }
+
+        //=========================================================================
+        // LoadAllEnitys (CRUD: Update)
+        // Loads all entities from the database table CATEGORY
+        //=========================================================================
+
         private void loadAllEntitys()
         {
             using(SqlConnection con = new(connectionString))

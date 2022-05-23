@@ -16,13 +16,14 @@ namespace BuinsnessLogic.Persistence
         //=========================================================================
         // Fields & Properties
         //=========================================================================
+
         public List<Screening> ScreeningsList { get; set; } = new List<Screening>();
-        
         private string connectionString;
 
         //=========================================================================
         // Constructors
         //=========================================================================
+
         public ScreeningRepository(string connectionString)
         {
             this.connectionString = connectionString;
@@ -33,6 +34,7 @@ namespace BuinsnessLogic.Persistence
         // Add (CRUD: Create)
         // Adds a multiple choice to the database
         //=========================================================================
+
         public int? Add(Screening screening)
         {
             //Defining result
@@ -68,31 +70,51 @@ namespace BuinsnessLogic.Persistence
             }
         }
 
-        public void Delete(int? screeningID)
-        {
-            throw new NotImplementedException();
-        }
+        //=========================================================================
+        // GetAll (CRUD: Read)
+        // Returns all screening objects from list
+        //=========================================================================
 
         public IEnumerable<Screening> GetAll()
         {
             return ScreeningsList;
         }
 
+        //=========================================================================
+        // GetByID (CRUD: Read)
+        // Returns a specific screening object.
+        //=========================================================================
+
         public Screening GetByID(int? screeningID)
         {
             throw new NotImplementedException();
         }
 
+        //=========================================================================
+        // Update (CRUD: Update)
+        // Updates a already existing screening object
+        //=========================================================================
+
         public void Update(Screening screening)
         {
             throw new NotImplementedException();
         }
-        
+
+        //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a screening from the database
+        //=========================================================================
+
+        public void Delete(int? screeningID)
+        {
+            throw new NotImplementedException();
+        }
+
         //=========================================================================
         // LoadAllEntitys (CRUD: Read)
-        // Loads all objects from the MULTIPLECHOICE table in the database
-        // to the Repository list
+        // Loads all entities from the database table SCREENING
         //=========================================================================
+
         private void loadAllEntitys()
         {
             using (SqlConnection con = new(connectionString))

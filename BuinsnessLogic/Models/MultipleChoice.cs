@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BuinsnessLogic.Models
 {
@@ -15,7 +12,6 @@ namespace BuinsnessLogic.Models
         public DateTime DateOfCreation { get; set; }
         public List<Question> Questions { get; set; }
 
-
         #endregion
 
         #region // Constructors
@@ -25,15 +21,10 @@ namespace BuinsnessLogic.Models
             MCName = mCName;
             DateOfCreation = dateOfCreation;
             Questions = questions;
-
         }
-
-        public MultipleChoice(string mCName, DateTime dateOfCreation)
-            : this(null, mCName, dateOfCreation, null) { }
 
         public MultipleChoice(string mCName, DateTime dateOfCreation, List<Question> questions)
             : this(null, mCName, dateOfCreation, questions) { }
-
 
         #endregion
     }

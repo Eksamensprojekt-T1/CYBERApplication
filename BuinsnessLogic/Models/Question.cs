@@ -32,11 +32,9 @@ namespace BuinsnessLogic.Models
 
         }
 
-        public Question(string questionDescription, Level difficulty, Category questionCategory)
-            : this(null, questionDescription, difficulty, questionCategory, null, new List<Answer>()) { }
-        
         public Question(string questionDescription, Level difficulty, Category questionCategory, List<Answer> answers)
             : this(null, questionDescription, difficulty, questionCategory, null, answers) { }
+
         public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory)
            : this(questionID, questionDescription, difficulty, questionCategory, null, new List<Answer>()) { }
 

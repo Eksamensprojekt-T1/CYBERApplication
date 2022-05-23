@@ -17,7 +17,6 @@ namespace BuinsnessLogic.Models
         public string Education { get; set; }
         public string Gender { get; set; }
         public string Motivation { get; set; }
-        public Screening screening { get; set; }
         #endregion
 
         #region // Constructors

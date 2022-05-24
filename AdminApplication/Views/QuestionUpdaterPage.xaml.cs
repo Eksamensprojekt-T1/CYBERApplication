@@ -4,37 +4,50 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Drawing;
-using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Shapes;
 
 namespace AdminApplication.Views
 {
     /// <summary>
-    /// Interaction logic for QuestionCreatorPage.xaml
+    /// Interaction logic for QuestionUpdaterPage.xaml
     /// </summary>
-    public partial class QuestionCreatorPage : Page
+    public partial class QuestionUpdaterPage : Page
     {
-        QuestionViewModel qvm = new QuestionViewModel();
+        public QuestionUpdaterPage()
+        {
+            InitializeComponent();
+            //NavigationService.LoadCompleted += NavigationService_LoadCompleted;
+            FillCategory();
+            DataContext = quvm;
+            AnswerList_dg.ItemsSource = answerList;
+        }
+
+        QuestionUpdaterViewModel quvm = new QuestionUpdaterViewModel();
 
         ObservableCollection<Answer> answerList = new ObservableCollection<Answer>();
 
-        public QuestionCreatorPage()
+        private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
         {
-            InitializeComponent();
-            FillCategory();
-            DataContext = qvm;
-            AnswerList_dg.ItemsSource = answerList;
+            //int questionID = (int)e.ExtraData;
+
+            //Do something
         }
 
         private void FillCategory()
         {
-            Category_cb.ItemsSource = qvm.CategoryVM;
-            Category_cb.DisplayMemberPath = "CategoryName";  
+            Category_cb.ItemsSource = quvm.CategoryVM;
+            Category_cb.DisplayMemberPath = "CategoryName";
         }
 
         private void Back_btn_Click(object sender, RoutedEventArgs e)
@@ -53,13 +66,9 @@ namespace AdminApplication.Views
             }
         }
 
-        private void Accept_btn_Click(object sender, RoutedEventArgs e)
+        private void Update_btn_Click(object sender, RoutedEventArgs e)
         {
-            string questionDescription = Title_tb.Text;
-            string difficulty = Difficulty_cb.Text;
-            string category = Category_cb.Text;
-
-            qvm.AddNewQuestion(questionDescription, difficulty, category, new List<Answer>(answerList));
+            //skal rettet//
 
             NavigationService.Navigate(new Uri("Views/QuestionOverviewPage.xaml", UriKind.Relative));
             MessageBox.Show("Spørgsmål oprettet!", "Meddelelse", MessageBoxButton.OK, MessageBoxImage.Information);
@@ -68,7 +77,7 @@ namespace AdminApplication.Views
         private void CreateCategory_btn_Click(object sender, RoutedEventArgs e)
         {
             string categoryName = Category_tb.Text;
-            qvm.AddCategory(categoryName);
+            quvm.AddCategory(categoryName);
             Category_tb.Clear();
         }
 

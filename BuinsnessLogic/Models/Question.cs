@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace BuinsnessLogic.Models
 {
@@ -15,31 +11,28 @@ namespace BuinsnessLogic.Models
         public Level Difficulty { get; set; }
         public Category QuestionCategory { get; set; }
         public Picture QuestionPicture { get; set; }
-        public List<Answer> Answers { get; }
+        public List<Answer> Answers { get; set; }
 
         #endregion
 
         #region // Constructors
 
-        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture)
+        public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture, List<Answer> answers)
         {
             QuestionID = questionID;
             QuestionDescription = questionDescription;
             Difficulty = difficulty;
             QuestionCategory = questionCategory;
             QuestionPicture = questionPicture;
-            Answers = new List<Answer>();
+            Answers = answers;
 
         }
 
-        public Question(string questionDescription, Level difficulty, Category questionCategory)
-   : this(null, questionDescription, difficulty, questionCategory, null) { }
+        public Question(string questionDescription, Level difficulty, Category questionCategory, List<Answer> answers)
+            : this(null, questionDescription, difficulty, questionCategory, null, answers) { }
 
         public Question(int? questionID, string questionDescription, Level difficulty, Category questionCategory)
-           : this(questionID, questionDescription, difficulty, questionCategory, null) { }
-
-        public Question(string questionDescription, Level difficulty, Category questionCategory, Picture questionPicture) 
-            : this (null, questionDescription, difficulty, questionCategory, questionPicture) { }
+           : this(questionID, questionDescription, difficulty, questionCategory, null, new List<Answer>()) { }
 
         #endregion
     }

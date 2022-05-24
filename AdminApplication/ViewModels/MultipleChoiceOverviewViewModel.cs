@@ -1,11 +1,6 @@
 ﻿using BuinsnessLogic.Models;
 using BuinsnessLogic.Persistence;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace AdminApplication.ViewModels
 {
@@ -40,6 +35,7 @@ namespace AdminApplication.ViewModels
 
         //=========================================================================
         // DeleteMultipleChoice (CRUD: Delete)
+        // Deletes a multiple choice
         //=========================================================================
 
         public void DeleteMultipleChoice(object selectedItem)

@@ -30,12 +30,12 @@ namespace ScreeningApplication.Views
 
         private void Start_Screening_btn(object sender, RoutedEventArgs e)
         {
-            string name = Name_tb.Text.Length == 0 ? Name_tb.Text : "";
-            DateTime dob = DOB_dp.DisplayDate;
-            string gender = Gender_tb.Text.Length == 0 ? Gender_tb.Text : "";
-            string education = Education_tb.Text.Length == 0 ? Education_tb.Text : "";
-            string motivation = Motivation_tb.Text.Length == 0 ? Motivation_tb.Text : "";
-            participantWM.StartScreening(name, dob, gender, education, motivation);
+            //string name = Name_tb.Text.Length == 0 ? Name_tb.Text : "";
+            //DateTime dob = DOB_dp.DisplayDate;
+            //string gender = Gender_tb.Text.Length == 0 ? Gender_tb.Text : "";
+            //string education = Education_tb.Text.Length == 0 ? Education_tb.Text : "";
+            //string motivation = Motivation_tb.Text.Length == 0 ? Motivation_tb.Text : "";
+            //participantWM.StartScreening(name, dob, gender, education, motivation);
             NavigationService.Navigate(new Uri("Views/QuestionAnswerPage.xaml", UriKind.Relative));
         }
 
@@ -52,5 +52,6 @@ namespace ScreeningApplication.Views
         {
             Education_tb.Clear();
         }
+
     }
 }

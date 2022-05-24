@@ -1,11 +1,11 @@
 ﻿using BuinsnessLogic.Models;
 using BuinsnessLogic.Persistence;
-using System.Collections.Generic;
+using System;
 using System.Collections.ObjectModel;
 
 namespace AdminApplication.ViewModels
 {
-    public class QuestionViewModel
+    public class QuestionUpdaterViewModel
     {
 
         //=========================================================================
@@ -26,12 +26,7 @@ namespace AdminApplication.ViewModels
         CategoryRepository CategoryRepo = new CategoryRepository(connectionString);
         AnswerRepository AnswerRepo = new AnswerRepository(connectionString);
 
-
-        //=========================================================================
-        // Constructor
-        //=========================================================================
-
-        public QuestionViewModel()
+        public QuestionUpdaterViewModel()
         {
             foreach (Question question in QuestionRepo.GetAll())
             {
@@ -39,7 +34,7 @@ namespace AdminApplication.ViewModels
             }
             foreach (Category category in CategoryRepo.GetAll())
             {
-                CategoryVM.Add(category);   
+                CategoryVM.Add(category);
             }
             foreach (Answer answer in AnswerRepo.GetAll())
             {
@@ -48,67 +43,12 @@ namespace AdminApplication.ViewModels
         }
 
         //=========================================================================
-        // AddNewQuestion (CRUD: Create)
+        // UpdateQuestion (CRUD: Update)
         //=========================================================================
 
-        public void AddNewQuestion(string questionDescription, string difficulty, string categoryName, List<Answer> answers)
+        public void UpdateQuestion()
         {
-            Level difficultyChosen;
-
-            switch (difficulty)
-            {
-                case "Nem":
-                    difficultyChosen = Level.Nem;
-                    break;
-                case "Moderat":
-                    difficultyChosen = Level.Moderat;
-                    break;
-                case "Svær":
-                    difficultyChosen = Level.Svær;
-                    break;
-                default:
-                    difficultyChosen = Level.Nem;
-                    break;
-            }
-
-            Category? categoryChosen = null;
-            foreach (Category category in CategoryVM)
-            {
-                if (category.CategoryName == categoryName)
-                {
-                    categoryChosen = category;
-                    break;
-                }
-            }
-
-            Question newQuestion = new(questionDescription, difficultyChosen, categoryChosen, answers);
-
-            newQuestion.QuestionID = QuestionRepo.Add(newQuestion);
-            QuestionVM.Add(newQuestion);
-
-            foreach (Answer answer in answers)
-            {
-                answer.QuestionID = newQuestion.QuestionID;
-                AnswerRepo.Add(answer);
-            }
-        }
-
-        //=========================================================================
-        // DeleteQuestion (CRUD: Delete)
-        //=========================================================================
-
-        public void DeleteQuestion(object selectedItem)
-        {
-            Question question = (Question)selectedItem;
-
-            for (int i = 0; i < QuestionVM.Count; i++)
-            {
-                if (question.QuestionID == QuestionVM[i].QuestionID)
-                {
-                    QuestionRepo.Delete(QuestionVM[i].QuestionID);
-                    QuestionVM.Remove(QuestionVM[i]);
-                }
-            }
+            throw new NotImplementedException();
         }
 
         //=========================================================================
@@ -128,7 +68,7 @@ namespace AdminApplication.ViewModels
 
         public void AddCategory(string categoryName)
         {
-            Category newCategory = new Category(categoryName); 
+            Category newCategory = new Category(categoryName);
 
             newCategory.CategoryID = CategoryRepo.Add(newCategory);
             CategoryVM.Add(newCategory);

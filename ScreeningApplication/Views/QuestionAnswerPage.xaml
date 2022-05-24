@@ -28,15 +28,23 @@
                 <RowDefinition Height="50"/>
                 <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
-            <ComboBox Width="150" Grid.Column="1" Grid.Row="1" Margin="0,15" HorizontalAlignment="Left" Style="{StaticResource ComboStyle}"/>
+            <ComboBox x:Name="question_cb" Width="200" Grid.Column="1" Grid.Row="1" Style="{StaticResource ComboStyle}" FontSize="12" IsEditable="True" IsReadOnly="True" Text="--Gå til spørgsmål--"/>
             <Button Content="Gem og afslut" Grid.Column="3" Grid.Row="1" Style="{StaticResource OpenButtonStyle}" Click="Save_And_Exit_btn" Height="50"/>
         </Grid>
         <Grid Grid.Row="1">
-            <Label Content="Test Test Test Test Test Test Test" Style="{StaticResource LabelStyle}" HorizontalAlignment="Center"/>
-            <ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Style="{StaticResource ListViewStyle}" Margin="150,200,150,0">
+            <Viewbox Margin="150,0,150,225">
+                <StackPanel Orientation="Vertical" Width="400" Height="50" VerticalAlignment="Top">
+                    <TextBlock x:Name="question_description_lb"  Text="{Binding QuestionDescription}" Foreground="White" TextWrapping="WrapWithOverflow" FontSize="10"/>
+                </StackPanel>
+            </Viewbox>
+            <ListBox x:Name="Answers_lb" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="150,200,150,0">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <CheckBox x:Name="Answer_cb"  IsChecked="{Binding Path=AnswerChecked, Mode=TwoWay}" Content="{Binding Path=AnswerDescription}"/>
+                        <CheckBox x:Name="Answer_cb" Content="{Binding Path=AnswerDescription}">
+                            <CheckBox.LayoutTransform>
+                                <ScaleTransform ScaleX="2" ScaleY="2"/>
+                            </CheckBox.LayoutTransform>
+                        </CheckBox>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>

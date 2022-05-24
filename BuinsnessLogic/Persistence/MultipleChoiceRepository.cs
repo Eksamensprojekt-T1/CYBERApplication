@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BuinsnessLogic.Models;
 
 namespace BuinsnessLogic.Persistence
@@ -17,7 +14,6 @@ namespace BuinsnessLogic.Persistence
         //=========================================================================
 
         public List<MultipleChoice> MultipleChoicesList { get; set; } = new List<MultipleChoice>();
-
         private string connectionString;
 
         //=========================================================================
@@ -43,13 +39,11 @@ namespace BuinsnessLogic.Persistence
             // Starts connection to database
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                string table = "MULTIPLECHOISE";
-                string colums = "MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
+                // insert multiplechoice
+                string multipleChoiceTable = "MULTIPLECHOICE";
+                string columns = "MULTIPLECHOICE.MCName, MULTIPLECHOICE.DateOfCreation";
                 string values = "@MCName, @DateOfCreation";
-                string commandText =
-                    $"INSERT INTO {table}({colums})" +
-                    $"VALUES ({values})" +
-                    $"SELECT @@IDENTITY";
+                string commandText = $"INSERT INTO {multipleChoiceTable} ({columns}) VALUES ({values}) SELECT @@IDENTITY";
 
                 con.Open();
                 using (SqlCommand cmd = new SqlCommand(commandText, con))
@@ -60,6 +54,11 @@ namespace BuinsnessLogic.Persistence
                     result = multipleChoice.MCID;
                 }
 
+                foreach(Question question in multipleChoice.Questions)
+                {
+                    AddQuestions(multipleChoice, question);
+                }
+
                 MultipleChoicesList.Add(multipleChoice);
 
                 return result;
@@ -67,26 +66,8 @@ namespace BuinsnessLogic.Persistence
         }
 
         //=========================================================================
-        // Delete (CRUD: Delete)
-        // Removes a multiplechoice from the database
-        //=========================================================================
-
-        public void Delete(int? entityID)
-        {
-            using (SqlConnection con = new(connectionString))
-            {
-                string table = "MULTIPLECHOISE";
-                string commandText = $"DELETE FROM {table} WHERE {entityID} = MCID";
-
-                con.Open();
-                SqlCommand sqlCommand = new(commandText, con);
-                sqlCommand.ExecuteNonQuery();
-            }
-        }
-
-        //=========================================================================
         // GetAll (CRUD: Read)
-        // Returns all multiplechoice objects from database
+        // Returns all multiplechoice objects from the list
         //=========================================================================
 
         public IEnumerable<MultipleChoice> GetAll()
@@ -101,7 +82,33 @@ namespace BuinsnessLogic.Persistence
 
         public MultipleChoice GetByID(int? entityID)
         {
-            throw new NotImplementedException();
+            MultipleChoice result = null;
+            int count = 0;
+
+            try
+            {
+                foreach (MultipleChoice multipleChoice in MultipleChoicesList)
+                {
+                    if (multipleChoice.MCID.Equals(entityID))
+                    {
+                        result = multipleChoice;
+                        break;
+                    }
+                    count++;
+                }
+            }
+            catch (Exception e) when (entityID is null)
+            {
+                string message = "Multiplechoice ID is not set.";
+                throw new Exception(message, e);
+            }
+            catch (Exception e) when (count == MultipleChoicesList.Count)
+            {
+                string message = "Multiplechoice ID does not exist.";
+                throw new Exception(message, e);
+            }
+
+            return result;
         }
 
         //=========================================================================
@@ -115,17 +122,34 @@ namespace BuinsnessLogic.Persistence
         }
 
         //=========================================================================
+        // Delete (CRUD: Delete)
+        // Removes a multiplechoice from the database
+        //=========================================================================
+
+        public void Delete(int? entityID)
+        {
+            using (SqlConnection con = new(connectionString))
+            {
+                string table = "MULTIPLECHOICE";
+                string commandText = $"DELETE FROM MULTIPLECHOICE_QUESTION WHERE {entityID} = MCID; DELETE FROM {table} WHERE {entityID} = MCID";
+
+                con.Open();
+                SqlCommand sqlCommand = new(commandText, con);
+                sqlCommand.ExecuteNonQuery();
+            }
+        }
+
+        //=========================================================================
         // LoadAllEntitys (CRUD: Read)
-        // Loads all objects from the MULTIPLECHOICE table in the database
-        // to the Repository list
+        // Loads all entities from the database table MULTIPLECHOICE
         //=========================================================================
 
         private void loadAllEntitys()
         {
             using (SqlConnection con = new(connectionString))
             {
-                string table = "MULTIPLECHOISE";
-                string values = "MULTIPLECHOISE.MCID, MULTIPLECHOISE.MCName, MULTIPLECHOISE.DateOfCreation";
+                string table = "MULTIPLECHOICE";
+                string values = "MULTIPLECHOICE.MCID, MULTIPLECHOICE.MCName, MULTIPLECHOICE.DateOfCreation";
                 string commandText = $"SELECT {values} FROM {table}";
 
                 con.Open();
@@ -150,6 +174,31 @@ namespace BuinsnessLogic.Persistence
         }
 
         //=========================================================================
+        // AddQuestions (CRUD: Create)
+        // Inserts the MCID and questionID into MULTIPLECHOICE_QUESTION to create the relation between them
+        //=========================================================================
+
+        private void AddQuestions(MultipleChoice multipleChoice, Question question)
+        {
+            // insert multipleChoice_Question
+            string mqTable = "MULTIPLECHOICE_QUESTION";
+            string columns = "MULTIPLECHOICE_QUESTION.MCID, MULTIPLECHOICE_QUESTION.QuestionID";
+            string values = "@MCID, @QuestionID";
+            string commandText = $"INSERT INTO {mqTable} ({columns}) VALUES ({values})";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                con.Open();
+                using (SqlCommand cmd = new SqlCommand(commandText, con))
+                {
+                    cmd.Parameters.Add("@MCID", SqlDbType.Int).Value = multipleChoice.MCID;
+                    cmd.Parameters.Add("@QuestionID", SqlDbType.Int).Value = question.QuestionID;
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        //=========================================================================
         // MakeListOfQuestions (CRUD: Create)
         // Returns a lists with questions in relation to the multiple choice id chosen
         //=========================================================================
@@ -160,12 +209,12 @@ namespace BuinsnessLogic.Persistence
 
             using (SqlConnection con = new(connectionString))
             {
-                string values = "MULTIPLECHOISE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
-                string innerJoin1 = "INNER JOIN MULTIPLECHOISE_QUESTION as mq on MULTIPLECHOISE.MCID = mq.MCID";
-                string innerJoin2 = "INNER JOIN QUESTION on mq.QuestionID = QUESTION.QuestionID";
+                string values = "MULTIPLECHOICE.MCID, QUESTION.QuestionID, QUESTION.QuestionDescription, QUESTION.Difficulty, CATEGORY.CategoryName";
+                string innerJoin1 = "INNER JOIN MULTIPLECHOICE_QUESTION on MULTIPLECHOICE.MCID = MULTIPLECHOICE_QUESTION.MCID";
+                string innerJoin2 = "INNER JOIN QUESTION on MULTIPLECHOICE_QUESTION.QuestionID = QUESTION.QuestionID";
                 string innerJoin3 = "INNER JOIN CATEGORY on QUESTION.CategoryID = CATEGORY.CategoryID";
-                string where = $"WHERE MULTIPLECHOISE.MCID = {id}";
-                string commandText = $"SELECT {values} FROM MULTIPLECHOISE {innerJoin1} {innerJoin2} {innerJoin3} {where}";
+                string where = $"WHERE MULTIPLECHOICE.MCID = {id}";
+                string commandText = $"SELECT {values} FROM MULTIPLECHOICE {innerJoin1} {innerJoin2} {innerJoin3} {where}";
 
                 con.Open();
                 using (SqlCommand sQLCommand = new(commandText, con))

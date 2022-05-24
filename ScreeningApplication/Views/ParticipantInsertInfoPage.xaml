@@ -26,22 +26,25 @@
             <RowDefinition Height="35" />
             <RowDefinition Height="15" />
             <RowDefinition Height="35" />
-            <RowDefinition Height="30" />
-            <RowDefinition Height="75" />
+            <RowDefinition Height="15" />
+            <RowDefinition Height="35" />
+            <RowDefinition Height="100" />
             <RowDefinition Height="15" />
             <RowDefinition Height="35" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label x:Name="AboutYou_lb" Grid.Column="1" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Lidt om dig"/>
+        <Label x:Name="AboutYou_lb" Grid.Column="1" Grid.Row="1" Style="{StaticResource LabelStyle}" Content="Dine informationer" FontSize="22"/>
         <TextBox x:Name="Name_tb" Grid.Column="1" Grid.Row="2" Style="{StaticResource TextBoxStyle}" Text="Navn" MouseDoubleClick="ClearName" />
-        <DatePicker  x:Name="DOB_dp" Grid.Column="1" Grid.Row="4"/>
+        <Viewbox Grid.Column="1" Grid.Row="4" HorizontalAlignment="Left">
+            <DatePicker  x:Name="DOB_dp" SelectedDateFormat="Short" Width="150"/>
+        </Viewbox>
         <TextBox x:Name="Gender_tb" Grid.Column="1" Grid.Row="6" Style="{StaticResource TextBoxStyle}" Text="Køn" MouseDoubleClick="ClearGender" />
         <TextBox x:Name="Education_tb" Grid.Column="1" Grid.Row="8" Style="{StaticResource TextBoxStyle}" Text="Uddannelses baggrund" MouseDoubleClick="ClearEducation" />
-        <Label x:Name="WelcomeTo_lb" Grid.Column="1" Grid.Row="9" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Hvad er din motivation?"/>
-        <TextBox Name="Motivation_tb" Grid.Column="1" Grid.Row="10" Style="{StaticResource TextBoxStyle}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
+        <Label x:Name="WelcomeTo_lb" Grid.Column="1" Grid.Row="10" Grid.ColumnSpan="2" Style="{StaticResource LabelStyle}" Content="Motivation for at søge cyberværnepligt?"/>
+        <TextBox Name="Motivation_tb" Grid.Column="1" Grid.Row="11" Style="{StaticResource TextBoxStyle}" TextWrapping="Wrap" AcceptsReturn="True" VerticalScrollBarVisibility="Visible"/>
         
-        <Button Content="Start screening" Grid.Column="1" Grid.Row="12" Style="{StaticResource RedButtonStyle}" Click="Start_Screening_btn"/>
+        <Button Content="Start screening" Grid.Column="1" Grid.Row="13" Style="{StaticResource RedButtonStyle}" Click="Start_Screening_btn"/>
 
     </Grid>
 </Page>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScreeningApplication.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,32 @@ namespace ScreeningApplication.Views
     /// </summary>
     public partial class QuestionAnswerPage : Page
     {
+        QuestionAnswerViewModel qvm = new QuestionAnswerViewModel();
+        int currentQuestionIndex = 0;
+
         public QuestionAnswerPage()
         {
             InitializeComponent();
+            FillQuestionComboBox();
+            setupQuestion(currentQuestionIndex);
+            DataContext = qvm;
+        }
+
+        private void FillQuestionComboBox()
+        {
+            question_cb.ItemsSource = qvm.QuestionVM;
+            question_cb.DisplayMemberPath = "QuestionDescription";
+        }
+
+        private void setupQuestion(int questionNumber)
+        {
+            question_description_lb.Text = qvm.QuestionVM[questionNumber].QuestionDescription;
+            FillAnswerListBox(questionNumber);
+        }
+
+        private void FillAnswerListBox(int questionNumber)
+        {
+            Answers_lb.ItemsSource = qvm.getAnswersForQuestion(qvm.QuestionVM[questionNumber]);
         }
 
         private void Save_And_Exit_btn(object sender, RoutedEventArgs e)
@@ -31,11 +55,25 @@ namespace ScreeningApplication.Views
         }
         private void Next_Question_btn(object sender, RoutedEventArgs e)
         {
+            int nextQuestionIndex = currentQuestionIndex + 1;
+            if (nextQuestionIndex > 0 && nextQuestionIndex < qvm.QuestionVM.Count)
+            {
+                currentQuestionIndex++;
+            }
+            else currentQuestionIndex = qvm.QuestionVM.Count - 1;
 
+            setupQuestion(currentQuestionIndex);
         }
         private void Last_Question_btn(object sender, RoutedEventArgs e)
         {
+            int lastQuestionIndex = currentQuestionIndex - 1;
+            if (lastQuestionIndex > 0 && lastQuestionIndex < qvm.QuestionVM.Count)
+            {
+                currentQuestionIndex--;
+            }
+            else currentQuestionIndex = 0;
 
+            setupQuestion(currentQuestionIndex);
         }
     }
 }

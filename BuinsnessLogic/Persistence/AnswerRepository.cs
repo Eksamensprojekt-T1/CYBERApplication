@@ -2,41 +2,54 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using BuinsnessLogic.Models;
 
 namespace BuinsnessLogic.Persistence
 {
     public class AnswerRepository : IRepository<Answer>
     {
+
+        //=========================================================================
+        // Fields & Properties
+        //=========================================================================
+
         public List<Answer> Answers { get; set; }
-        private string connectionPath;
-        public AnswerRepository(string connectionPath)
+        private string connectionString;
+
+        //=========================================================================
+        // Constructors
+        //=========================================================================
+
+        public AnswerRepository(string connectionString)
         {
             Answers = new();
-            this.connectionPath = connectionPath;
+            this.connectionString = connectionString;
             loadAllEntitys();
         }
-        
+
+        //=========================================================================
+        // Add (CRUD: Create)
+        // Adds an answer to the database
+        //=========================================================================
+
         public int? Add(Answer answer)
         {
             int? result = -1;
             string table = "ANSWER";
-            string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect";
-            string values = "@answerDescription, @isItCorrect";
+            string coloumns = "ANSWER.AnswerDescription, ANSWER.IsItCorrect, ANSWER.QuestionID";
+            string values = "@answerDescription, @isItCorrect, @QuestionID";
             string commandText =
                 $"INSERT INTO {table} ({coloumns})" +
                 $"VALUES ({values})" +
                 $"SELECT @@IDENTITY";
 
-            using (SqlConnection con = new(connectionPath)) // gets from database
+            using (SqlConnection con = new(connectionString)) // gets from database
             {
                 con.Open();
                 SqlCommand cmd = new(commandText, con);
                 cmd.Parameters.Add("@answerDescription", SqlDbType.NVarChar).Value = answer.AnswerDescription;
                 cmd.Parameters.Add("@isItCorrect", SqlDbType.Bit).Value = answer.IsItCorrect;
+                cmd.Parameters.Add("@QuestionID", SqlDbType.Int).Value = answer.QuestionID;
                 answer.AnswerID = Convert.ToInt32(cmd.ExecuteScalar());
                 result = answer.AnswerID;
             }
@@ -44,10 +57,22 @@ namespace BuinsnessLogic.Persistence
 
             return result;
         }
+
+        //=========================================================================
+        // GetAll (CRUD: Read)
+        // Returns all answer objects from the list
+        //=========================================================================
+
         public IEnumerable<Answer> GetAll()
         {
             return Answers;
         }
+
+        //=========================================================================
+        // GetByID (CRUD: Read)
+        // Returns a specific answer object.
+        //=========================================================================
+
         public Answer GetByID(int? answerID)
         {
             Answer result = null;
@@ -61,6 +86,12 @@ namespace BuinsnessLogic.Persistence
             }
             return result;
         }
+
+        //=========================================================================
+        // Update (CRUD: Update)
+        // Updates an already existing answer in the database
+        //=========================================================================
+
         public void Update(Answer answer)
         {
             string table = "ANSWER";
@@ -72,7 +103,7 @@ namespace BuinsnessLogic.Persistence
                 $"SET {values}" +
                 $"WHERE {condition}";
 
-            using (SqlConnection connection = new(connectionPath))
+            using (SqlConnection connection = new(connectionString))
             {
                 connection.Open();
                 SqlCommand cmd = new(CommandText, connection);
@@ -80,6 +111,12 @@ namespace BuinsnessLogic.Persistence
                 cmd.ExecuteScalar();
             }
         }
+
+        //=========================================================================
+        // Delete (CRUD: Delete)
+        // Deletes a answer from the database
+        //=========================================================================
+
         public void Delete(int? answerID)
         {
             if (answerID != null) // TODO should be some exception
@@ -89,7 +126,7 @@ namespace BuinsnessLogic.Persistence
                     if (answer.AnswerID.Equals(answerID))
                     {
                         // Remove from SQL database
-                        using (SqlConnection connection = new(connectionPath))
+                        using (SqlConnection connection = new(connectionString))
                         {
                             connection.Open();
                             string table = "ANSWER";
@@ -107,12 +144,18 @@ namespace BuinsnessLogic.Persistence
                 }
             }
         }
+
+        //=========================================================================
+        // LoadAllEnitys (CRUD: Update)
+        // Loads all entities from the database table ANSWER
+        //=========================================================================
+
         private void loadAllEntitys()
         {
-            using (SqlConnection connection = new(connectionPath))
+            using (SqlConnection connection = new(connectionString))
             {
                 string table = "ANSWER";
-                string values = "ANSWER.AnswerID, ANSWER.AnswerDescription, ANSWER.IsItCorrect";
+                string values = "ANSWER.AnswerID, ANSWER.AnswerDescription, ANSWER.IsItCorrect, ANSWER.QuestionID";
                 string CommandText = $"SELECT {values} FROM {table}";
 
                 // Loads to RAM from database
@@ -125,8 +168,9 @@ namespace BuinsnessLogic.Persistence
                         int? answerID = int.Parse(sqlDataReader["AnswerID"].ToString());
                         string answerDescription = sqlDataReader["AnswerDescription"].ToString();
                         bool isItCorrect = sqlDataReader["IsItCorrect"].ToString() == "1";
+                        int? questionID = int.Parse(sqlDataReader["QuestionID"].ToString());
 
-                        Answer answer = new(answerID, answerDescription, isItCorrect);
+                        Answer answer = new(answerID, answerDescription, isItCorrect, questionID);
 
                         Answers.Add(answer);
                     }

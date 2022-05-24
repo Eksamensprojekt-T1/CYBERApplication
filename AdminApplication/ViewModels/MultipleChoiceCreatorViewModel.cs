@@ -1,11 +1,8 @@
-﻿using BuinsnessLogic.Models;
-using BuinsnessLogic.Persistence;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BuinsnessLogic.Models;
+using BuinsnessLogic.Persistence;
 
 namespace AdminApplication.ViewModels
 {
@@ -22,9 +19,12 @@ namespace AdminApplication.ViewModels
         // Observablecollections
         public ObservableCollection<Question> QuestionVM { get; set; } = new ObservableCollection<Question>();
         public ObservableCollection<MultipleChoice> MultipleChoiceVM { get; set; } = new ObservableCollection<MultipleChoice>();
+        public List<Question> SelectedQuestions { get; set; } = new List<Question>();
+
         // Repositories
         QuestionRepository QuestionRepo = new QuestionRepository(ConnectionString);
         MultipleChoiceRepository MultipleChoiceRepo = new MultipleChoiceRepository(ConnectionString);
+        
         //=========================================================================
         // Constructors
         //=========================================================================
@@ -46,9 +46,16 @@ namespace AdminApplication.ViewModels
         // Adds a question to a multiple choice
         //=========================================================================
 
-        public void AddQuestion()
+        public List<Question> AddQuestions()
         {
+            List<Question> selectedQuestions = new List<Question>();
 
+            foreach (Question question in SelectedQuestions)
+            {
+                selectedQuestions.Add(question);
+            }
+
+            return selectedQuestions;
         }
 
         //=========================================================================
@@ -58,16 +65,17 @@ namespace AdminApplication.ViewModels
 
         public void RemoveQuestion()
         {
-
+            throw new NotImplementedException();
         }
 
         //=========================================================================
         // AddMultipleChoice (CRUD: Create)
+        // Adds a multiple choice
         //=========================================================================
 
         public void AddMultipleChoice(string multipleChoiceName, DateTime dateOfCreation)
         {
-            MultipleChoice newMultipleChoice = new(multipleChoiceName, dateOfCreation);
+            MultipleChoice newMultipleChoice = new(multipleChoiceName, dateOfCreation, AddQuestions());
             
             // Adds multiple choice to repository (database)
             newMultipleChoice.MCID = MultipleChoiceRepo.Add(newMultipleChoice);

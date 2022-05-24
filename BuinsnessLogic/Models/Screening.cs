@@ -30,8 +30,8 @@ namespace BuinsnessLogic.Models
             ScreeningTimer = screeningTimer;
         }
 
-        public Screening(string screeningName, int screeningPassword, double passingScore, DateTime startDate, DateTime endDate, int screeningTimer)
-            : this(null, screeningName, screeningPassword, passingScore, startDate, endDate, screeningTimer) { }
+        public Screening(int? screeningID, string screeningName, int screeningPassword, double passingScore, DateTime startDate, DateTime endDate)
+            : this(screeningID, screeningName, screeningPassword, passingScore, startDate, endDate, null) { }
 
 
         #endregion
